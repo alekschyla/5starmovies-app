@@ -1,7 +1,8 @@
 import React from 'react';
+import Dashboard from './views/Dashboard'
 
 const StarMoviesApp = () => (
-<div>Zielona Krowa</div>
+    <Dashboard />
 );
 
 export default StarMoviesApp
