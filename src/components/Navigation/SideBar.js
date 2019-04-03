@@ -14,7 +14,6 @@ class SideBar extends React.Component {
     render() {
         return (
             <div>
-                <Menu />
                 <Drawer
                     open={this.props.isSideBarOpen}
                     onClose={this.props.toggleSideBar}
