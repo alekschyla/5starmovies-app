@@ -1,6 +1,14 @@
 import React from 'react'
 
-const Appbar = () => (
-    <div></div>
-)
+class AppBar extends React.Component {
 
+render() {
+    return(
+        <div>
+
+        </div>
+    )
+}
+}
+
+export default AppBar

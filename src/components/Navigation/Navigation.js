@@ -1,10 +1,17 @@
 import React from 'react'
+import SideBar from './SideBar'
+import AppBar from './AppBar'
 
-const Navigation = () => (
-    <div>
+class Navigation extends React.Component {
 
+    render() {
+        return(
+            <div>
+                <AppBar />
+                <SideBar />
+            </div>
+        )
+    }
+    }
 
-    </div>
-)
-
-export default Navigation
+    export default Navigation
