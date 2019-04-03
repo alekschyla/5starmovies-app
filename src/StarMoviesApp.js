@@ -1,7 +1,11 @@
 import React from 'react';
+import Navigation from './components/Navigation'
+
 
 const StarMoviesApp = () => (
-<div>Zielona Krowa</div>
+
+
+    <Navigation />
 );
 
 export default StarMoviesApp
