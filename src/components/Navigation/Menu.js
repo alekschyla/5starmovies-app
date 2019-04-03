@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -9,25 +9,35 @@ class Menu extends React.Component {
             <div>
                 <MenuList>
                     <Link to="/">
-                        <MenuItem>
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
                             Strona glowna
                         </MenuItem>
+                    </Link>
 
-                    </Link>
                     <Link to="/search">
-                        <MenuItem>
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
                             Wyszukaj
-                    </MenuItem>
+                        </MenuItem>
                     </Link>
+
                     <Link to="/watch-list">
-                        <MenuItem>
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
                             Do obejrzenia
-                    </MenuItem>
+                        </MenuItem>
                     </Link>
+
                     <Link to="/add-rating">
-                        <MenuItem>
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
                             Dodaj ocene
-                    </MenuItem>
+                        </MenuItem>
                     </Link>
                 </MenuList>
             </div>
@@ -35,4 +45,5 @@ class Menu extends React.Component {
     }
 
 }
+
 export default Menu

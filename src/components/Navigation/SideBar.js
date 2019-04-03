@@ -21,7 +21,9 @@ class SideBar extends React.Component {
                     <div
                         style={styles.drawer}
                     >
-                        <Menu />
+                        <Menu
+                            toggleSideBar={this.props.toggleSideBar}
+                        />
                     </div>
                 </Drawer>
             </div>

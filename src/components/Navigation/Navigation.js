@@ -6,11 +6,11 @@ class Navigation extends React.Component {
 
     state = {
         isSideBarOpen: false
-    }
+    };
 
     toggleSideBar = () => this.setState({
         isSideBarOpen: !this.state.isSideBarOpen
-    })
+    });
 
     render() {
         return (
