@@ -1,5 +1,13 @@
 import React from 'react'
 import Menu from './Menu'
+import Drawer from '@material-ui/core/Drawer';
+
+const styles = {
+    drawer: {
+        width: '300px'
+    }
+};
+
 
 class SideBar extends React.Component {
 
@@ -7,6 +15,16 @@ class SideBar extends React.Component {
         return (
             <div>
                 <Menu />
+                <Drawer
+                    open={this.props.isSideBarOpen}
+                    onClose={this.props.toggleSideBar}
+                >
+                    <div
+                        style={styles.drawer}
+                    >
+                        <Menu />
+                    </div>
+                </Drawer>
             </div>
         )
     }
