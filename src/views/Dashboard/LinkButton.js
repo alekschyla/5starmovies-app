@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const styles = {
     linkbutton: {
-        margin: '10px',
+        margin: '20px',
         textDecoration: 'none'
     }
 }
