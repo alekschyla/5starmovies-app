@@ -9,23 +9,31 @@ class Menu extends React.Component {
             <div>
                 <MenuList>
                     <Link to="/">
-                        <MenuItem>
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
                             Strona glowna
                         </MenuItem>
 
                     </Link>
                     <Link to="/search">
-                        <MenuItem>
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
                             Wyszukaj
                     </MenuItem>
                     </Link>
                     <Link to="/watch-list">
-                        <MenuItem>
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
                             Do obejrzenia
                     </MenuItem>
                     </Link>
                     <Link to="/add-rating">
-                        <MenuItem>
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
                             Dodaj ocene
                     </MenuItem>
                     </Link>
