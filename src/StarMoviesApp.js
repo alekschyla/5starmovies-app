@@ -6,16 +6,26 @@ import Search from './views/Search'
 import WatchList from './views/WatchList'
 import AddRating from './views/AddRating'
 
-
-
 const StarMoviesApp = () => (
-
     <Router>
         <Navigation />
-        <Route exact path={"/"} component={Dashboard}/>
-        <Route path={"/search"} component={Search}/>
-        <Route path={"/watch-list"} component={WatchList}/>
-        <Route path={"/add-rating"} component={AddRating}/>
+        <Route
+            exact
+            path={"/"}
+            component={Dashboard}
+        />
+        <Route
+            path={"/search"}
+            component={Search}
+        />
+        <Route
+            path={"/watch-list"}
+            component={WatchList}
+        />
+        <Route
+            path={"/add-rating"}
+            component={AddRating}
+        />
     </Router>
 
 );
