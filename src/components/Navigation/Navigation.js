@@ -4,14 +4,27 @@ import AppBar from './AppBar'
 
 class Navigation extends React.Component {
 
+    state = {
+        isSideBarOpen: false
+    };
+
+    toggleSideBar = () => this.setState({
+        isSideBarOpen: !this.state.isSideBarOpen
+    });
+
     render() {
-        return(
+        return (
             <div>
-                <AppBar />
-                <SideBar />
+                <AppBar
+                    toggleSideBar={this.toggleSideBar}
+                />
+                <SideBar
+                    isSideBarOpen={this.state.isSideBarOpen}
+                    toggleSideBar={this.toggleSideBar}
+                />
             </div>
         )
     }
-    }
+}
 
-    export default Navigation
+export default Navigation

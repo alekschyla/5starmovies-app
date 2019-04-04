@@ -8,13 +8,42 @@ class Menu extends React.Component {
         return (
             <div>
                 <MenuList>
-                    <MenuItem>
-                        <Link to="/">Dashboard</Link>
-                    </MenuItem>
+                    <Link to="/">
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
+                            Strona glowna
+                        </MenuItem>
+                    </Link>
+
+                    <Link to="/search">
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
+                            Wyszukaj
+                        </MenuItem>
+                    </Link>
+
+                    <Link to="/watch-list">
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
+                            Do obejrzenia
+                        </MenuItem>
+                    </Link>
+
+                    <Link to="/add-rating">
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
+                            Dodaj ocene
+                        </MenuItem>
+                    </Link>
                 </MenuList>
             </div>
         )
     }
 
 }
+
 export default Menu
