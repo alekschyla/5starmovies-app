@@ -17,10 +17,12 @@ const styles = {
     'Dashboard-buttons-div': {
         display: 'flex',
         justifyContent: 'center',
+        marginTop: 80
     },
     'Dashboard-charts-div': {
         display: 'flex',
         justifyContent: 'space-around',
+        marginTop: 100
     }
 }
 class Dashboard extends React.Component {
