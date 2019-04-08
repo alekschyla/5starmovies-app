@@ -7,9 +7,13 @@ class Search extends React.Component {
         isLoading: false,
         isError: false,
         searchTerm: '',
+        type: '',
+        year: null
     };
 
     getSearchTerm = (event) => this.setState({searchTerm: event.target.value});
+
+    getType = (event) => this.setState({type: event.target.value});
 
     render(){
         return(
@@ -17,6 +21,10 @@ class Search extends React.Component {
                 <FormSearch
                     searchTerm={this.state.searchTerm}
                     getSearchTerm={this.getSearchTerm}
+                    movies={this.state.movies}
+                    type={this.state.type}
+                    getType={this.getType}
+                    year={this.state.year}
                 />
 
             </div>
