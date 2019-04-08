@@ -5,6 +5,7 @@ import Dashboard from './views/Dashboard';
 import Search from './views/Search';
 import WatchList from './views/WatchList';
 import AddRating from './views/AddRating';
+import MovieDetails from './views/MovieDetails';
 
 
 const StarMoviesApp = () => (
@@ -15,6 +16,7 @@ const StarMoviesApp = () => (
         <Route path={"/search"} component={Search}/>
         <Route path={"/watch-list"} component={WatchList}/>
         <Route path={"/add-rating"} component={AddRating}/>
+        <Route path={"/movie"} component={MovieDetails}/>
     </Router>
 
 );
