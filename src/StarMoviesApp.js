@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from './components/Navigation';
 import Dashboard from './views/Dashboard';
 import Search from './views/Search';
@@ -12,11 +12,11 @@ const StarMoviesApp = () => (
 
     <Router>
         <Navigation />
-        <Route exact path={"/"} component={Dashboard}/>
-        <Route path={"/search"} component={Search}/>
-        <Route path={"/watch-list"} component={WatchList}/>
-        <Route path={"/add-rating"} component={AddRating}/>
-        <Route path={"/movie"} component={MovieDetails}/>
+        <Route exact path={"/"} component={Dashboard} />
+        <Route path={"/search"} component={Search} />
+        <Route path={"/watch-list"} component={WatchList} />
+        <Route path={"/add-rating"} component={AddRating} />
+        <Route path={"/movie/:id"} component={MovieDetails} />
     </Router>
 
 );
