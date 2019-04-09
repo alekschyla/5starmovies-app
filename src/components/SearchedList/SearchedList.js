@@ -16,7 +16,7 @@ const SearchedList = (props) => {
                         <ListItem>
                             <ListItemAvatar>
                                 <img
-                                src={movie.Poster}
+                                    src={movie.Poster}
                                 />
 
 
@@ -25,7 +25,7 @@ const SearchedList = (props) => {
                                 primary={movie.Title}
                                 secondary={movie.Year}
                             />
-                            <button onClick={()=>this.props.history.push(`../movie/:${movie.imdbID}`)}>Wyswietl szczegoly</button>
+                            <button onClick={() => this.props.history.push(`/movie/:${movie.imdbID}`)}>Wyswietl szczegoly</button>
                         </ListItem>
                     )
                 )
