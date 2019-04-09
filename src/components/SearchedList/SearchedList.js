@@ -25,7 +25,8 @@ const SearchedList = (props) => {
                                 primary={movie.Title}
                                 secondary={movie.Year}
                             />
-                            <button onClick={() => this.props.history.push(`/movie/:${movie.imdbID}`)}>Wyswietl szczegoly</button>
+                            {console.log(movie)}
+                            <button onClick={() => props.history.push(`/movie/:${movie.imdbID}`)}>Wyświetl szczegóły</button>
                         </ListItem>
                     )
                 )
