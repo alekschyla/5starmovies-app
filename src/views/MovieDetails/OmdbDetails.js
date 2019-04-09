@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const OmdbDetails = (props) => {
     return (
         <div>
-            <img src={props.movieData.Poster} />
+            <img src={props.movieData.Poster} alt={props.movieData.Title} />
             <p>Tytuł filmu: {props.movieData.Title}</p>
             <p>Typ: {props.movieData.Type}</p>
             <p>Gatunek: {props.movieData.Genre}</p>

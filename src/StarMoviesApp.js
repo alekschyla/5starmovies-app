@@ -29,7 +29,8 @@ const StarMoviesApp = () => (
             component={AddRating}
         />
         <Route
-            path={"/movie/:id"}
+            exact
+            path={["/movie","/movie/","/movie/:id"]}
             component={MovieDetails}
         />
     </Router>
