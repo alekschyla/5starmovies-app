@@ -9,14 +9,29 @@ import MovieDetails from './views/MovieDetails';
 
 
 const StarMoviesApp = () => (
-
     <Router>
         <Navigation />
-        <Route exact path={"/"} component={Dashboard} />
-        <Route path={"/search"} component={Search} />
-        <Route path={"/watch-list"} component={WatchList} />
-        <Route path={"/add-rating"} component={AddRating} />
-        <Route path={"/movie/:id"} component={MovieDetails} />
+        <Route
+            exact
+            path={"/"}
+            component={Dashboard}
+        />
+        <Route
+            path={"/search"}
+            component={Search}
+        />
+        <Route
+            path={"/watch-list"}
+            component={WatchList}
+        />
+        <Route
+            path={"/add-rating"}
+            component={AddRating}
+        />
+        <Route
+            path={"/movie/:id"}
+            component={MovieDetails}
+        />
     </Router>
 
 );
