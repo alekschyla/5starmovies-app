@@ -1,6 +1,9 @@
 import React from 'react'
 import FormSearch from "../../components/FormSearch";
 
+let defaultYear = (1950 + ((new Date().getFullYear() + 5) - 1950) / 2);
+console.log(defaultYear);
+
 class Search extends React.Component {
     state = {
         movies: null,
@@ -8,7 +11,7 @@ class Search extends React.Component {
         isError: false,
         searchTerm: '',
         type: '',
-        year: [1950, 1950]
+        year: [defaultYear, defaultYear]
     };
 
     getSearchTerm = (event) => this.setState({searchTerm: event.target.value});
@@ -59,6 +62,12 @@ class Search extends React.Component {
                 this.setState({movies: allMovies})
             );
         }
+    };
+
+    getNextPage = (searchTerm, page) => {
+        fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}&page=${page}`)
+            .then(response => response.json())
+            .then(arrMovies => this.setState({movies: arrMovies.Search}));
     };
 
     render() {
