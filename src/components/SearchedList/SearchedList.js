@@ -16,7 +16,7 @@ const SearchedList = (props) => {
                         <ListItem>
                             <ListItemAvatar>
                                 <img
-                                    src={movie.Poster}
+                                    src={this.state.movies}
                                 />
 
 
