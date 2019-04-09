@@ -5,7 +5,11 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import MUISearch from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import Slider from '@material-ui/lab/Slider';
+//import Slider from '@material-ui/lab/Slider';
+import 'rc-slider/assets/index.css';
+import Slider from 'rc-slider';
+const Range = Slider.Range;
+
 
 class FormSearch extends React.Component {
 
@@ -62,7 +66,7 @@ class FormSearch extends React.Component {
                     <option value={'episode'}>Odcinek</option>
                 </NativeSelect>
 
-                <Slider
+                {/*<Slider
                     style={{
                         width: '90%',
                         padding: '10px',
@@ -74,6 +78,20 @@ class FormSearch extends React.Component {
                     step={1}
                     onChange={this.props.getYear}
                     onDragEnd={() => this.props.getMoviesByYear(this.props.year, this.props.searchTerm)}
+                />*/}
+
+                <Range
+                    style={{
+                        width: '90%',
+                        margin: '0 auto',
+                        padding: '10px',
+                    }}
+                    step={1}
+                    min={1950}
+                    max={new Date().getFullYear() + 5}
+                    defaultValue={[this.props.year[0], this.props.year[1]]}
+                    onChange={this.props.getYear}
+                    onAfterChange={() => this.props.getMoviesByYear(this.props.searchTerm)}
                 />
             </div>
         );

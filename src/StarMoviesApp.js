@@ -5,6 +5,7 @@ import Dashboard from './views/Dashboard'
 import Search from './views/Search'
 import WatchList from './views/WatchList'
 import AddRating from './views/AddRating'
+//import MovieDetails from './views/MovieDetails';
 
 const StarMoviesApp = () => (
     <Router>
@@ -26,6 +27,10 @@ const StarMoviesApp = () => (
             path={"/add-rating"}
             component={AddRating}
         />
+{/*        <Route
+            path={"/movie"}
+            component={MovieDetails}
+        />*/}
     </Router>
 
 );

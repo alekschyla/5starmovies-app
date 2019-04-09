@@ -8,15 +8,15 @@ class Search extends React.Component {
         isError: false,
         searchTerm: '',
         type: '',
-        year: 0
+        year: [1950, 1950]
     };
 
     getSearchTerm = (event) => this.setState({searchTerm: event.target.value});
 
     getType = (event) => this.setState({type: event.target.value});
 
-    getYear = (event, year) => {
-        this.setState({ year });
+    getYear = (year) => {
+        this.setState({year});
     };
 
     getMoviesBySearchTerm = (searchTerm) => {
@@ -26,19 +26,43 @@ class Search extends React.Component {
     };
 
     getMoviesByType = (type, searchTerm) => {
-        fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}&type=${type}`)
-            .then(response => response.json())
-            .then(arrMovies => this.setState({movies: arrMovies.Search}));
+        if (searchTerm !== '') {
+            fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}&type=${type}`)
+                .then(response => response.json())
+                .then(arrMovies => this.setState({movies: arrMovies.Search}));
+        }
     };
 
-    getMoviesByYear = (year, searchTerm) => {
-        fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}&y=${year}`)
-            .then(response => response.json())
-            .then(arrMovies => this.setState({movies: arrMovies.Search}));
+    getMoviesByYear = (searchTerm) => {
+        if (searchTerm !== '') {
+            let years = [];
+            let allMovies = [];
+            let promises = [];
+
+            for (let i = this.state.year[0]; i <= this.state.year[1]; i++) {
+                years = years.concat(i);
+            }
+
+            years.forEach(year => {
+                promises.push(
+                    fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}&y=${year}`)
+                        .then(response => response.json())
+                        .then(arrMovies => {
+                            if (arrMovies.Search !== undefined) {
+                                allMovies = allMovies.concat(arrMovies.Search);
+                            }
+                        })
+                );
+            });
+
+            Promise.all(promises).then(() =>
+                this.setState({movies: allMovies})
+            );
+        }
     };
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <FormSearch
                     searchTerm={this.state.searchTerm}
