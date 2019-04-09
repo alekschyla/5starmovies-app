@@ -11,7 +11,8 @@ class Search extends React.Component {
         isError: false,
         searchTerm: '',
         type: '',
-        year: [defaultYear, defaultYear]
+        year: [defaultYear, defaultYear],
+        page: 1
     };
 
     getSearchTerm = (event) => this.setState({searchTerm: event.target.value});
@@ -64,7 +65,7 @@ class Search extends React.Component {
         }
     };
 
-    getNextPage = (searchTerm, page) => {
+    getPage = (searchTerm, page) => {
         fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}&page=${page}`)
             .then(response => response.json())
             .then(arrMovies => this.setState({movies: arrMovies.Search}));
