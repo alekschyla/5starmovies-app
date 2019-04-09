@@ -1,6 +1,6 @@
 import React from 'react';
+import OmdbDetails from './OmdbDetails';
 
-// const defaultPath = 'http://localhost:3000/movie/';
 const omdbApiPath = 'http://www.omdbapi.com/?apikey=a3748959&i=';
 const firebaseApiPath = 'https://starmovies-app.firebaseio.com/';
 
@@ -44,36 +44,38 @@ class MovieDetails extends React.Component {
                             ? "Data not loaded yet"
                             : !this.state.movieComments
                                 ? <div>
-                                    <img src={this.state.movieData.Poster} />
-                                    <p>Tytuł filmu: {this.state.movieData.Title}</p>
-                                    <p>Typ: {this.state.movieData.Type}</p>
-                                    <p>Gatunek: {this.state.movieData.Genre}</p>
-                                    <p>Rok produkcji: {this.state.movieData.Year}</p>
-                                    <p>Czas trwania: {this.state.movieData.Runtime}</p>
-                                    <p>Kraj podukcji: {this.state.movieData.Country}</p>
-                                    <p>Język: {this.state.movieData.Language}</p>
-                                    <p>Reżyseria: {this.state.movieData.Director}</p>
-                                    <p>Scenariusz: {this.state.movieData.Writer}</p>
-                                    <p>Główni aktorzy: {this.state.movieData.Actors}</p>
-                                    <button>Dodaj filmy do listy: "DO OBEJRZENIA"</button>
-                                    <button>Dodaj ocenę i komentarz do filmu</button>
+                                    <OmdbDetails
+                                        Poster={this.state.movieData.Poster}
+                                        Title={this.state.movieData.Title}
+                                        Type={this.state.movieData.Type}
+                                        Genre={this.state.movieData.Genre}
+                                        Year={this.state.movieData.Year}
+                                        Runtime={this.state.movieData.Runtime}
+                                        Country={this.state.movieData.Country}
+                                        Language={this.state.movieData.Language}
+                                        Director={this.state.movieData.Director}
+                                        Writer={this.state.movieData.Writer}
+                                        Actors={this.state.movieData.Actors}
+                                        imdbID={this.state.movieData.imdbID}
+                                    />
                                     "Do tego filmu nie dodano jeszcze żadnych komentarzy"
                                     </div>
                                 :
                                 <div>
-                                    <img src={this.state.movieData.Poster} />
-                                    <p>Tytuł filmu: {this.state.movieData.Title}</p>
-                                    <p>Typ: {this.state.movieData.Type}</p>
-                                    <p>Gatunek: {this.state.movieData.Genre}</p>
-                                    <p>Rok produkcji: {this.state.movieData.Year}</p>
-                                    <p>Czas trwania: {this.state.movieData.Runtime}</p>
-                                    <p>Kraj podukcji: {this.state.movieData.Country}</p>
-                                    <p>Język: {this.state.movieData.Language}</p>
-                                    <p>Reżyseria: {this.state.movieData.Director}</p>
-                                    <p>Scenariusz: {this.state.movieData.Writer}</p>
-                                    <p>Główni aktorzy: {this.state.movieData.Actors}</p>
-                                    <button>Dodaj filmy do listy: "DO OBEJRZENIA"</button>
-                                    <button>Dodaj ocenę i komentarz do filmu</button>
+                                    <OmdbDetails
+                                        Poster={this.state.movieData.Poster}
+                                        Title={this.state.movieData.Title}
+                                        Type={this.state.movieData.Type}
+                                        Genre={this.state.movieData.Genre}
+                                        Year={this.state.movieData.Year}
+                                        Runtime={this.state.movieData.Runtime}
+                                        Country={this.state.movieData.Country}
+                                        Language={this.state.movieData.Language}
+                                        Director={this.state.movieData.Director}
+                                        Writer={this.state.movieData.Writer}
+                                        Actors={this.state.movieData.Actors}
+                                        imdbID={this.state.movieData.imdbID}
+                                    />
                                     <div>Oceny i komentarze do filmu:
                                     {this.makeKeysArray().map((key, index) => {
                                         return (

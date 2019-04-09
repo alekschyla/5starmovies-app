@@ -25,7 +25,7 @@ const StarMoviesApp = () => (
             component={WatchList}
         />
         <Route
-            path={"/add-rating"}
+            path={"/add-rating/:id"}
             component={AddRating}
         />
         <Route
