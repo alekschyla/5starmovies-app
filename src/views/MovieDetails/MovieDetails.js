@@ -1,4 +1,5 @@
 import React from 'react';
+import AddToWatchListButton from '../../components/AddToWatchListButton'
 
 // const defaultPath = 'http://localhost:3000/movie/';
 const omdbApiPath = 'http://www.omdbapi.com/?apikey=a3748959&i=';
@@ -11,7 +12,7 @@ class MovieDetails extends React.Component {
         movieComments: null,
         isLoading: false,
         isError: false,
-    }
+    };
 
     componentDidMount() {
         this.setState({ isLoading: true });
@@ -55,7 +56,7 @@ class MovieDetails extends React.Component {
                                     <p>Reżyseria: {this.state.movieData.Director}</p>
                                     <p>Scenariusz: {this.state.movieData.Writer}</p>
                                     <p>Główni aktorzy: {this.state.movieData.Actors}</p>
-                                    <button>Dodaj filmy do listy: "DO OBEJRZENIA"</button>
+                                    <AddToWatchListButton/>
                                     <button>Dodaj ocenę i komentarz do filmu</button>
                                     "Do tego filmu nie dodano jeszcze żadnych komentarzy"
                                     </div>
@@ -72,7 +73,7 @@ class MovieDetails extends React.Component {
                                     <p>Reżyseria: {this.state.movieData.Director}</p>
                                     <p>Scenariusz: {this.state.movieData.Writer}</p>
                                     <p>Główni aktorzy: {this.state.movieData.Actors}</p>
-                                    <button>Dodaj filmy do listy: "DO OBEJRZENIA"</button>
+                                    <AddToWatchListButton/>
                                     <button>Dodaj ocenę i komentarz do filmu</button>
                                     <div>Oceny i komentarze do filmu:
                                     {this.makeKeysArray().map((key, index) => {
