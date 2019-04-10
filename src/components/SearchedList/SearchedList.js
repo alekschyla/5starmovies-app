@@ -3,6 +3,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
+import { Link } from 'react-router-dom'
 
 
 
@@ -11,12 +12,13 @@ const SearchedList = (props) => {
     return (
         <div>
             {
+                props.movies &&
                 props.movies.map(
                     movie => (
                         <ListItem>
                             <ListItemAvatar>
-                                <img
-                                    src={this.state.movies}
+                                <Avatar
+                                    src={movie.Poster}
                                 />
 
 
@@ -25,8 +27,7 @@ const SearchedList = (props) => {
                                 primary={movie.Title}
                                 secondary={movie.Year}
                             />
-                            {console.log(movie)}
-                            <button onClick={() => props.history.push(`/movie/:${movie.imdbID}`)}>Wyświetl szczegóły</button>
+                            <Link to={`/movie/:${movie.imdbID}`}>Wyświetl szczegóły</Link>
                         </ListItem>
                     )
                 )
