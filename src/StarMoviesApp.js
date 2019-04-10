@@ -24,13 +24,14 @@ const StarMoviesApp = () => (
             component={WatchList}
         />
         <Route
-            path={"/add-rating"}
+            path={"/add-rating/:id"}
             component={AddRating}
         />
         <Route
-             path={"/movie/:id"}
-             component={MovieDetails}
-         />
+            exact
+            path={["/movie","/movie/","/movie/:id"]}
+            component={MovieDetails}
+        />
     </Router>
 
 );

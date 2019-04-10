@@ -21,7 +21,6 @@ const SearchedList = (props) => {
                                     src={movie.Poster}
                                 />
 
-
                             </ListItemAvatar>
                             <ListItemText
                                 primary={movie.Title}
