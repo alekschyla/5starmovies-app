@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Navigation from './components/Navigation'
-import Dashboard from './views/Dashboard'
-import Search from './views/Search'
-import WatchList from './views/WatchList'
-import AddRating from './views/AddRating'
-//import MovieDetails from './views/MovieDetails';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Navigation from './components/Navigation';
+import Dashboard from './views/Dashboard';
+import Search from './views/Search';
+import WatchList from './views/WatchList';
+import AddRating from './views/AddRating';
+import MovieDetails from './views/MovieDetails';
+
 
 const StarMoviesApp = () => (
     <Router>
@@ -24,13 +25,14 @@ const StarMoviesApp = () => (
             component={WatchList}
         />
         <Route
-            path={"/add-rating"}
+            path={"/add-rating/:id"}
             component={AddRating}
         />
-{/*        <Route
-            path={"/movie"}
+        <Route
+            exact
+            path={["/movie","/movie/","/movie/:id"]}
             component={MovieDetails}
-        />*/}
+        />
     </Router>
 
 );
