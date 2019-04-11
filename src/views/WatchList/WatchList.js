@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import SearchedList from "../../components/SearchedList";
 
-import { database } from '../../firebaseConfig'
+import { database } from '../../firebaseConfig';
 
 class WatchList extends React.Component {
     state = {
