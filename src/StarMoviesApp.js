@@ -9,7 +9,6 @@ import MovieDetails from './views/MovieDetails';
 
 
 const StarMoviesApp = () => (
-
     <Router>
         <Navigation />
         <Route
@@ -26,11 +25,12 @@ const StarMoviesApp = () => (
             component={WatchList}
         />
         <Route
-            path={"/add-rating"}
+            path={"/add-rating/:id"}
             component={AddRating}
         />
         <Route
-            path={"/movie/:id"}
+            exact
+            path={["/movie","/movie/","/movie/:id"]}
             component={MovieDetails}
         />
     </Router>

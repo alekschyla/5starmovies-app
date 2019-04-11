@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
                     style={styles['Dashboard-buttons-div']}
                 >
                     {links.map(el => {
-                        return (<LinkButton value={el.value} to={el.to} />)
+                        return (<LinkButton key={el.value} value={el.value} to={el.to} />)
                     })}
                 </div>
                 <div
