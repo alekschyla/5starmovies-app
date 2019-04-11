@@ -14,7 +14,7 @@ class MovieDetails extends React.Component {
         movieComments: null,
         isLoading: false,
         isError: false,
-    }
+    };
 
     componentDidMount() {
         this.setState({ isLoading: true });

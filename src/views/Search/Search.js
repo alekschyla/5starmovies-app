@@ -1,10 +1,9 @@
 import React from 'react'
 import FormSearch from "../../components/FormSearch";
-import SearchedList from "../../components/SearchedList"
+import SearchedList from "../../components/SearchedList";
 
 let defaultYear = (1950 + ((new Date().getFullYear() + 5) - 1950) / 2);
 // console.log(defaultYear);
-
 
 class Search extends React.Component {
     state = {
@@ -17,25 +16,25 @@ class Search extends React.Component {
         page: 1
     };
 
-    getSearchTerm = (event) => this.setState({ searchTerm: event.target.value });
+    getSearchTerm = (event) => this.setState({searchTerm: event.target.value});
 
-    getType = (event) => this.setState({ type: event.target.value });
+    getType = (event) => this.setState({type: event.target.value});
 
     getYear = (year) => {
-        this.setState({ year });
+        this.setState({year});
     };
 
     getMoviesBySearchTerm = (searchTerm) => {
         fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}`)
             .then(response => response.json())
-            .then(arrMovies => this.setState({ movies: arrMovies.Search }));
+            .then(arrMovies => this.setState({movies: arrMovies.Search}));
     };
 
     getMoviesByType = (type, searchTerm) => {
         if (searchTerm !== '') {
             fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}&type=${type}`)
                 .then(response => response.json())
-                .then(arrMovies => this.setState({ movies: arrMovies.Search }));
+                .then(arrMovies => this.setState({movies: arrMovies.Search}));
         }
     };
 
@@ -62,7 +61,7 @@ class Search extends React.Component {
             });
 
             Promise.all(promises).then(() =>
-                this.setState({ movies: allMovies })
+                this.setState({movies: allMovies})
             );
         }
     };
@@ -70,7 +69,7 @@ class Search extends React.Component {
     getPage = (searchTerm, page) => {
         fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}&page=${page}`)
             .then(response => response.json())
-            .then(arrMovies => this.setState({ movies: arrMovies.Search }));
+            .then(arrMovies => this.setState({movies: arrMovies.Search}));
     };
 
     render() {

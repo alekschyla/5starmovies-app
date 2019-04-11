@@ -8,7 +8,7 @@ const links = [
     { value: 'Wyszukaj filmy', to: '/search' },
     { value: 'Sprawdź filmy do obejrzenia', to: '/watch-list' },
     { value: 'Dodaj ocenę/komentarz do filmu', to: '/add-rating' }
-]
+];
 
 class Dashboard extends React.Component {
     render() {
