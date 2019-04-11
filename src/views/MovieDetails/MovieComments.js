@@ -6,10 +6,10 @@ const makeKeysArray = (movieComments) => {
     let keys = [];
     keys = Object.entries(movieComments).map(([key, value]) => keys.concat(key));
     return keys;
-}
+};
 
 const MovieComments = (props) => {
-
+    
     return (
         <Paper
             style={styles['MovieComments-paper']}
@@ -87,6 +87,6 @@ const MovieComments = (props) => {
             </div>
         </Paper>
     )
-}
+};
 
 export default MovieComments;

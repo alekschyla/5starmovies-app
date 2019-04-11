@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Paper, Fab } from '@material-ui/core';
 import styles from '../../styles';
+import AddAndRemoveButtons from '../../components/AddAndRemoveButtons'
 
 const OmdbDetails = (props) => {
     return (
@@ -42,13 +43,10 @@ const OmdbDetails = (props) => {
                 <p style={styles['OmdbDetails-paragraph']}>{props.movieData.Writer}</p>
                 <p style={styles['OmdbDetails-paragraph']}>{props.movieData.Actors}</p>
                 <p style={styles['OmdbDetails-plot-paragraph']}>{props.movieData.Plot}</p>
-                <Fab
-                    color='primary'
-                    variant='extended'
-                    style={styles['OmdbDetails-button']}
-                >
-                    Dodaj film do listy: "DO OBEJRZENIA"
-                </Fab>
+
+                <AddAndRemoveButtons
+                    id={props.movieData.imdbID}
+                />
                 <Link
                     to={`/add-rating/:${props.movieData.imdbID}?${props.movieData.Title}`}
                     style={styles['OmdbDetails-link']}
@@ -64,6 +62,6 @@ const OmdbDetails = (props) => {
             </div>
         </Paper>
     )
-}
+};
 
 export default OmdbDetails;
