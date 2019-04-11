@@ -1,5 +1,6 @@
 import React from 'react'
 import FormSearch from "../../components/FormSearch";
+import SearchedList from "../../components/SearchedList";
 
 let defaultYear = (1950 + ((new Date().getFullYear() + 5) - 1950) / 2);
 // console.log(defaultYear);
@@ -87,6 +88,10 @@ class Search extends React.Component {
                     movies={this.state.movies}
                 />
 
+                <SearchedList
+                    movies={this.state.movies}
+                    history={this.props.history}
+                />
             </div>
         )
     }
