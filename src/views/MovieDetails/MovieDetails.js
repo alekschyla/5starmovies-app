@@ -1,6 +1,8 @@
 import React from 'react';
 import OmdbDetails from './OmdbDetails';
 import MovieComments from './MovieComments';
+import { Paper } from '@material-ui/core';
+import styles from '../../styles';
 
 const omdbApiPath = 'http://www.omdbapi.com/?apikey=a3748959&i=';
 const firebaseApiPath = 'https://starmovies-app.firebaseio.com/';
@@ -48,7 +50,11 @@ class MovieDetails extends React.Component {
                                             <OmdbDetails
                                                 movieData={this.state.movieData}
                                             />
-                                            Do tego filmu nie dodano jeszcze żadnych komentarzy.{console.log(this.state.movieData)}
+                                            <Paper
+                                                style={styles['OmdbDetails-paper']}
+                                            >
+                                                Do tego filmu nie dodano jeszcze żadnych komentarzy.
+                                            </Paper>
                                         </div>
                                         :
                                         <div>
