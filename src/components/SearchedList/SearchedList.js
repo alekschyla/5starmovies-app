@@ -2,6 +2,7 @@ import React from 'react'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import Button from '@material-ui/core/Button'
 import Avatar from '@material-ui/core/Avatar'
 import { Link } from 'react-router-dom'
 
@@ -32,7 +33,14 @@ const SearchedList = (props) => {
                                 primary={movie.Title}
                                 secondary={movie.Year}
                             />
-                            <Link to={`/movie/:${movie.imdbID}`}>Wyświetl szczegóły</Link>
+                            <Link
+                                style={{ textDecoration: "none" }}
+                                to={`/movie/:${movie.imdbID}`}>
+                                <Button
+                                    variant="contained" color="primary">
+                                    Wyświetl szczegóły
+                                </Button>
+                            </Link>
                         </ListItem>
                     )
                 )
