@@ -25,12 +25,13 @@ const StarMoviesApp = () => (
             component={WatchList}
         />
         <Route
+            exact
             path={"/add-rating/:id"}
             component={AddRating}
         />
         <Route
             exact
-            path={["/movie","/movie/","/movie/:id"]}
+            path={["/movie", "/movie/", "/movie/:id"]}
             component={MovieDetails}
         />
     </Router>

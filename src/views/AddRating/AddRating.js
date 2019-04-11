@@ -1,48 +1,28 @@
 import React from 'react';
 import { database } from '../../firebaseConfig';
 import { Redirect } from 'react-router-dom';
-import { Paper, Fab } from '@material-ui/core';
+import { Paper, Fab, TextField } from '@material-ui/core';
 import styles from '../../styles';
 
-const omdbApiPath = 'http://www.omdbapi.com/?apikey=a3748959&i=';
 
 class AddRating extends React.Component {
     state = {
         imdbID: this.props.match.params.id ? (this.props.match.params.id).replace(/:/, '') : "",
-        rating: null,
+        movieTitle: this.props.location.search.replace('?', '').replace(/%20/g, ' '),
+        rating: 1,
         comment: "",
         userName: "",
         userEmail: "",
         redirect: false,
-        dataCheck: false,
-        // movieData: null,
-        // isLoading: false,
-        // isError: false,
+        dataCheck: true,
     }
 
-    // componentDidMount() {
-    //     this.setState({ isLoading: true });
-
-    //     fetch(`${omdbApiPath}${this.state.imdbID}`)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             if (data.Response !== "False") this.setState({ movieData: data })
-    //         })
-    //         .catch(() => this.setState({ isError: true }))
-    //         .finally(() => this.setState({ isLoading: false }))
-    // }
-
-    handleRatingChange = (event) => this.setState({ rating: event.target.value })
-
-    handleCommentInput = (event) => this.setState({ comment: event.target.value ? event.target.value : "" })
-
-    handleUserNameInput = (event) => this.setState({ userName: event.target.value })
-
-    handleUserEmailInput = (event) => this.setState({ userEmail: event.target.value })
+    handleChange = (key) => (event) => this.setState({ [key]: event.target.value })
 
     onClickSubmitForm = () => {
-        const emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        this.state.rating && this.state.userName && this.state.userEmail && emailCheck
+        const re1 = /[a-zA-Z]{2,}/;
+        const re2 = /\S+@\S+\.\S+/;
+        re1.test(this.state.userName) && re2.test(this.state.userEmail)
             ? database.ref(`comments/`).child(`${this.state.imdbID}`).push({
                 mark: this.state.rating,
                 desc: this.state.comment,
@@ -55,7 +35,7 @@ class AddRating extends React.Component {
     render() {
         return (
             <Paper
-                style={styles['']}
+                style={styles['AddRating-paper']}
             >
                 {
                     this.state.redirect
@@ -63,10 +43,18 @@ class AddRating extends React.Component {
                         : null
                 }
 
-                Oceń film:
-                <select
-                    style={styles['']}
-                    onChange={this.handleRatingChange}
+                <h1
+                    style={styles['AddRating-textfield']}
+                >
+                    Oceń film: {this.state.movieTitle}
+                </h1>
+                <TextField
+                    select
+                    label="Oceń film:"
+                    value={this.state.rating}
+                    style={styles['AddRating-rating']}
+                    onChange={this.handleChange('rating')}
+                    variant="filled"
                 >
                     {
                         Array(5).fill(1).map((el, index) => (
@@ -78,30 +66,36 @@ class AddRating extends React.Component {
                             </option>
                         ))
                     }
-                </select>
-                <input
-                    style={styles['']}
+                </TextField>
+                <TextField
+                    multiline
+                    rows="4"
+                    label={"Twój komentarz do filmu"}
+                    style={styles['AddRating-textfield']}
                     type={'text'}
-                    placeholder={'Tu wpisz komentarz do filmu (opcjonalnie)'}
+                    placeholder={'Tu wpisz komentarz do filmu (nie jest wymagany)'}
                     value={this.state.comment}
-                    onChange={this.handleCommentInput}
+                    onChange={this.handleChange('comment')}
+                    variant="filled"
                 />
-                <input
-                    style={styles['']}
+                <TextField
+                    style={styles['AddRating-textfield']}
                     type={'text'}
-                    placeholder={'Podaj swoje Imię'}
+                    label={'Podaj swoje Imię'}
                     value={this.state.userName}
-                    onChange={this.handleUserNameInput}
+                    onChange={this.handleChange('userName')}
+                    variant="filled"
                 />
-                <input
-                    style={styles['']}
+                <TextField
+                    style={styles['AddRating-textfield']}
                     type={'email'}
-                    placeholder={'Podaj swój e-mail'}
+                    label={'Podaj swój e-mail'}
                     value={this.state.userEmail}
-                    onChange={this.handleUserEmailInput}
+                    onChange={this.handleChange('userEmail')}
+                    variant="filled"
                 />
                 <Fab
-                    style={styles['']}
+                    style={styles['AddRating-button']}
                     color='primary'
                     variant='extended'
                     onClick={this.onClickSubmitForm}
@@ -110,7 +104,9 @@ class AddRating extends React.Component {
                 </Fab>
                 {
                     !this.state.dataCheck
-                        ? <Paper>Podane dane są nieprawidłowe lub nie wypełniono wszystkich wymaganych pól, nie można zapisać.</Paper>
+                        ? <Paper style={styles['AddRating-paper']}>
+                            Nie można zapisać: podane dane są nieprawidłowe lub nie wypełniono wszystkich wymaganych pól.
+                        </Paper>
                         : null
                 }
             </Paper>

@@ -50,7 +50,7 @@ const OmdbDetails = (props) => {
                     Dodaj film do listy: "DO OBEJRZENIA"
                 </Fab>
                 <Link
-                    to={`/add-rating/:${props.movieData.imdbID}`}
+                    to={`/add-rating/:${props.movieData.imdbID}?${props.movieData.Title}`}
                     style={styles['OmdbDetails-link']}
                 >
                     <Fab
