@@ -35,15 +35,23 @@ const MovieComments = (props) => {
                                         style={styles['MovieComments-comment__desc']}
                                     >
                                         <p>Ocena użytkownika</p>
-                                        <p>Komentarz użytkownika</p>
-                                        <p>Autor/ka komentarza</p>
+                                        {
+                                            props.movieComments[key[0]].desc
+                                                ? <p>Komentarz użytkownika</p>
+                                                : null
+                                        }
+                                        <p>Ocenę wystawił/a</p>
                                         <p>E-mail użytkownika</p>
                                     </div>
                                     <div
                                         style={styles['MovieComments-comment__text']}
                                     >
                                         <p>{props.movieComments[key[0]].mark}/5</p>
-                                        <p>{props.movieComments[key[0]].desc}</p>
+                                        {
+                                            props.movieComments[key[0]].desc
+                                                ? <p>{props.movieComments[key[0]].desc}</p>
+                                                : null
+                                        }
                                         <p>{props.movieComments[key[0]].name}</p>
                                         <p>{props.movieComments[key[0]].email}</p>
                                     </div>
