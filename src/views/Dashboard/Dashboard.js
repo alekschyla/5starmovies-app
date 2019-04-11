@@ -2,29 +2,14 @@ import React from 'react';
 import LinkButton from './LinkButton';
 import Chart1 from './AreaChart';
 import Chart2 from './PieChart';
+import styles from '../../styles';
 
 const links = [
     { value: 'Wyszukaj filmy', to: '/search' },
     { value: 'Sprawdź filmy do obejrzenia', to: '/watch-list' },
     { value: 'Dodaj ocenę/komentarz do filmu', to: '/add-rating' }
 ]
-const styles = {
-    'Dashboard-main-div': {
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column'
-    },
-    'Dashboard-buttons-div': {
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: 80
-    },
-    'Dashboard-charts-div': {
-        display: 'flex',
-        justifyContent: 'space-around',
-        marginTop: 100
-    }
-}
+
 class Dashboard extends React.Component {
     render() {
         return (
@@ -35,7 +20,7 @@ class Dashboard extends React.Component {
                     style={styles['Dashboard-buttons-div']}
                 >
                     {links.map(el => {
-                        return (<LinkButton value={el.value} to={el.to} />)
+                        return (<LinkButton key={el.value} value={el.value} to={el.to} />)
                     })}
                 </div>
                 <div

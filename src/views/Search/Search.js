@@ -2,7 +2,7 @@ import React from 'react'
 import FormSearch from "../../components/FormSearch";
 
 let defaultYear = (1950 + ((new Date().getFullYear() + 5) - 1950) / 2);
-console.log(defaultYear);
+// console.log(defaultYear);
 
 class Search extends React.Component {
     state = {
