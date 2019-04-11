@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from './components/Navigation'
 import Dashboard from './views/Dashboard'
 import Search from './views/Search'
@@ -29,7 +29,7 @@ const StarMoviesApp = () => (
         />
         <Route
             exact
-            path={["/movie","/movie/","/movie/:id"]}
+            path={["/movie", "/movie/", "/movie/:id"]}
             component={MovieDetails}
         />
     </Router>

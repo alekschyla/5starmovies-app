@@ -21,7 +21,9 @@ const SearchedList = (props) => {
                 props.movies &&
                 props.movies.map(
                     movie => (
-                        <ListItem>
+                        <ListItem
+                        key={movie.imdbID}
+                        >
                             <ListItemAvatar>
                                 <Avatar
                                     src={movie.Poster}
