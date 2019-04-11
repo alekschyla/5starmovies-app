@@ -42,19 +42,6 @@ class AddAndRemoveButtons extends Component {
                     />
                 }
             </div>
-
-        /*            <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => this.addToWatchList(this.props.id)}
-            >
-                {this.isFilmOnWatchList() ?
-                    'usuń z do obejrzenia'
-                    :
-                    'dodaj do obejrzenia'
-                }
-            </Button>*/
-
     )
     }
 }
