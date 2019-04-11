@@ -18,7 +18,14 @@ class AddRating extends React.Component {
 
     handleUserEmailInput = (event) => this.setState({ userEmail: event.target.value })
 
-    onClickSubmitForm = () => database.child().push(true);
+    onClickSubmitForm = () => {
+        database.ref(`comments/`).child(`${this.state.imdbID}`).push({
+            mark: this.state.rating,
+            desc: this.state.comment,
+            name: this.state.userName,
+            email: this.state.userEmail
+        });
+    }
 
     render() {
         return (

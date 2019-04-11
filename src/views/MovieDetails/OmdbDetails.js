@@ -41,7 +41,7 @@ const OmdbDetails = (props) => {
                 <p style={styles['OmdbDetails-paragraph']}>{props.movieData.Director}</p>
                 <p style={styles['OmdbDetails-paragraph']}>{props.movieData.Writer}</p>
                 <p style={styles['OmdbDetails-paragraph']}>{props.movieData.Actors}</p>
-                <p style={styles['OmdbDetails-paragraph']}>{props.movieData.Plot}</p>
+                <p style={styles['OmdbDetails-plot-paragraph']}>{props.movieData.Plot}</p>
                 <Fab
                     color='primary'
                     variant='extended'

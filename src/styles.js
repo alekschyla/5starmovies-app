@@ -45,6 +45,9 @@ const styles = {
     'OmdbDetails-paragraph': {
         height: 30,
     },
+    'OmdbDetails-plot-paragraph': {
+        height: 'auto',
+    },
     'OmdbDetails-button': {
         margin: 10,
     },
