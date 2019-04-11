@@ -6,6 +6,11 @@ import Avatar from '@material-ui/core/Avatar'
 import { Link } from 'react-router-dom'
 
 
+const placeholderLink = "https://image.flaticon.com/icons/svg/230/230399.svg";
+
+const handleBrokenImage = e => (e.target.src = placeholderLink);
+
+
 
 const SearchedList = (props) => {
 
@@ -19,6 +24,7 @@ const SearchedList = (props) => {
                             <ListItemAvatar>
                                 <Avatar
                                     src={movie.Poster}
+                                    imgProps={{ onError: handleBrokenImage }}
                                 />
 
                             </ListItemAvatar>
