@@ -1,16 +1,18 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import styles from "../../styles";
+import {Fab} from "@material-ui/core";
 
 const RemoveButton = (props) => {
     return (
         <div>
-            <Button
-                variant="contained"
-                color="secondary"
+            <Fab
+                variant="extended"
+                color="primary"
+                style={styles['OmdbDetails-button']}
                 onClick={() => props.removeFromWatchList(props.id)}
             >
                 usuń z do obejrzenia
-            </Button>
+            </Fab>
         </div>
     );
 };
