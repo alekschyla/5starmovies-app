@@ -1,23 +1,17 @@
 import React from 'react';
 import Fab from '@material-ui/core/Fab';
 import { Link } from 'react-router-dom';
-
-const styles = {
-    linkbutton: {
-        margin: '20px',
-        textDecoration: 'none'
-    }
-}
+import styles from '../../styles';
 
 class LinkButton extends React.Component {
     render() {
         return (
             <Link 
                 to={this.props.to}
-                style={styles.linkbutton}
+                style={styles['Dashboard-linkbutton']}
             >
                 <Fab
-                    color='primary'
+                    color='secondary'
                     variant='extended'
                 >
                     {this.props.value}

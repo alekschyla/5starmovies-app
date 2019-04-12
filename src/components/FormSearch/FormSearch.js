@@ -3,23 +3,19 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import MUISearch from '@material-ui/icons/Search';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import 'rc-slider/assets/index.css';
 import Slider from 'rc-slider';
+import styles from '../../styles';
+
 const Range = Slider.Range;
 
 class FormSearch extends React.Component {
     render() {
         return (
             <div
-                style={{
-                    width: '70%',
-                    margin: '15px auto',
-                    padding: '10px',
-                    boxShadow: '2px 2px 5px #333',
-                    borderRadius: '5px'
-                }}
+                style={styles['FormSearch-container']}
             >
                 <TextField
                     placeholder={'wpisz tytuł'}
@@ -29,27 +25,24 @@ class FormSearch extends React.Component {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <MUISearch/>
+                                <MUISearch />
                             </InputAdornment>
                         ),
                     }}
-                    style={{width: '60%', margin: '10px'}}
+                    style={styles['FormSearch-textfield']}
                 />
 
-                <Button
+                <Fab
 
                     onClick={() => this.props.getMoviesBySearchTerm(this.props.searchTerm)}
-                    variant="contained"
+                    variant='extended'
                     color="primary"
                 >
                     wyszukaj
-                </Button>
+                </Fab>
 
                 <NativeSelect
-                    style={{
-                        margin: '10px'
-                    }
-                    }
+                    style={styles['FormSearch-nativeselect']}
                     value={this.props.type}
                     onChange={(event) => {
                         this.props.getType(event);
@@ -62,12 +55,9 @@ class FormSearch extends React.Component {
                     <option value={'episode'}>Odcinek</option>
                 </NativeSelect>
 
+                <p>Wyszukaj po roku: od <strong>{this.props.year[0]}</strong> do <strong>{this.props.year[1]}</strong></p>
                 <Range
-                    style={{
-                        width: '90%',
-                        margin: '0 auto',
-                        padding: '10px',
-                    }}
+                    style={styles['FormSearch-range']}
                     step={1}
                     min={1950}
                     max={new Date().getFullYear() + 5}

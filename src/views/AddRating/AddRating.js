@@ -96,7 +96,7 @@ class AddRating extends React.Component {
                 />
                 <Fab
                     style={styles['AddRating-button']}
-                    color='primary'
+                    color='secondary'
                     variant='extended'
                     onClick={this.onClickSubmitForm}
                 >
