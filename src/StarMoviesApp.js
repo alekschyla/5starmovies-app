@@ -6,6 +6,7 @@ import Search from './views/Search';
 import WatchList from './views/WatchList';
 import AddRating from './views/AddRating';
 import MovieDetails from './views/MovieDetails';
+import FavMovies from './views/FavMovies';
 
 
 const StarMoviesApp = () => (
@@ -23,6 +24,10 @@ const StarMoviesApp = () => (
         <Route
             path={"/watch-list"}
             component={WatchList}
+        />
+        <Route
+            path={"/fav-movies"}
+            component={FavMovies}
         />
         <Route
             exact
