@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -12,7 +12,7 @@ class Menu extends React.Component {
                         <MenuItem
                             onClick={this.props.toggleSideBar}
                         >
-                            Strona glowna
+                            Strona główna
                         </MenuItem>
                     </Link>
 
@@ -32,13 +32,6 @@ class Menu extends React.Component {
                         </MenuItem>
                     </Link>
 
-                    <Link to="/add-rating">
-                        <MenuItem
-                            onClick={this.props.toggleSideBar}
-                        >
-                            Dodaj ocene
-                        </MenuItem>
-                    </Link>
                 </MenuList>
             </div>
         )

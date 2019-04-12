@@ -45,6 +45,9 @@ const styles = {
     'OmdbDetails-paragraph': {
         height: 30,
     },
+    'OmdbDetails-plot-paragraph': {
+        height: 'auto',
+    },
     'OmdbDetails-button': {
         margin: 10,
     },
@@ -61,7 +64,7 @@ const styles = {
     'MovieComments-comments': {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         flexWrap: 'wrap',
         margin: 10,
     },
@@ -71,6 +74,7 @@ const styles = {
         alignItems: 'center',
         margin: 20,
         padding: 0,
+        width: '600px',
     },
     'MovieComments-comment__div': {
         display: 'flex',
@@ -90,6 +94,27 @@ const styles = {
         alignItems: 'flex-start',
         margin: 10,
     },
+    'MovieComments-comment__par': {
+        height: 30,
+    },
+    'AddRating-paper': {
+        display: 'flex',
+        flexDirection: 'column',
+        margin: 30,
+        padding: 30,
+    },
+    'AddRating-button': {
+        width: '10%',
+        margin: 20,
+    },
+    'AddRating-textfield': {
+        width: '40%',
+        margin: 20,
+    },
+    'AddRating-rating': {
+        width: '10%',
+        margin: 20,
+    }
 }
 
 export default styles;

@@ -2,9 +2,9 @@ import React from 'react';
 import { Paper } from '@material-ui/core';
 import styles from '../../styles';
 
-const makeKeysArray = (props) => {
+const makeKeysArray = (movieComments) => {
     let keys = [];
-    keys = Object.entries(props).map(([key, value]) => keys.concat(key));
+    keys = Object.entries(movieComments).map(([key, value]) => keys.concat(key));
     return keys;
 };
 
@@ -34,18 +34,50 @@ const MovieComments = (props) => {
                                     <div
                                         style={styles['MovieComments-comment__desc']}
                                     >
-                                        <p>Ocena użytkownika</p>
-                                        <p>Komentarz użytkownika</p>
-                                        <p>Autor/ka komentarza</p>
-                                        <p>E-mail użytkownika</p>
+                                        <p
+                                            style={styles['MovieComments-comment__par']}
+                                        >
+                                            Ocena użytkownika
+                                        </p>
+                                        {
+                                            props.movieComments[key[0]].desc
+                                                ? <p>Komentarz użytkownika</p>
+                                                : null
+                                        }
+                                        <p
+                                            style={styles['MovieComments-comment__par']}
+                                        >
+                                            Ocenę wystawił/a
+                                        </p>
+                                        <p
+                                            style={styles['MovieComments-comment__par']}
+                                        >
+                                            E-mail użytkownika
+                                        </p>
                                     </div>
                                     <div
                                         style={styles['MovieComments-comment__text']}
                                     >
-                                        <p>{props.movieComments[key[0]].mark}/5</p>
-                                        <p>{props.movieComments[key[0]].desc}</p>
-                                        <p>{props.movieComments[key[0]].name}</p>
-                                        <p>{props.movieComments[key[0]].email}</p>
+                                        <p
+                                            style={styles['MovieComments-comment__par']}
+                                        >
+                                            {props.movieComments[key[0]].mark}/5
+                                            </p>
+                                        {
+                                            props.movieComments[key[0]].desc
+                                                ? <p>{props.movieComments[key[0]].desc}</p>
+                                                : null
+                                        }
+                                        <p
+                                            style={styles['MovieComments-comment__par']}
+                                        >
+                                            {props.movieComments[key[0]].name}
+                                        </p>
+                                        <p
+                                            style={styles['MovieComments-comment__par']}
+                                        >
+                                            {props.movieComments[key[0]].email}
+                                        </p>
                                     </div>
                                 </div>
                             </Paper>
