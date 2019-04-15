@@ -1,4 +1,8 @@
 const styles = {
+    'Menu-link': {
+        textDecoration: 'none',
+        textTransform: 'uppercase'
+    },
     'Dashboard-main-div': {
         display: 'flex',
         alignItems: 'center',
@@ -13,6 +17,10 @@ const styles = {
         display: 'flex',
         justifyContent: 'space-around',
         marginTop: 100
+    },
+    'Dashboard-linkbutton': {
+        margin: '20px',
+        textDecoration: 'none'
     },
     'OmdbDetails-paper': {
         display: 'flex',
@@ -86,7 +94,7 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'flex-end',
         margin: 10,
-        color: 'blue',
+        color: '#71816D',
     },
     'MovieComments-comment__text': {
         display: 'flex',
@@ -102,6 +110,7 @@ const styles = {
         flexDirection: 'column',
         margin: 30,
         padding: 30,
+        // backgroundColor: '#F8F0E4',
     },
     'AddRating-button': {
         width: '10%',
@@ -110,10 +119,32 @@ const styles = {
     'AddRating-textfield': {
         width: '40%',
         margin: 20,
+        // backgroundColor: '#F8F0E4',
     },
     'AddRating-rating': {
         width: '10%',
         margin: 20,
+        // backgroundColor: '#F8F0E4',
+    },
+    'FormSearch-container': {
+        textAlign: 'center',
+        width: '70%',
+        margin: '15px auto',
+        padding: '10px',
+        boxShadow: '2px 2px 5px #333',
+        borderRadius: '5px'
+    },
+    'FormSearch-textfield': {
+        width: '60%',
+        margin: '10px'
+    },
+    'FormSearch-nativeselect': {
+        margin: '10px'
+    },
+    'FormSearch-range': {
+        width: '90%',
+        margin: '0 auto',
+        padding: '10px',
     }
 }
 

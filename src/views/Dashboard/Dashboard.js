@@ -7,7 +7,7 @@ import styles from '../../styles';
 const links = [
     { value: 'Wyszukaj filmy', to: '/search' },
     { value: 'Sprawdź filmy do obejrzenia', to: '/watch-list' },
-    { value: 'Dodaj ocenę/komentarz do filmu', to: '/add-rating' }
+    { value: 'Wyświetl ulubione filmy', to: '/fav-movies' }
 ];
 
 class Dashboard extends React.Component {

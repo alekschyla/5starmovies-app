@@ -2,13 +2,17 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
+import styles from '../../styles';
 
 class Menu extends React.Component {
     render() {
         return (
             <div>
                 <MenuList>
-                    <Link to="/">
+                    <Link
+                        to="/"
+                        style={styles['Menu-link']}
+                    >
                         <MenuItem
                             onClick={this.props.toggleSideBar}
                         >
@@ -16,7 +20,10 @@ class Menu extends React.Component {
                         </MenuItem>
                     </Link>
 
-                    <Link to="/search">
+                    <Link
+                        to="/search"
+                        style={styles['Menu-link']}
+                    >
                         <MenuItem
                             onClick={this.props.toggleSideBar}
                         >
@@ -24,11 +31,25 @@ class Menu extends React.Component {
                         </MenuItem>
                     </Link>
 
-                    <Link to="/watch-list">
+                    <Link
+                        to="/watch-list"
+                        style={styles['Menu-link']}
+                    >
                         <MenuItem
                             onClick={this.props.toggleSideBar}
                         >
                             Do obejrzenia
+                        </MenuItem>
+                    </Link>
+
+                    <Link
+                        to="/fav-movies"
+                        style={styles['Menu-link']}
+                    >
+                        <MenuItem
+                            onClick={this.props.toggleSideBar}
+                        >
+                            Ulubione filmy
                         </MenuItem>
                     </Link>
 

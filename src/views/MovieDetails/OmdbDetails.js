@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Paper, Fab } from '@material-ui/core';
 import styles from '../../styles';
-import AddAndRemoveButtons from '../../components/AddAndRemoveButtons'
+import AddAndRemoveButtons from '../../components/AddAndRemoveButtons';
+import AddAndRemoveFromFavButtons from '../../components/AddAndRemoveFromFavButtons';
 
 const OmdbDetails = (props) => {
     return (
@@ -45,6 +46,9 @@ const OmdbDetails = (props) => {
                 <p style={styles['OmdbDetails-plot-paragraph']}>{props.movieData.Plot}</p>
 
                 <AddAndRemoveButtons
+                    id={props.movieData.imdbID}
+                />
+                <AddAndRemoveFromFavButtons
                     id={props.movieData.imdbID}
                 />
                 <Link
