@@ -45,12 +45,14 @@ const OmdbDetails = (props) => {
                 <p style={styles['OmdbDetails-paragraph']}>{props.movieData.Actors}</p>
                 <p style={styles['OmdbDetails-plot-paragraph']}>{props.movieData.Plot}</p>
 
-                <AddAndRemoveButtons
-                    id={props.movieData.imdbID}
-                />
                 <AddAndRemoveFromFavButtons
                     id={props.movieData.imdbID}
                 />
+
+                <AddAndRemoveButtons
+                    id={props.movieData.imdbID}
+                />
+
                 <Link
                     to={`/add-rating/:${props.movieData.imdbID}?${props.movieData.Title}`}
                     style={styles['OmdbDetails-link']}
