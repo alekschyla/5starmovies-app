@@ -139,7 +139,8 @@ const styles = {
         margin: '10px'
     },
     'FormSearch-nativeselect': {
-        margin: '10px'
+        margin: '10px',
+        width: '100px'
     },
     'FormSearch-range': {
         width: '90%',
