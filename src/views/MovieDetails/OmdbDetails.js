@@ -5,6 +5,11 @@ import styles from '../../styles';
 import AddAndRemoveButtons from '../../components/AddAndRemoveButtons';
 import AddAndRemoveFromFavButtons from '../../components/AddAndRemoveFromFavButtons';
 
+const placeholderLink = "https://image.flaticon.com/icons/svg/230/230399.svg";
+
+const handleBrokenImage = e => (e.target.src = placeholderLink);
+
+
 const OmdbDetails = (props) => {
     return (
         <Paper
@@ -13,7 +18,11 @@ const OmdbDetails = (props) => {
             <div
                 style={styles['OmdbDetails-movieDetails__img']}
             >
-                <img src={props.movieData.Poster} alt={props.movieData.Title} />
+                <img
+                    src={props.movieData.Poster}
+                    alt={props.movieData.Title}
+                    onError={handleBrokenImage}
+                />
             </div>
             <div
                 style={styles['OmdbDetails-movieDetails__desc']}
