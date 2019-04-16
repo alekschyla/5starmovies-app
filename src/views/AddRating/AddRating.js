@@ -2,6 +2,7 @@ import React from 'react';
 import { database } from '../../firebaseConfig';
 import { Redirect } from 'react-router-dom';
 import { Paper, Fab, TextField } from '@material-ui/core';
+import StarRatings from 'react-star-ratings';
 import styles from '../../styles';
 
 
@@ -9,7 +10,7 @@ class AddRating extends React.Component {
     state = {
         imdbID: this.props.match.params.id ? (this.props.match.params.id).replace(/:/, '') : "",
         movieTitle: this.props.location.search.replace('?', '').replace(/%20/g, ' '),
-        rating: 1,
+        rating: 0,
         comment: "",
         userName: "",
         userEmail: "",
@@ -32,6 +33,12 @@ class AddRating extends React.Component {
             : this.setState({ dataCheck: false })
     }
 
+    changeRating(newRating, name) {
+        this.setState({
+            rating: newRating
+        })
+    }
+
     render() {
         return (
             <Paper
@@ -48,7 +55,14 @@ class AddRating extends React.Component {
                 >
                     Oceń film: {this.state.movieTitle}
                 </h1>
-                <TextField
+                <StarRatings
+                    rating={this.state.rating}
+                    starRatedColor="yellow"
+                    changeRating={this.changeRating}
+                    numberOfStars={5}
+                    name='rating'
+                />
+                {/* <TextField
                     select
                     label="Oceń film:"
                     value={this.state.rating}
@@ -66,7 +80,7 @@ class AddRating extends React.Component {
                             </option>
                         ))
                     }
-                </TextField>
+                </TextField> */}
                 <TextField
                     multiline
                     rows="4"
