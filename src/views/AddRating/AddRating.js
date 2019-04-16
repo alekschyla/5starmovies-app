@@ -1,9 +1,15 @@
 import React from 'react';
-import { database } from '../../firebaseConfig';
+import { database, auth } from '../../firebaseConfig';
 import { Redirect } from 'react-router-dom';
 import { Paper, Fab, TextField } from '@material-ui/core';
 import styles from '../../styles';
 
+// const user = auth.currentUser;
+const user = {
+    uid : '4QPu2IpxTwf6sEDPQkRzwgUnOqL2',
+    displayName : 'Paulina Oster',
+    email: 'paulina.oster@mail.com',
+}
 
 class AddRating extends React.Component {
     state = {
@@ -11,8 +17,8 @@ class AddRating extends React.Component {
         movieTitle: this.props.location.search.replace('?', '').replace(/%20/g, ' '),
         rating: 1,
         comment: "",
-        userName: "",
-        userEmail: "",
+        userName: user.displayName,
+        userEmail: user.email,
         redirect: false,
         dataCheck: true,
     }
@@ -78,7 +84,7 @@ class AddRating extends React.Component {
                     onChange={this.handleChange('comment')}
                     variant="filled"
                 />
-                <TextField
+                {/* <TextField
                     style={styles['AddRating-textfield']}
                     type={'text'}
                     label={'Podaj swoje Imię'}
@@ -93,7 +99,7 @@ class AddRating extends React.Component {
                     value={this.state.userEmail}
                     onChange={this.handleChange('userEmail')}
                     variant="filled"
-                />
+                /> */}
                 <Fab
                     style={styles['AddRating-button']}
                     color='secondary'

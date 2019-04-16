@@ -1,9 +1,13 @@
-import React, {Component} from 'react';
-import {database} from '../../firebaseConfig'
+import React, { Component } from 'react';
+import { database, auth } from '../../firebaseConfig'
 import AddButton from './AddButton'
 import RemoveButton from './RemoveButton'
 
-const refToMovies = database.ref('/watchlist');
+// const user = auth.currentUser;
+const user = {
+    uid : '4QPu2IpxTwf6sEDPQkRzwgUnOqL2'
+}
+const refToMovies = database.ref(`users/${user.uid}/watchlist`);
 
 class AddAndRemoveButtons extends Component {
     state = {
@@ -12,7 +16,7 @@ class AddAndRemoveButtons extends Component {
 
     componentDidMount() {
         refToMovies.on('value', (snapshot) => {
-            this.setState({watchlist: snapshot.val()})
+            this.setState({ watchlist: snapshot.val() })
         });
     }
 
@@ -21,7 +25,7 @@ class AddAndRemoveButtons extends Component {
     };
 
     removeFromWatchList = (id) => {
-        database.ref(`/watchlist/${id}`).remove()
+        database.ref(`users/${user.uid}/watchlist/${id}`).remove()
     };
 
     isFilmOnWatchList() {
@@ -42,7 +46,7 @@ class AddAndRemoveButtons extends Component {
                     />
                 }
             </div>
-    )
+        )
     }
 }
 

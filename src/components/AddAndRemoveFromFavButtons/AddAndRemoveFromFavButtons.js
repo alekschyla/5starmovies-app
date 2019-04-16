@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { database } from '../../firebaseConfig'
+import { database, auth } from '../../firebaseConfig'
 import AddButton from './AddButton'
 import RemoveButton from './RemoveButton'
 
-const refToMovies = database.ref('/favourites');
+// const user = auth.currentUser;
+const user = {
+    uid : '4QPu2IpxTwf6sEDPQkRzwgUnOqL2'
+}
+const refToMovies = database.ref(`users/${user.uid}/favourites`);
 
 class AddAndRemoveFromFavButtons extends Component {
     state = {
@@ -21,7 +25,7 @@ class AddAndRemoveFromFavButtons extends Component {
     };
 
     removeFromFavourites = (id) => {
-        database.ref(`/favourites/${id}`).remove()
+        database.ref(`users/${user.uid}/favourites/${id}`).remove()
     };
 
     isFilmOnFavourites() {

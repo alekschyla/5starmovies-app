@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchedList from "../../components/SearchedList";
 
-import { database } from '../../firebaseConfig';
+import { database, auth } from '../../firebaseConfig';
 
 class FavMovies extends React.Component {
     state = {
@@ -9,7 +9,11 @@ class FavMovies extends React.Component {
     }
 
     componentDidMount() {
-        database.ref('favourites').on(
+        // const user = auth.currentUser;
+        const user = {
+            uid : '4QPu2IpxTwf6sEDPQkRzwgUnOqL2'
+        }
+        database.ref(`users/${user.uid}/favourites`).on(
             'value',
             (snapshot) => {
                 Promise.all(

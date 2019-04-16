@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchedList from "../../components/SearchedList";
 
-import { database } from '../../firebaseConfig';
+import { database, auth } from '../../firebaseConfig';
 
 class WatchList extends React.Component {
     state = {
@@ -9,7 +9,11 @@ class WatchList extends React.Component {
     }
 
     componentDidMount() {
-        database.ref('watchlist').on(
+        // const user = auth.currentUser;
+        const user = {
+            uid : '4QPu2IpxTwf6sEDPQkRzwgUnOqL2'
+        }
+        database.ref(`users/${user.uid}/watchlist`).on(
             'value',
             (snapshot) => {
                 Promise.all(
