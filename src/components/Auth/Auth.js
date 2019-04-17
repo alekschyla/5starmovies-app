@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {auth} from '../../firebaseConfig'
-//import {googleProvider} from '../firebaseConfig'
+import {auth, googleProvider} from '../../firebaseConfig'
 
 import LogIn from './LogIn'
 import {BrowserRouter as Router, Route} from "react-router-dom";
@@ -13,7 +12,7 @@ class Auth extends Component {
         password: 'password',
         passwordCheck: 'password',
         isPasswordMatch: false,
-        userName: 'user'
+        userName: 'user',
     };
 
     componentDidMount() {
@@ -57,7 +56,7 @@ class Auth extends Component {
                         })
                     }
                 )
-                .catch(console.log);
+                .catch(() => alert('Błąd rejestracji'));
         } else {
             alert("Password doesn't match");
         }
@@ -75,7 +74,12 @@ class Auth extends Component {
             this.state.email,
             this.state.password
         )
-            .catch(console.log)
+            .catch(() => alert('Błąd logowania'))
+    };
+
+    onLogInNyGoogleClick = () => {
+        auth.signInWithPopup(googleProvider)
+            .catch(() => alert('Błąd logowania'));
     };
 
     render() {
@@ -90,14 +94,16 @@ class Auth extends Component {
                             <Route
                                 exact
                                 path={"/"}
-                                render={(props) =>
-                                    <LogIn {...props}
+                                render={(props) =>  {
+                                    return (<LogIn {...props}
                                            email={this.state.email}
                                            password={this.state.password}
                                            onEmailChange={this.onEmailChange}
                                            onPasswordChange={this.onPasswordChange}
                                            onLogInClick={this.onLogInClick}
-                                    />}
+                                           onLogInNyGoogleClick={this.onLogInNyGoogleClick}
+                                    />)
+                                }}
                             />
                             <Route
                                 path={"/signUp"}
