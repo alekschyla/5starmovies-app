@@ -33,9 +33,9 @@ class AddRating extends React.Component {
             : this.setState({ dataCheck: false })
     }
 
-    changeRating(newRating, name) {
+    changeRating = (newRating, name) => {
         this.setState({
-            rating: newRating
+            rating: newRating,
         })
     }
 
@@ -55,32 +55,19 @@ class AddRating extends React.Component {
                 >
                     Oceń film: {this.state.movieTitle}
                 </h1>
-                <StarRatings
-                    rating={this.state.rating}
-                    starRatedColor="yellow"
-                    changeRating={this.changeRating}
-                    numberOfStars={5}
-                    name='rating'
-                />
-                {/* <TextField
-                    select
-                    label="Oceń film:"
-                    value={this.state.rating}
-                    style={styles['AddRating-rating']}
-                    onChange={this.handleChange('rating')}
-                    variant="filled"
+                <div
+                    style={styles['AddRating-textfield']}
                 >
-                    {
-                        Array(5).fill(1).map((el, index) => (
-                            <option
-                                key={index}
-                                value={index + 1}
-                            >
-                                {index + 1}
-                            </option>
-                        ))
-                    }
-                </TextField> */}
+                    <StarRatings
+                        rating={this.state.rating}
+                        starRatedColor='yellow'
+                        starHoverColor='green'
+                        changeRating={this.changeRating}
+                        numberOfStars={5}
+                        name='rating'
+                        isSelectable={true}
+                    />
+                </div>
                 <TextField
                     multiline
                     rows="4"

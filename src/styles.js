@@ -86,7 +86,7 @@ const styles = {
     },
     'MovieComments-comment__div': {
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         margin: 10,
     },
     'MovieComments-comment__desc': {
@@ -102,7 +102,7 @@ const styles = {
         alignItems: 'flex-start',
         margin: 10,
     },
-    'MovieComments-comment__par': {
+    'MovieComments-comment__row': {
         height: 30,
     },
     'AddRating-paper': {
