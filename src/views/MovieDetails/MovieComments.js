@@ -1,5 +1,6 @@
 import React from 'react';
 import { Paper } from '@material-ui/core';
+import StarRatings from 'react-star-ratings';
 import styles from '../../styles';
 
 const makeKeysArray = (movieComments) => {
@@ -9,7 +10,7 @@ const makeKeysArray = (movieComments) => {
 };
 
 const MovieComments = (props) => {
-    
+
     return (
         <Paper
             style={styles['MovieComments-paper']}
@@ -32,52 +33,71 @@ const MovieComments = (props) => {
                                     style={styles['MovieComments-comment__div']}
                                 >
                                     <div
-                                        style={styles['MovieComments-comment__desc']}
+                                        style={styles['MovieComments-comment__row']}
                                     >
-                                        <p
-                                            style={styles['MovieComments-comment__par']}
+                                        <div
+                                            style={styles['MovieComments-comment__desc']}
                                         >
                                             Ocena użytkownika
-                                        </p>
-                                        {
-                                            props.movieComments[key[0]].desc
-                                                ? <p>Komentarz użytkownika</p>
-                                                : null
-                                        }
-                                        <p
-                                            style={styles['MovieComments-comment__par']}
+                                        </div>
+                                        <div
+                                            style={styles['MovieComments-comment__text']}
                                         >
-                                            Ocenę wystawił/a
-                                        </p>
-                                        <p
-                                            style={styles['MovieComments-comment__par']}
-                                        >
-                                            E-mail użytkownika
-                                        </p>
+                                            <StarRatings
+                                                rating={Number(props.movieComments[key[0]].mark)}
+                                                starRatedColor='yellow'
+                                                numberOfStars={5}
+                                                starDimension="30px"
+                                                starSpacing="10px"
+                                                name='rating'
+                                            />
+                                        </div>
                                     </div>
                                     <div
-                                        style={styles['MovieComments-comment__text']}
+                                        style={styles['MovieComments-comment__row-big']}
                                     >
-                                        <p
-                                            style={styles['MovieComments-comment__par']}
-                                        >
-                                            {props.movieComments[key[0]].mark}/5
-                                            </p>
                                         {
                                             props.movieComments[key[0]].desc
-                                                ? <p>{props.movieComments[key[0]].desc}</p>
+                                                ? <p
+                                                    style={styles['MovieComments-comment__desc']}
+                                                >Komentarz użytkownika</p>
                                                 : null
                                         }
-                                        <p
-                                            style={styles['MovieComments-comment__par']}
+                                        {
+                                            props.movieComments[key[0]].desc
+                                                ? <p
+                                                    style={styles['MovieComments-comment__text']}
+                                                >{props.movieComments[key[0]].desc}</p>
+                                                : null
+                                        }
+                                    </div>
+                                    <div
+                                        style={styles['MovieComments-comment__row']}
+                                    >
+                                        <div
+                                            style={styles['MovieComments-comment__desc']}
+                                        >
+                                            Ocenę wystawił/a
+                                        </div>
+                                        <div
+                                            style={styles['MovieComments-comment__text']}
                                         >
                                             {props.movieComments[key[0]].name}
-                                        </p>
-                                        <p
-                                            style={styles['MovieComments-comment__par']}
+                                        </div>
+                                    </div>
+                                    <div
+                                        style={styles['MovieComments-comment__row']}
+                                    >
+                                        <div
+                                            style={styles['MovieComments-comment__desc']}
+                                        >
+                                            E-mail użytkownika
+                                        </div>
+                                        <div
+                                            style={styles['MovieComments-comment__text']}
                                         >
                                             {props.movieComments[key[0]].email}
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             </Paper>
