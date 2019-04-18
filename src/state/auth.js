@@ -82,7 +82,7 @@ export const logOutAsyncActionCreator = () => (dispatch, getState) => {
 };
 
 const initialState = {
-    user: null,
+    user: true,
     email: '',
     password: '',
     userName: '',
