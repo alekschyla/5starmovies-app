@@ -163,6 +163,11 @@ const styles = {
     },
     'LogIn-text': {
         fontSize: '12px'
+    },
+    'AppBar': {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 };
 

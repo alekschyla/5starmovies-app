@@ -11,7 +11,9 @@ const LogIn = (props) => {
                 style={styles['LogIn-container']}
             >
                 <div>
+                    <label htmlFor="userName">Nazwa użytkownika: </label>
                     <input
+                        id={'userName'}
                         type={'text'}
                         value={props.email}
                         onChange={props.onEmailChange}
@@ -19,7 +21,9 @@ const LogIn = (props) => {
                 </div>
 
                 <div>
+                    <label htmlFor="password">Hasło: </label>
                     <input
+                        id={'password'}
                         type={'password'}
                         value={props.password}
                         onChange={props.onPasswordChange}
@@ -42,7 +46,7 @@ const LogIn = (props) => {
 
                 <div>
                     <button
-                        onClick={props.onLogInNyGoogleClick}
+                        onClick={props.onLogInByGoogleClick}
                     >
                         zaloguj przez Google
                     </button>

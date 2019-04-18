@@ -8,11 +8,11 @@ import SignUp from "./SignUp";
 class Auth extends Component {
     state = {
         isUserLoggedIn: false,
-        email: 'email',
-        password: 'password',
-        passwordCheck: 'password',
+        email: '',
+        password: '',
+        passwordCheck: '',
         isPasswordMatch: false,
-        userName: 'user',
+        userName: '',
     };
 
     componentDidMount() {
@@ -77,7 +77,7 @@ class Auth extends Component {
             .catch(() => alert('Błąd logowania'))
     };
 
-    onLogInNyGoogleClick = () => {
+    onLogInByGoogleClick = () => {
         auth.signInWithPopup(googleProvider)
             .catch(() => alert('Błąd logowania'));
     };
@@ -101,7 +101,7 @@ class Auth extends Component {
                                            onEmailChange={this.onEmailChange}
                                            onPasswordChange={this.onPasswordChange}
                                            onLogInClick={this.onLogInClick}
-                                           onLogInNyGoogleClick={this.onLogInNyGoogleClick}
+                                           onLogInByGoogleClick={this.onLogInByGoogleClick}
                                     />)
                                 }}
                             />
