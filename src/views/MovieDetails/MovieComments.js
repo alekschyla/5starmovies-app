@@ -54,7 +54,7 @@ const MovieComments = (props) => {
                                         </div>
                                     </div>
                                     <div
-                                        style={styles['MovieComments-comment__row']}
+                                        style={styles['MovieComments-comment__row-big']}
                                     >
                                         {
                                             props.movieComments[key[0]].desc
