@@ -146,7 +146,30 @@ const styles = {
         width: '90%',
         margin: '0 auto',
         padding: '10px',
+    },
+    'LogIn': {
+        margin: '20px',
+        display: 'flex',
+        justifyContent: 'center',
+},
+    'LogIn-container': {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '400px',
+        padding: '20px',
+        borderRadius: '10px',
+        border: '1px solid grey',
+    },
+    'LogIn-text': {
+        fontSize: '12px'
+    },
+    'AppBar': {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
-}
+};
 
 export default styles;

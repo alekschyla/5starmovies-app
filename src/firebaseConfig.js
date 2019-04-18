@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/database';
 import 'firebase/auth';
 
@@ -13,5 +13,11 @@ const config = {
 
 firebase.initializeApp(config);
 
+<<<<<<< HEAD
 export const auth = firebase.auth();
 export const database = firebase.database();
+=======
+export const database = firebase.database();
+export const auth = firebase.auth();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+>>>>>>> feature/20-logIn

@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import StarMoviesApp from './StarMoviesApp';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import Auth from "./components/Auth";
 
 const theme = createMuiTheme({
     palette: {
@@ -13,12 +14,15 @@ const theme = createMuiTheme({
             main: '#71816D'
         },
     },
-})
+});
 
 ReactDOM.render(
-    <MuiThemeProvider theme={theme}>
-        <StarMoviesApp />
-    </MuiThemeProvider>
-    , document.getElementById('root'));
+        <Auth>
+            <MuiThemeProvider theme={theme}>
+                <StarMoviesApp/>
+            </MuiThemeProvider>
+        </Auth>
+    , document.getElementById('root')
+);
 
 
