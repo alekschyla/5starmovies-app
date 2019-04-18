@@ -3,10 +3,8 @@ import { database, auth } from '../../firebaseConfig'
 import AddButton from './AddButton'
 import RemoveButton from './RemoveButton'
 
-// const user = auth.currentUser;
-const user = {
-    uid : '4QPu2IpxTwf6sEDPQkRzwgUnOqL2'
-}
+const user = auth.currentUser;
+
 const refToMovies = database.ref(`users/${user.uid}/favourites`);
 
 class AddAndRemoveFromFavButtons extends Component {

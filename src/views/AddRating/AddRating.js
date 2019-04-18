@@ -4,12 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Paper, Fab, TextField } from '@material-ui/core';
 import styles from '../../styles';
 
-// const user = auth.currentUser;
-const user = {
-    uid : '4QPu2IpxTwf6sEDPQkRzwgUnOqL2',
-    displayName : 'Paulina Oster',
-    email: 'paulina.oster@mail.com',
-}
+const user = auth.currentUser;
 
 class AddRating extends React.Component {
     state = {

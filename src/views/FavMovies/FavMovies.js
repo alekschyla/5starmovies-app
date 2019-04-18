@@ -9,10 +9,8 @@ class FavMovies extends React.Component {
     }
 
     componentDidMount() {
-        // const user = auth.currentUser;
-        const user = {
-            uid : '4QPu2IpxTwf6sEDPQkRzwgUnOqL2'
-        }
+        const user = auth.currentUser;
+
         database.ref(`users/${user.uid}/favourites`).on(
             'value',
             (snapshot) => {

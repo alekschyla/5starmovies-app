@@ -9,10 +9,8 @@ class WatchList extends React.Component {
     }
 
     componentDidMount() {
-        // const user = auth.currentUser;
-        const user = {
-            uid : '4QPu2IpxTwf6sEDPQkRzwgUnOqL2'
-        }
+        const user = auth.currentUser;
+        
         database.ref(`users/${user.uid}/watchlist`).on(
             'value',
             (snapshot) => {
