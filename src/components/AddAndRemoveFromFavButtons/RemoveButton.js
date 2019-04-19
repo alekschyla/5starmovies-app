@@ -1,20 +1,20 @@
 import React from 'react';
 import styles from "../../styles";
 import { Fab } from "@material-ui/core";
-import FavoriteDelete from '@material-ui/icons/FavoriteBorder'
+import Favorite from '@material-ui/icons/Favorite'
 import Tooltip from "@material-ui/core/Tooltip";
 
 const RemoveButton = (props) => {
     return (
         <div>
-            <Tooltip title="dodaj do ulubionych">
+            <Tooltip title="usuń z ulubionych">
             <Fab
                 variant="extended"
                 color="primary"
                 style={styles['OmdbDetails-button']}
                 onClick={() => props.removeFromFavourites(props.id)}
             >
-                <FavoriteDelete />
+                <Favorite/>
             </Fab>
             </Tooltip>
         </div>
