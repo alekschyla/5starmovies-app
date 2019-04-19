@@ -46,12 +46,17 @@ const SignUp = (props) => {
                         onChange={event => props.onPasswordCheckChange(event.target.value)}
                     />
                 </div>
-                    {
-                        props.passwordCheck === '' && props.ifPasswordMatch ?
-                            ''
-                            :
-                            <div>hasła nie pasują</div>
-                    }
+                {
+                    props.ifPasswordMatch ?
+                        ''
+                        :
+                        <div
+                            style={{
+                                fontSize: '10px',
+                                color: 'red',
+                            }}
+                        >hasła nie pasują</div>
+                }
                 <div>
                     <button
                         onClick={props.onRegistrationClick}

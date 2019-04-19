@@ -88,7 +88,7 @@ const initialState = {
     password: '',
     userName: '',
     passwordConfirm: '',
-    passwordCheck: null,
+    passwordCheck: true,
 };
 
 export default (state = initialState, action) => {
