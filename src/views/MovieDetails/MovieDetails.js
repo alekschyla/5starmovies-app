@@ -1,6 +1,7 @@
 import React from 'react';
 import OmdbDetails from './OmdbDetails';
 import MovieComments from './MovieComments';
+import { connect } from 'react-redux';
 import { Paper } from '@material-ui/core';
 import styles from '../../styles';
 
@@ -71,4 +72,15 @@ class MovieDetails extends React.Component {
     }
 }
 
-export default MovieDetails;
+const mapStateToProps = state => ({
+
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(MovieDetails);
