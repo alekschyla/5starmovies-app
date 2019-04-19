@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {auth, googleProvider} from '../../firebaseConfig'
+import React, { Component } from 'react';
+import { auth, googleProvider } from '../../firebaseConfig'
 
 import LogIn from './LogIn'
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignUp from "./SignUp";
 
 class Auth extends Component {
@@ -19,28 +19,28 @@ class Auth extends Component {
         auth.onAuthStateChanged(
             (user) => {
                 if (user) {
-                    this.setState({isUserLoggedIn: true})
+                    this.setState({ isUserLoggedIn: true })
                 } else {
-                    this.setState({isUserLoggedIn: false})
+                    this.setState({ isUserLoggedIn: false })
                 }
             }
         )
     }
 
     onEmailChange = (event) => {
-        this.setState({email: event.target.value})
+        this.setState({ email: event.target.value })
     };
 
     onPasswordChange = (event) => {
-        this.setState({password: event.target.value})
+        this.setState({ password: event.target.value })
     };
 
     onPasswordCheckChange = (event) => {
-        this.setState({passwordCheck: event.target.value})
+        this.setState({ passwordCheck: event.target.value })
     };
 
     onUserChange = (event) => {
-        this.setState({userName: event.target.value})
+        this.setState({ userName: event.target.value })
     };
 
     onRegistrationClick = () => {
@@ -49,12 +49,12 @@ class Auth extends Component {
         if (this.state.isPasswordMatch) {
             auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then(() => {
-                        let user = auth.currentUser;
+                    let user = auth.currentUser;
 
-                        user.updateProfile({
-                            displayName: this.state.userName,
-                        })
-                    }
+                    user.updateProfile({
+                        displayName: this.state.userName,
+                    })
+                }
                 )
                 .catch(() => alert('Błąd rejestracji'));
         } else {
@@ -64,7 +64,7 @@ class Auth extends Component {
 
     isPasswordMatch = () => {
         if (this.state.password === this.state.passwordCheck) {
-            this.state.isPasswordMatch = true;
+            this.setState({ isPasswordMatch: true });
         }
     };
 
@@ -94,14 +94,14 @@ class Auth extends Component {
                             <Route
                                 exact
                                 path={"/"}
-                                render={(props) =>  {
+                                render={(props) => {
                                     return (<LogIn {...props}
-                                           email={this.state.email}
-                                           password={this.state.password}
-                                           onEmailChange={this.onEmailChange}
-                                           onPasswordChange={this.onPasswordChange}
-                                           onLogInClick={this.onLogInClick}
-                                           onLogInByGoogleClick={this.onLogInByGoogleClick}
+                                        email={this.state.email}
+                                        password={this.state.password}
+                                        onEmailChange={this.onEmailChange}
+                                        onPasswordChange={this.onPasswordChange}
+                                        onLogInClick={this.onLogInClick}
+                                        onLogInByGoogleClick={this.onLogInByGoogleClick}
                                     />)
                                 }}
                             />
@@ -109,15 +109,15 @@ class Auth extends Component {
                                 path={"/signUp"}
                                 render={(props) =>
                                     <SignUp {...props}
-                                            email={this.state.email}
-                                            password={this.state.password}
-                                            passwordCheck={this.state.passwordCheck}
-                                            userName={this.state.userName}
-                                            onEmailChange={this.onEmailChange}
-                                            onPasswordChange={this.onPasswordChange}
-                                            onPasswordCheckChange={this.onPasswordCheckChange}
-                                            onUserChange={this.onUserChange}
-                                            onRegistrationClick={this.onRegistrationClick}
+                                        email={this.state.email}
+                                        password={this.state.password}
+                                        passwordCheck={this.state.passwordCheck}
+                                        userName={this.state.userName}
+                                        onEmailChange={this.onEmailChange}
+                                        onPasswordChange={this.onPasswordChange}
+                                        onPasswordCheckChange={this.onPasswordCheckChange}
+                                        onUserChange={this.onUserChange}
+                                        onRegistrationClick={this.onRegistrationClick}
                                     />}
                             />
                         </Router>

@@ -3,9 +3,9 @@ import { database, auth } from '../../firebaseConfig'
 import AddButton from './AddButton'
 import RemoveButton from './RemoveButton'
 
-const user = auth.currentUser;
+const userUid = auth.currentUser ? auth.currentUser.uid : 'user';
 
-const refToMovies = database.ref(`users/${user.uid}/watchlist`);
+const refToMovies = database.ref(`users/${userUid}/watchlist`);
 
 class AddAndRemoveButtons extends Component {
     state = {
@@ -23,7 +23,7 @@ class AddAndRemoveButtons extends Component {
     };
 
     removeFromWatchList = (id) => {
-        database.ref(`users/${user.uid}/watchlist/${id}`).remove()
+        database.ref(`users/${userUid}/watchlist/${id}`).remove()
     };
 
     isFilmOnWatchList() {
