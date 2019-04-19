@@ -1,6 +1,9 @@
 import React from 'react'
+import {connect} from 'react-redux';
+
 import SideBar from './SideBar'
 import AppBar from './AppBar'
+import {logOutAsyncActionCreator} from "../../state/auth";
 
 class Navigation extends React.Component {
 
@@ -17,6 +20,7 @@ class Navigation extends React.Component {
             <div>
                 <AppBar
                     toggleSideBar={this.toggleSideBar}
+                    logOut={this.props._logOut}
                 />
                 <SideBar
                     isSideBarOpen={this.state.isSideBarOpen}
@@ -27,4 +31,9 @@ class Navigation extends React.Component {
     }
 }
 
-export default Navigation
+
+const mapDispatchToProps = dispatch => ({
+    _logOut: () => dispatch(logOutAsyncActionCreator())
+});
+
+export default connect(null, mapDispatchToProps)(Navigation);
