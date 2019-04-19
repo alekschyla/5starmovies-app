@@ -2,6 +2,7 @@ import React from 'react';
 import { database, auth } from '../../firebaseConfig';
 import { Redirect } from 'react-router-dom';
 import { Paper, Fab, TextField } from '@material-ui/core';
+import StarRatings from 'react-star-ratings';
 import styles from '../../styles';
 
 const user = auth.currentUser;
@@ -10,7 +11,7 @@ class AddRating extends React.Component {
     state = {
         imdbID: this.props.match.params.id ? (this.props.match.params.id).replace(/:/, '') : "",
         movieTitle: this.props.location.search.replace('?', '').replace(/%20/g, ' '),
-        rating: 1,
+        rating: 0,
         comment: "",
         userName: user.displayName,
         userEmail: user.email,
@@ -33,6 +34,12 @@ class AddRating extends React.Component {
             : this.setState({ dataCheck: false })
     }
 
+    changeRating = (newRating, name) => {
+        this.setState({
+            rating: newRating,
+        })
+    }
+
     render() {
         return (
             <Paper
@@ -49,25 +56,19 @@ class AddRating extends React.Component {
                 >
                     Oceń film: {this.state.movieTitle}
                 </h1>
-                <TextField
-                    select
-                    label="Oceń film:"
-                    value={this.state.rating}
-                    style={styles['AddRating-rating']}
-                    onChange={this.handleChange('rating')}
-                    variant="filled"
+                <div
+                    style={styles['AddRating-textfield']}
                 >
-                    {
-                        Array(5).fill(1).map((el, index) => (
-                            <option
-                                key={index}
-                                value={index + 1}
-                            >
-                                {index + 1}
-                            </option>
-                        ))
-                    }
-                </TextField>
+                    <StarRatings
+                        rating={this.state.rating}
+                        starRatedColor='yellow'
+                        starHoverColor='green'
+                        changeRating={this.changeRating}
+                        numberOfStars={5}
+                        name='rating'
+                        isSelectable={true}
+                    />
+                </div>
                 <TextField
                     multiline
                     rows="4"
