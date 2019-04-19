@@ -24,10 +24,10 @@ const SearchedList = (props) => {
                 props.movies &&
                 props.movies.map(
                     movie => (
-                        <div>
-                            <ListItem
-                                key={movie.imdbID}
-                            >
+                        <div
+                            key={movie.imdbID}
+                        >
+                            <ListItem>
                                 <ListItemAvatar>
                                     <Avatar
                                         src={movie.Poster}

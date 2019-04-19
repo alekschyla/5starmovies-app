@@ -80,22 +80,6 @@ class AddRating extends React.Component {
                     onChange={this.handleChange('comment')}
                     variant="filled"
                 />
-                {/* <TextField
-                    style={styles['AddRating-textfield']}
-                    type={'text'}
-                    label={'Podaj swoje Imię'}
-                    value={this.state.userName}
-                    onChange={this.handleChange('userName')}
-                    variant="filled"
-                />
-                <TextField
-                    style={styles['AddRating-textfield']}
-                    type={'email'}
-                    label={'Podaj swój e-mail'}
-                    value={this.state.userEmail}
-                    onChange={this.handleChange('userEmail')}
-                    variant="filled"
-                /> */}
                 <Fab
                     style={styles['AddRating-button']}
                     color='secondary'

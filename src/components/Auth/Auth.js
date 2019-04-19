@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import LogIn from './LogIn'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignUp from "./SignUp";
@@ -39,11 +39,11 @@ const Auth = (props) => {
                                     password={''}
                                     passwordCheck={''}
                                     userName={''}
-                                    onEmailChange={() => {}}
-                                    onPasswordChange={() => {}}
-                                    onPasswordCheckChange={() => {}}
-                                    onUserChange={() => {}}
-                                    onRegistrationClick={() => {}}
+                                    onEmailChange={() => { }}
+                                    onPasswordChange={() => { }}
+                                    onPasswordCheckChange={() => { }}
+                                    onUserChange={() => { }}
+                                    onRegistrationClick={() => { }}
                                 />
                             }
                         />
