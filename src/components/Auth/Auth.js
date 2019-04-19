@@ -46,6 +46,7 @@ const Auth = (props) => {
                                     password={props._password}
                                     passwordCheck={props._passwordConfirm}
                                     userName={props._userName}
+                                    ifPasswordMatch={props._passwordCheck}
                                     onEmailChange={props._changeEmail}
                                     onPasswordChange={props._changePassword}
                                     onPasswordCheckChange={props._changePasswordConf}
@@ -65,6 +66,7 @@ const mapStateToProps = state => ({
     _email: state.auth.email,
     _password: state.auth.password,
     _passwordConfirm: state.auth.passwordConfirm,
+    _passwordCheck: state.auth.passwordCheck,
     _userName: state.auth.userName,
 });
 

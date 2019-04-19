@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from "../../styles";
+import {comparePasswordsActionCreator} from "../../state/auth";
 
 const SignUp = (props) => {
     return (
@@ -45,6 +46,12 @@ const SignUp = (props) => {
                         onChange={event => props.onPasswordCheckChange(event.target.value)}
                     />
                 </div>
+                    {
+                        props.passwordCheck === '' && props.ifPasswordMatch ?
+                            ''
+                            :
+                            <div>hasła nie pasują</div>
+                    }
                 <div>
                     <button
                         onClick={props.onRegistrationClick}
