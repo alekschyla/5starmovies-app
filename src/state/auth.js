@@ -49,6 +49,7 @@ export const startListeningToAuthChangeAsyncActionCreator = (
         )
     }
 );
+
 export const registerUserActionCreator = () => (dispatch, getState) => {
     const state = getState();
     if (state.auth.passwordCheck) {
