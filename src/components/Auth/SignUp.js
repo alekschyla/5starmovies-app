@@ -15,7 +15,7 @@ const SignUp = (props) => {
                         id={'email'}
                         type={'text'}
                         value={props.email}
-                        onChange={props.onEmailChange}
+                        onChange={(event) => props.onEmailChange(event.target.value)}
                     />
                 </div>
                 <div>
@@ -24,7 +24,7 @@ const SignUp = (props) => {
                         id={'userName'}
                         type={'text'}
                         value={props.userName}
-                        onChange={props.onUserChange}
+                        onChange={event => props.onUserChange(event.target.value)}
                     />
                 </div>
                 <div>
@@ -33,7 +33,7 @@ const SignUp = (props) => {
                         id={'password'}
                         type={'password'}
                         value={props.password}
-                        onChange={props.onPasswordChange}
+                        onChange={event => props.onPasswordChange(event.target.value)}
                     />
                 </div>
                 <div>
@@ -42,7 +42,7 @@ const SignUp = (props) => {
                         id={'passwordCheck'}
                         type={'password'}
                         value={props.passwordCheck}
-                        onChange={props.onPasswordCheckChange}
+                        onChange={event => props.onPasswordCheckChange(event.target.value)}
                     />
                 </div>
                 <div>

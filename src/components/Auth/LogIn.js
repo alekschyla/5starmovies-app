@@ -11,7 +11,7 @@ const LogIn = (props) => {
                 style={styles['LogIn-container']}
             >
                 <div>
-                    <label htmlFor="userName">Nazwa użytkownika: </label>
+                    <label htmlFor="userName">Email: </label>
                     <input
                         id={'userName'}
                         type={'text'}

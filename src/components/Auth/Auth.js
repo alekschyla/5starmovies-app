@@ -6,7 +6,10 @@ import SignUp from "./SignUp";
 import {changeEmailActionCreator,
     changePasswordActionCreator,
     logInAsyncActionCreator,
-    logInByGoogleAsyncActionCreator} from '../../state/auth'
+    logInByGoogleAsyncActionCreator,
+    comparePasswordsActionCreator,
+    changeUserNameActionCreator,
+    registerUserActionCreator} from '../../state/auth'
 
 const Auth = (props) => {
     return (
@@ -36,7 +39,7 @@ const Auth = (props) => {
 
                         <Route
                             path={"/signUp"}
-                            render={(props) =>
+                            render={(renderProps) =>
                                 <SignUp
                                     {...props}
                                     email={props._email}
@@ -45,9 +48,9 @@ const Auth = (props) => {
                                     userName={props._userName}
                                     onEmailChange={props._changeEmail}
                                     onPasswordChange={props._changePassword}
-                                    onPasswordCheckChange={() => {}}
-                                    onUserChange={() => {}}
-                                    onRegistrationClick={() => {}}
+                                    onPasswordCheckChange={props._changePasswordConf}
+                                    onUserChange={props._changeUserName}
+                                    onRegistrationClick={props._registerUser}
                                 />
                             }
                         />
@@ -69,7 +72,10 @@ const mapDispatchToProps = dispatch => ({
     _changeEmail: (value) => dispatch(changeEmailActionCreator(value)),
     _changePassword: (value) => dispatch(changePasswordActionCreator(value)),
     _logIn: () => dispatch(logInAsyncActionCreator()),
-    _logInByGoogle: () => dispatch(logInByGoogleAsyncActionCreator())
+    _logInByGoogle: () => dispatch(logInByGoogleAsyncActionCreator()),
+    _changePasswordConf: (value) => dispatch(comparePasswordsActionCreator(value)),
+    _changeUserName: (value) => dispatch(changeUserNameActionCreator(value)),
+    _registerUser: () => dispatch(registerUserActionCreator())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);
