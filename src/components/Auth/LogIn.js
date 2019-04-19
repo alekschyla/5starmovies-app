@@ -11,12 +11,12 @@ const LogIn = (props) => {
                 style={styles['LogIn-container']}
             >
                 <div>
-                    <label htmlFor="userName">Nazwa użytkownika: </label>
+                    <label htmlFor="userName">Email: </label>
                     <input
                         id={'userName'}
                         type={'text'}
                         value={props.email}
-                        onChange={props.onEmailChange}
+                        onChange={(event) => props.onEmailChange(event.target.value)}
                     />
                 </div>
 
@@ -26,7 +26,7 @@ const LogIn = (props) => {
                         id={'password'}
                         type={'password'}
                         value={props.password}
-                        onChange={props.onPasswordChange}
+                        onChange={(event) => props.onPasswordChange(event.target.value)}
                     />
                 </div>
 

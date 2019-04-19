@@ -53,6 +53,7 @@ export const registerUserActionCreator = () => (dispatch, getState) => {
     const state = getState();
     if (state.auth.passwordCheck) {
         auth.createUserWithEmailAndPassword(state.auth.email, state.auth.password)
+            .then( data => window.history.pushState(null, null, '/'))
             .catch(error => console.log('wystąpił błąd', error));
     }
 };
@@ -78,7 +79,8 @@ export const logInByGoogleAsyncActionCreator = () => (dispatch, getState) => {
         .catch(error => console.log('Wystąpił błąd', error))
 };
 export const logOutAsyncActionCreator = () => (dispatch, getState) => {
-    auth.signOut();
+    auth.signOut()
+        .then( data => window.history.pushState(null, null, '/'));
 };
 
 const initialState = {
@@ -87,7 +89,7 @@ const initialState = {
     password: '',
     userName: '',
     passwordConfirm: '',
-    passwordCheck: null,
+    passwordCheck: true,
 };
 
 export default (state = initialState, action) => {

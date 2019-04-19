@@ -32,7 +32,7 @@ class AppBar extends React.Component {
                 <Toolbar>
                     <IconButton
                         color="inherit"
-                        //onClick={() => }
+                        onClick={this.props.logOut}
                     >
                         <PowerSettingsNew/>
                     </IconButton>
