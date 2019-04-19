@@ -1,40 +1,39 @@
 import React from 'react'
+
 import FormSearch from "../../components/FormSearch";
 import SearchedList from "../../components/SearchedList";
 
-let defaultYear = (1950 + ((new Date().getFullYear() + 5) - 1950) / 2);
-// console.log(defaultYear);
+import { connect } from 'react-redux'
+import { fetchMoviesAsyncActionCreator } from '../../state/movies'
+
 
 class Search extends React.Component {
     state = {
-        movies: null,
-        isLoading: false,
-        isError: false,
         searchTerm: '',
         type: '',
-        year: [defaultYear, defaultYear],
-        page: 1
+        year: [1950, new Date().getFullYear() + 5],
     };
 
-    getSearchTerm = (event) => this.setState({searchTerm: event.target.value});
+    getSearchTerm = (event) => this.setState({ searchTerm: event.target.value });
 
-    getType = (event) => this.setState({type: event.target.value});
+    getType = (event) => this.setState({ type: event.target.value });
 
     getYear = (year) => {
-        this.setState({year});
+        this.setState({ year });
     };
 
     getMoviesBySearchTerm = (searchTerm) => {
-        fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}`)
-            .then(response => response.json())
-            .then(arrMovies => this.setState({movies: arrMovies.Search}));
+        this.props._fetchMovies(searchTerm)
+        // fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}`)
+        //     .then(response => response.json())
+        //     .then(arrMovies => this.setState({ movies: arrMovies.Search }));
     };
 
     getMoviesByType = (type, searchTerm) => {
         if (searchTerm !== '') {
             fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}&type=${type}`)
                 .then(response => response.json())
-                .then(arrMovies => this.setState({movies: arrMovies.Search}));
+                .then(arrMovies => this.setState({ movies: arrMovies.Search }));
         }
     };
 
@@ -61,7 +60,7 @@ class Search extends React.Component {
             });
 
             Promise.all(promises).then(() =>
-                this.setState({movies: allMovies})
+                this.setState({ movies: allMovies })
             );
         }
     };
@@ -69,7 +68,7 @@ class Search extends React.Component {
     getPage = (searchTerm, page) => {
         fetch(`http://www.omdbapi.com/?apikey=526cfe10&s=${searchTerm}&page=${page}`)
             .then(response => response.json())
-            .then(arrMovies => this.setState({movies: arrMovies.Search}));
+            .then(arrMovies => this.setState({ movies: arrMovies.Search }));
     };
 
     render() {
@@ -85,11 +84,11 @@ class Search extends React.Component {
                     year={this.state.year}
                     getYear={this.getYear}
                     getMoviesByYear={this.getMoviesByYear}
-                    movies={this.state.movies}
+                    movies={this.props._movies}
                 />
 
                 <SearchedList
-                    movies={this.state.movies}
+                    movies={this.props._movies}
                     history={this.props.history}
                 />
             </div>
@@ -97,4 +96,17 @@ class Search extends React.Component {
     }
 }
 
-export default Search
+const mapStateToProps = state => ({
+    _movies: state.movies.data && state.movies.data.Search,
+    _isLoading: state.movies.isLoading,
+    _isError: state.movies.isError,
+})
+const mapDispatchToProps = dispatch => ({
+    _fetchMovies: (queryParams) => dispatch(fetchMoviesAsyncActionCreator(queryParams))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+
+)(Search)
