@@ -6,14 +6,12 @@ import SearchedList from "../../components/SearchedList";
 import { connect } from 'react-redux'
 import { fetchMoviesAsyncActionCreator } from '../../state/movies'
 
-let defaultYear = (1950 + ((new Date().getFullYear() + 5) - 1950) / 2);
-// console.log(defaultYear);
 
 class Search extends React.Component {
     state = {
         searchTerm: '',
         type: '',
-        year: [defaultYear, defaultYear],
+        year: [1950, new Date().getFullYear() + 5],
     };
 
     getSearchTerm = (event) => this.setState({ searchTerm: event.target.value });
