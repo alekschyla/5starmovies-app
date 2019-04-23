@@ -1,10 +1,26 @@
-import makeFetchDuck from './makeFetchDuck'
+import { database } from '../firebaseConfig'
 
-const {
-    fetchAsyncActionCreator,
-    reducer,
-} = makeFetchDuck('movieDetails', 'http://www.omdbapi.com/?apikey=a3748959&i=')
+const SET_IMDBID = 'movieDetails/SET_IMDBID';
 
-export const fetchMoviesAsyncActionCreator = fetchAsyncActionCreator
+export const setImdbIDActionCreator = imdbID => ({
+    type: SET_IMDBID,
+    imdbID,
+});
 
-export default reducer
+const initialState = {
+    imdbID: '',
+    movieComments: null,
+};
+
+export default (state = initialState, action) => {
+    switch (action.type) {
+        case SET_IMDBID:
+            return {
+                ...state,
+                imdbID: action.imdbID? (action.imdbID).replace(/:/, '') : "",
+            };
+        default:
+            return state;
+    }
+};
+

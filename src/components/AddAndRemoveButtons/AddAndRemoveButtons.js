@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import { database, auth } from '../../firebaseConfig'
-import AddButton from './AddButton'
-import RemoveButton from './RemoveButton'
+import { database, auth } from '../../firebaseConfig';
+import AddButton from './AddButton';
+import RemoveButton from './RemoveButton';
 
 const userUid = auth.currentUser ? auth.currentUser.uid : 'user';
-
 const refToMovies = database.ref(`users/${userUid}/watchlist`);
 
 class AddAndRemoveButtons extends Component {
     state = {
-        watchlist: null
+        watchlist: null,
     };
 
     componentDidMount() {
         refToMovies.on('value', (snapshot) => {
-            this.setState({ watchlist: snapshot.val() })
+            this.setState({
+                watchlist: snapshot.val(),
+            })
         });
     }
 
