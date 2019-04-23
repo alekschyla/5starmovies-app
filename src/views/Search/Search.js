@@ -47,7 +47,7 @@ class Search extends React.Component {
     render() {
         // @HACK
         const movies = this.props._movies && this.props._movies.filter(
-            movie => Number(movie.Year) >= this.state.year[0] && Number(movie.Year) <= this.state.year[1]
+            movie => Number(movie.Year.slice(0, 4)) >= this.state.year[0]
         );
 
         return (
