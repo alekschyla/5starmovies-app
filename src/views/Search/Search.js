@@ -45,6 +45,11 @@ class Search extends React.Component {
     };
 
     render() {
+        // @HACK
+        const movies = this.props._movies && this.props._movies.filter(
+            movie => Number(movie.Year) >= this.state.year[0] && Number(movie.Year) <= this.state.year[1]
+        );
+
         return (
             <div>
                 <FormSearch
@@ -61,7 +66,7 @@ class Search extends React.Component {
                 />
 
                 <SearchedList
-                    movies={this.props._movies}
+                    movies={movies}
                     history={this.props.history}
                 />
             </div>
