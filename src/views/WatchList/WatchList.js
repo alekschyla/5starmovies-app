@@ -1,46 +1,34 @@
 import React from 'react';
 import SearchedList from "../../components/SearchedList";
 import { connect } from 'react-redux';
-
-import { database, auth } from '../../firebaseConfig';
+import { getWatchlistMovieListFromFirebaseAsyncActionCreator } from '../../state/movieList';
 
 class WatchList extends React.Component {
-    state = {
-        movies: null,
-    }
 
     componentDidMount() {
-        const user = auth.currentUser;
-        
-        database.ref(`users/${user.uid}/watchlist`).on(
-            'value',
-            (snapshot) => {
-                Promise.all(
-                    Object.keys(snapshot.val())
-                        .map(
-                            movieId => (
-                                fetch(`http://www.omdbapi.com/?apikey=526cfe10&i=${movieId}`)
-                                    .then(r => r.json())
-                            )
-                        )
-                )
-                    .then((movies) => this.setState({
-                        movies: movies
-                    }))
-            }
-        )
+        this.props._getWatchlistMovieList();
     }
 
     render() {
         return (
             <div>
                 <SearchedList
-                    movies={this.state.movies}
-                    history={this.props.history}
+                    movies={this.props._watchlistMovieList}
                 />
             </div>
         )
     }
 }
 
-export default WatchList
+const mapStateToProps = state => ({
+    _watchlistMovieList: state.movieList.watchlistMovieList,
+});
+
+const mapDispatchToProps = dispatch => ({
+    _getWatchlistMovieList: () => dispatch(getWatchlistMovieListFromFirebaseAsyncActionCreator()),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(WatchList);

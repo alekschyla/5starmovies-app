@@ -1,44 +1,33 @@
 import React from 'react';
 import SearchedList from "../../components/SearchedList";
-
-import { database, auth } from '../../firebaseConfig';
+import { connect } from 'react-redux';
+import { getFavouriteMoviesListFromFirebaseAsyncActionCreator } from '../../state/movieList';
 
 class FavMovies extends React.Component {
-    state = {
-        movies: null,
-    }
-
     componentDidMount() {
-        const user = auth.currentUser;
-
-        database.ref(`users/${user.uid}/favourites`).on(
-            'value',
-            (snapshot) => {
-                Promise.all(
-                    Object.keys(snapshot.val())
-                        .map(
-                            movieId => (
-                                fetch(`http://www.omdbapi.com/?apikey=526cfe10&i=${movieId}`)
-                                    .then(r => r.json())
-                            )
-                        )
-                )
-                    .then((movies) => this.setState({
-                        movies: movies
-                    }))
-            }
-        )
+        this.props._getFavouriteMoviesList();
     }
 
     render() {
         return (
             <div>
                 <SearchedList
-                    movies={this.state.movies}
+                    movies={this.props._favouriteMoviesList}
                 />
             </div>
         )
     }
 }
 
-export default FavMovies;
+const mapStateToProps = state => ({
+    _favouriteMoviesList: state.movieList.favouriteMoviesList,
+});
+
+const mapDispatchToProps = dispatch => ({
+    _getFavouriteMoviesList: () => dispatch(getFavouriteMoviesListFromFirebaseAsyncActionCreator()),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(FavMovies);

@@ -8,7 +8,6 @@ import { onClickSubmitFormAsyncActionCreator, setRedirectActionCreator, setDataC
 
 class AddRating extends React.Component {
     state = {
-        movieTitle: this.props.location.search.replace('?', '').replace(/%20/g, ' '),
         rating: 0,
         comment: "",
     }
@@ -40,7 +39,7 @@ class AddRating extends React.Component {
                 <h1
                     style={styles['AddRating-textfield']}
                 >
-                    Oceń film: {this.state.movieTitle}
+                    Oceń film: {this.props._movieTitle}
                 </h1>
                 <div
                     style={styles['AddRating-textfield']}
@@ -87,6 +86,7 @@ class AddRating extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    _movieTitle: state.movieDetailsFetch.data.Title,
     _dataCheck: state.addRating.dataCheck,
     _redirect: state.addRating.redirect,
     _imdbID: state.movieDetails.imdbID,

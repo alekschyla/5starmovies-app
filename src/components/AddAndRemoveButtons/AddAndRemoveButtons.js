@@ -13,7 +13,7 @@ class AddAndRemoveButtons extends Component {
     isFilmOnWatchList() {
         let arr = Object.entries(this.props._watchlist || {}).filter(arr => arr[0] === this.props._imdbID);
         return arr.length === 0;
-    }
+    };
 
     render() {
         return (

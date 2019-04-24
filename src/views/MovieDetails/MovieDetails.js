@@ -67,7 +67,6 @@ const mapDispatchToProps = dispatch => ({
     _fetchMovieDetails: () => dispatch(fetchMovieAsyncActionCreator()),
     _fetchMovieComments: () => dispatch(fetchMovieCommentsAsyncActionCreator()),
     _setImdbID: (id) => dispatch(setImdbIDActionCreator(id)),
-
 });
 
 export default connect(
