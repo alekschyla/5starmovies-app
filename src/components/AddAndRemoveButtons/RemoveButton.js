@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "../../styles";
-import {Fab} from "@material-ui/core";
+import { Fab } from "@material-ui/core";
 
 const RemoveButton = (props) => {
     return (
@@ -9,7 +9,7 @@ const RemoveButton = (props) => {
                 variant="extended"
                 color="primary"
                 style={styles['OmdbDetails-button']}
-                onClick={() => props.removeFromWatchList(props.id)}
+                onClick={() => props.removeFromWatchList()}
             >
                 usuń z do obejrzenia
             </Fab>

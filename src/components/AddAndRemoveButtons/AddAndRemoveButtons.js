@@ -1,34 +1,30 @@
 import React, { Component } from 'react';
-import { database, auth } from '../../firebaseConfig';
+import { database } from '../../firebaseConfig';
 import AddButton from './AddButton';
 import RemoveButton from './RemoveButton';
-
-const userUid = auth.currentUser ? auth.currentUser.uid : 'user';
-const refToMovies = database.ref(`users/${userUid}/watchlist`);
+import { connect } from 'react-redux';
+import { setWatchlistActionCreator } from '../../state/movieDetails';
 
 class AddAndRemoveButtons extends Component {
-    state = {
-        watchlist: null,
-    };
 
     componentDidMount() {
+        const refToMovies = database.ref(`users/${this.props._userUid}/watchlist`);
         refToMovies.on('value', (snapshot) => {
-            this.setState({
-                watchlist: snapshot.val(),
-            })
+            this.props._saveWatchlist(snapshot.val());
         });
     }
 
-    addToWatchList = (id) => {
-        refToMovies.child(id).set(true);
+    addToWatchList = (imdbID) => {
+        const refToMovies = database.ref(`users/${this.props._userUid}/watchlist`);
+        refToMovies.child(imdbID).set(true);
     };
 
-    removeFromWatchList = (id) => {
-        database.ref(`users/${userUid}/watchlist/${id}`).remove()
+    removeFromWatchList = (imdbID) => {
+        database.ref(`users/${this.props._userUid}/watchlist/${imdbID}`).remove()
     };
 
     isFilmOnWatchList() {
-        let arr = Object.entries(this.state.watchlist || {}).filter(arr => arr[0] === this.props.id);
+        let arr = Object.entries(this.props._watchlist || {}).filter(arr => arr[0] === this.props._imdbID);
         return arr.length === 0;
     }
 
@@ -37,11 +33,11 @@ class AddAndRemoveButtons extends Component {
             <div>
                 {this.isFilmOnWatchList() ?
                     <AddButton
-                        addToWatchList={() => this.addToWatchList(this.props.id)}
+                        addToWatchList={() => this.addToWatchList(this.props._imdbID)}
                     />
                     :
                     <RemoveButton
-                        removeFromWatchList={() => this.removeFromWatchList(this.props.id)}
+                        removeFromWatchList={() => this.removeFromWatchList(this.props._imdbID)}
                     />
                 }
             </div>
@@ -49,4 +45,17 @@ class AddAndRemoveButtons extends Component {
     }
 }
 
-export default AddAndRemoveButtons;
+const mapStateToProps = state => ({
+    _userUid: state.auth.user.uid,
+    _imdbID: state.movieDetails.imdbID,
+    _watchlist: state.movieDetails.watchlist,
+});
+
+const mapDispatchToProps = dispatch => ({
+    _saveWatchlist: (watchlist) => dispatch(setWatchlistActionCreator(watchlist)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(AddAndRemoveButtons);

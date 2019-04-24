@@ -10,7 +10,7 @@ const AddButton = (props) => {
                 variant="extended"
                 color="primary"
                 style={styles['OmdbDetails-button']}
-                onClick={() => props.addToWatchList(props.id)}
+                onClick={() => props.addToWatchList()}
             >
                 dodaj do obejrzenia
             </Fab>

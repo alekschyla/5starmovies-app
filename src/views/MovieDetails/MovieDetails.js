@@ -5,38 +5,15 @@ import { connect } from 'react-redux';
 import { Paper } from '@material-ui/core';
 import styles from '../../styles';
 import { fetchMovieAsyncActionCreator } from '../../state/movieDetailsFetch';
+import { fetchMovieCommentsAsyncActionCreator } from '../../state/movieCommentsFetch';
 import { setImdbIDActionCreator } from '../../state/movieDetails';
 
-const omdbApiPath = 'http://www.omdbapi.com/?apikey=a3748959&i=';
-const firebaseApiPath = 'https://starmovies-app.firebaseio.com/';
-
 class MovieDetails extends React.Component {
-    state = {
-        // imdbID: this.props.match.params.id ? (this.props.match.params.id).replace(/:/, '') : "",
-        // movieData: null,
-        movieComments: null,
-        isLoading: false,
-        isError: false,
-    };
 
     componentDidMount() {
         this.props._setImdbID(this.props.match.params.id);
         this.props._fetchMovieDetails(this.props._imdbID);
-
-        // this.setState({ isLoading: true });
-
-        // fetch(`${omdbApiPath}${this.state.imdbID}`)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         if (data.Response !== "False") this.setState({ movieData: data })
-        //     })
-        //     .catch(() => this.setState({ isError: true }));
-
-        fetch(`${firebaseApiPath}comments/${this.props._imdbID}.json`)
-            .then(response => response.json())
-            .then(data => this.setState({ movieComments: data }))
-            .catch(() => this.setState({ isError: true }))
-            .finally(() => this.setState({ isLoading: false }))
+        this.props._fetchMovieComments(`${this.props._imdbID}.json`);
     }
 
     render() {
@@ -80,13 +57,16 @@ class MovieDetails extends React.Component {
 const mapStateToProps = state => ({
     _imdbID: state.movieDetails.imdbID,
     _movieData: state.movieDetailsFetch.data,
-    _movieComments: state.movieDetails.movieComments,
+    _movieComments: state.movieCommentsFetch.data,
     _isLoading: state.movieDetailsFetch.isLoading,
     _isError: state.movieDetailsFetch.isError,
+    _isLoadingComments: state.movieCommentsFetch.isLoading,
+    _isErrorComments: state.movieCommentsFetch.isError,
 });
 
 const mapDispatchToProps = dispatch => ({
     _fetchMovieDetails: (queryParams) => dispatch(fetchMovieAsyncActionCreator(queryParams)),
+    _fetchMovieComments: (queryParams) => dispatch(fetchMovieCommentsAsyncActionCreator(queryParams)),
     _setImdbID: (id) => dispatch(setImdbIDActionCreator(id)),
 
 });
