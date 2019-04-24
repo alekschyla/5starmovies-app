@@ -1,26 +1,13 @@
 import React, { Component } from 'react';
-import { database } from '../../firebaseConfig';
 import AddButton from './AddButton';
 import RemoveButton from './RemoveButton';
 import { connect } from 'react-redux';
-import { setWatchlistActionCreator } from '../../state/movieDetails';
+import { addToWatchListAsyncActionCreator, removeFromWatchListAsyncActionCreator, getWatchlistFromFirebaseAsyncActionCreator } from '../../state/movieDetails';
 
 class AddAndRemoveButtons extends Component {
 
     componentDidMount() {
-        const refToMovies = database.ref(`users/${this.props._userUid}/watchlist`);
-        refToMovies.on('value', (snapshot) => {
-            this.props._saveWatchlist(snapshot.val());
-        });
-    }
-
-    addToWatchList = (imdbID) => {
-        const refToMovies = database.ref(`users/${this.props._userUid}/watchlist`);
-        refToMovies.child(imdbID).set(true);
-    };
-
-    removeFromWatchList = (imdbID) => {
-        database.ref(`users/${this.props._userUid}/watchlist/${imdbID}`).remove()
+        this.props._saveWatchlist();
     };
 
     isFilmOnWatchList() {
@@ -33,11 +20,11 @@ class AddAndRemoveButtons extends Component {
             <div>
                 {this.isFilmOnWatchList() ?
                     <AddButton
-                        addToWatchList={() => this.addToWatchList(this.props._imdbID)}
+                        addToWatchList={this.props._addToWatchList}
                     />
                     :
                     <RemoveButton
-                        removeFromWatchList={() => this.removeFromWatchList(this.props._imdbID)}
+                        removeFromWatchList={this.props._removeFromWatchList}
                     />
                 }
             </div>
@@ -46,13 +33,14 @@ class AddAndRemoveButtons extends Component {
 }
 
 const mapStateToProps = state => ({
-    _userUid: state.auth.user.uid,
     _imdbID: state.movieDetails.imdbID,
     _watchlist: state.movieDetails.watchlist,
 });
 
 const mapDispatchToProps = dispatch => ({
-    _saveWatchlist: (watchlist) => dispatch(setWatchlistActionCreator(watchlist)),
+    _saveWatchlist: () => dispatch(getWatchlistFromFirebaseAsyncActionCreator()),
+    _addToWatchList: () => dispatch(addToWatchListAsyncActionCreator()),
+    _removeFromWatchList: () => dispatch(removeFromWatchListAsyncActionCreator()),
 });
 
 export default connect(

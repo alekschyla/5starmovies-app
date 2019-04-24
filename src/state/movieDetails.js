@@ -4,6 +4,27 @@ const SET_IMDBID = 'movieDetails/SET_IMDBID';
 const SET_WATCHLIST = 'movieDetails/SET_WATCHLIST';
 const SET_FAVOURITES = 'movieDetails/SET_FAVOURITES';
 
+export const getWatchlistFromFirebaseAsyncActionCreator = () => (dispatch, getState) => {
+    const userUid = getState().auth.user.uid;
+    const refToMovies = database.ref(`users/${userUid}/watchlist`);
+    refToMovies.on('value', (snapshot) => {
+        dispatch(setWatchlistActionCreator(snapshot.val()));
+    });
+};
+
+export const addToWatchListAsyncActionCreator = () => (dispatch, getState) => {
+    const imdbID = getState().movieDetails.imdbID;
+    const userUid = getState().auth.user.uid;
+    const refToMovies = database.ref(`users/${userUid}/watchlist`);
+    refToMovies.child(imdbID).set(true);
+};
+
+export const removeFromWatchListAsyncActionCreator = () => (dispatch, getState) => {
+    const imdbID = getState().movieDetails.imdbID;
+    const userUid = getState().auth.user.uid;
+    database.ref(`users/${userUid}/watchlist/${imdbID}`).remove();
+};
+
 export const setImdbIDActionCreator = imdbID => ({
     type: SET_IMDBID,
     imdbID,
