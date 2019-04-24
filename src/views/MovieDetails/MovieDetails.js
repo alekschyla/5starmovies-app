@@ -13,10 +13,6 @@ class MovieDetails extends React.Component {
         this.props._setImdbID(this.props.match.params.id);
         this.props._fetchMovieDetails();
         this.props._fetchMovieComments();
-    };s
-
-    componentWillUnmount() {
-        this.props._setImdbID('');
     };
 
     render() {

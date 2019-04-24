@@ -1,44 +1,30 @@
 import React from 'react';
-import { database, auth } from '../../firebaseConfig';
 import { Redirect } from 'react-router-dom';
 import { Paper, Fab, TextField } from '@material-ui/core';
 import StarRatings from 'react-star-ratings';
 import styles from '../../styles';
-
-const user = auth.currentUser;
+import { connect } from 'react-redux';
+import { onClickSubmitFormAsyncActionCreator, setRedirectActionCreator, setDataCheckActionCreator } from '../../state/addRating';
 
 class AddRating extends React.Component {
     state = {
-        imdbID: this.props.match.params.id ? (this.props.match.params.id).replace(/:/, '') : "",
         movieTitle: this.props.location.search.replace('?', '').replace(/%20/g, ' '),
         rating: 0,
         comment: "",
-        userName: user.displayName,
-        userEmail: user.email,
-        redirect: false,
-        dataCheck: true,
     }
 
-    handleChange = (key) => (event) => this.setState({ [key]: event.target.value })
-
-    onClickSubmitForm = () => {
-        const re1 = /[a-zA-Z]{2,}/;
-        const re2 = /\S+@\S+\.\S+/;
-        re1.test(this.state.userName) && re2.test(this.state.userEmail)
-            ? database.ref(`comments/`).child(`${this.state.imdbID}`).push({
-                mark: this.state.rating,
-                desc: this.state.comment,
-                name: this.state.userName,
-                email: this.state.userEmail
-            }).then(() => this.setState({ redirect: true }))
-            : this.setState({ dataCheck: false })
-    }
+    handleChange = (key) => (event) => this.setState({ [key]: event.target.value });
 
     changeRating = (newRating, name) => {
         this.setState({
             rating: newRating,
         })
-    }
+    };
+
+    componentWillUnmount() {
+        this.props._setRedirect(false);
+        this.props._setDataCheck(true);
+    };
 
     render() {
         return (
@@ -46,8 +32,8 @@ class AddRating extends React.Component {
                 style={styles['AddRating-paper']}
             >
                 {
-                    this.state.redirect
-                        ? <Redirect to={`/movie/:${this.state.imdbID}`} />
+                    this.props._redirect
+                        ? <Redirect to={`/movie/:${this.props._imdbID}`} />
                         : null
                 }
 
@@ -84,12 +70,12 @@ class AddRating extends React.Component {
                     style={styles['AddRating-button']}
                     color='secondary'
                     variant='extended'
-                    onClick={this.onClickSubmitForm}
+                    onClick={() => this.props._onClickSubmitForm(this.state.rating, this.state.comment)}
                 >
                     Zapisz
                 </Fab>
                 {
-                    !this.state.dataCheck
+                    !this.props._dataCheck
                         ? <Paper style={styles['AddRating-paper']}>
                             Nie można zapisać: podane dane są nieprawidłowe lub nie wypełniono wszystkich wymaganych pól.
                         </Paper>
@@ -100,4 +86,19 @@ class AddRating extends React.Component {
     }
 }
 
-export default AddRating;
+const mapStateToProps = state => ({
+    _dataCheck: state.addRating.dataCheck,
+    _redirect: state.addRating.redirect,
+    _imdbID: state.movieDetails.imdbID,
+});
+
+const mapDispatchToProps = dispatch => ({
+    _onClickSubmitForm: (rating, comment) => dispatch(onClickSubmitFormAsyncActionCreator(rating, comment)),
+    _setRedirect: (boolean) => dispatch(setRedirectActionCreator(boolean)),
+    _setDataCheck: (boolean) => dispatch(setDataCheckActionCreator(boolean)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(AddRating);
