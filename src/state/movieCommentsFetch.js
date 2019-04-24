@@ -5,6 +5,10 @@ const {
     reducer,
 } = makeFetchDuck('movieComments', 'https://starmovies-app.firebaseio.com/comments/');
 
-export const fetchMovieCommentsAsyncActionCreator = fetchAsyncActionCreator;
+export const fetchMovieCommentsAsyncActionCreator = () => (dispatch, getState) => {
+    const imdbID = getState().movieDetails.imdbID;
+
+    dispatch(fetchAsyncActionCreator(`${imdbID}.json`));
+};
 
 export default reducer;

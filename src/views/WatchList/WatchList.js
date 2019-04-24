@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchedList from "../../components/SearchedList";
+import { connect } from 'react-redux';
 
 import { database, auth } from '../../firebaseConfig';
 

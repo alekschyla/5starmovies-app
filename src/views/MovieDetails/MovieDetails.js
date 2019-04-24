@@ -9,12 +9,15 @@ import { fetchMovieCommentsAsyncActionCreator } from '../../state/movieCommentsF
 import { setImdbIDActionCreator } from '../../state/movieDetails';
 
 class MovieDetails extends React.Component {
-
     componentDidMount() {
         this.props._setImdbID(this.props.match.params.id);
-        this.props._fetchMovieDetails(this.props._imdbID);
-        this.props._fetchMovieComments(`${this.props._imdbID}.json`);
-    }
+        this.props._fetchMovieDetails();
+        this.props._fetchMovieComments();
+    };s
+
+    componentWillUnmount() {
+        this.props._setImdbID('');
+    };
 
     render() {
         return (
@@ -65,8 +68,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    _fetchMovieDetails: (queryParams) => dispatch(fetchMovieAsyncActionCreator(queryParams)),
-    _fetchMovieComments: (queryParams) => dispatch(fetchMovieCommentsAsyncActionCreator(queryParams)),
+    _fetchMovieDetails: () => dispatch(fetchMovieAsyncActionCreator()),
+    _fetchMovieComments: () => dispatch(fetchMovieCommentsAsyncActionCreator()),
     _setImdbID: (id) => dispatch(setImdbIDActionCreator(id)),
 
 });

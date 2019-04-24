@@ -5,12 +5,14 @@ import { startListeningToAuthChangeAsyncActionCreator } from './state/auth';
 import movies from './state/movies';
 import movieDetailsFetch from './state/movieDetailsFetch';
 import movieDetails from './state/movieDetails';
+import movieCommentsFetch from './state/movieCommentsFetch';
 
 const rootReducer = combineReducers({
     auth,
     movies,
     movieDetailsFetch,
     movieDetails,
+    movieCommentsFetch,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
