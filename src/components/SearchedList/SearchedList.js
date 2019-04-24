@@ -24,9 +24,10 @@ const SearchedList = (props) => {
                 props.movies &&
                 props.movies.map(
                     movie => (
-                        <div>
+                        <div
+                        key={movie.imdbID}
+                        >
                             <ListItem
-                                key={movie.imdbID}
                             >
                                 <ListItemAvatar>
                                     <Avatar

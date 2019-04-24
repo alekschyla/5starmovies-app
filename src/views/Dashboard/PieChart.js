@@ -1,5 +1,5 @@
 import React from 'react';
-import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { data, colors } from './dataForChart2';
 
 
@@ -21,7 +21,8 @@ const renderCustomizedLabel = ({
 class Chart2 extends React.Component {
     render() {
         return (
-            <PieChart width={600} height={400}>
+            <ResponsiveContainer width='100%' height={500}>
+            <PieChart>
                 <Pie
                     data={data}
                     dataKey="value"
@@ -29,7 +30,7 @@ class Chart2 extends React.Component {
                     cx="50%"
                     cy="50%"
                     innerRadius={50}
-                    outerRadius={200}
+                    outerRadius={180}
                     labelLine={false}
                     label={renderCustomizedLabel}
                 >
@@ -41,6 +42,7 @@ class Chart2 extends React.Component {
                 </Pie>
                 <Tooltip />
             </PieChart>
+            </ResponsiveContainer>
         )
     }
 }

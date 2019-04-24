@@ -3,6 +3,7 @@ import LinkButton from './LinkButton';
 import Chart1 from './AreaChart';
 import Chart2 from './PieChart';
 import styles from '../../styles';
+import Grid from '@material-ui/core/Grid';
 
 const links = [
     { value: 'Wyszukaj filmy', to: '/search' },
@@ -23,13 +24,25 @@ class Dashboard extends React.Component {
                         return (<LinkButton key={el.value} value={el.value} to={el.to} />)
                     })}
                 </div>
+
                 <div
-                    style={styles['Dashboard-charts-div']}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        justifyContent: 'space-around',
+                        alignItems: 'center',
+                    }}
                 >
-                    <Chart1 />
-                    <Chart2 />
+                    <Grid container spacing={24}>
+                        <Grid item xs={12} md={6}>
+                            <Chart1 />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <Chart2 />
+                        </Grid>
+                    </Grid>
                 </div>
-            </div>
+            </div >
         )
     }
 }
