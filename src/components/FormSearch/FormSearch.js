@@ -42,19 +42,20 @@ class FormSearch extends React.Component {
                     wyszukaj
                 </Fab>
 
-                <NativeSelect
+                <Select
                     style={styles['FormSearch-nativeselect']}
                     value={this.props.type}
                     onChange={(event) => {
                         this.props.getType(event);
+                        this.props.getMoviesByType(this.props.type, this.props.searchTerm)
                     }}
-                    onClick={() => this.props.getMoviesByType(this.props.type, this.props.searchTerm)}
+                    //onClick={() => this.props.getMoviesByType(this.props.type, this.props.searchTerm)}
                 >
                     <option value="">Typ</option>
                     <option value={'movie'}>Film</option>
                     <option value={'series'}>Serial</option>
                     <option value={'episode'}>Odcinek</option>
-                </NativeSelect>
+                </Select>
 
                 <p>Wyszukaj po roku: od <strong>{this.props.year[0]}</strong> do <strong>{this.props.year[1]}</strong></p>
                 <Range
