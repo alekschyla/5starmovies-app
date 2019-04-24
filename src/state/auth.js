@@ -1,4 +1,4 @@
-import {auth, googleProvider, database} from '../firebaseConfig'
+import {auth, googleProvider} from '../firebaseConfig'
 
 const EMAIL_CHANGED = 'auth/EMAIL_CHANGED';
 const PASS_CHANGED = 'auth/PASS_CHANGED';

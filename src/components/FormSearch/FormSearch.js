@@ -5,6 +5,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import MUISearch from '@material-ui/icons/Search';
 import Fab from '@material-ui/core/Fab';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import Select from '@material-ui/core/Select';
 import 'rc-slider/assets/index.css';
 import Slider from 'rc-slider';
 import styles from '../../styles';
