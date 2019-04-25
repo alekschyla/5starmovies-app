@@ -17,7 +17,7 @@ export const getFavouriteMoviesListFromFirebaseAsyncActionCreator = () => (dispa
                         )
                     )
             )
-                .then((movies) => dispatch(setFavouritesActionCreator(movies)))
+                .then((movies) => dispatch(setFavouritesMovieListActionCreator(movies)))
         }
     )
 };
@@ -36,17 +36,17 @@ export const getWatchlistMovieListFromFirebaseAsyncActionCreator = () => (dispat
                         )
                     )
             )
-                .then((movies) => dispatch(setWatchlistActionCreator(movies)))
+                .then((movies) => dispatch(setWatchlistMovieListActionCreator(movies)))
         }
     )
 };
 
-export const setWatchlistActionCreator = watchlistMovieList => ({
+export const setWatchlistMovieListActionCreator = watchlistMovieList => ({
     type: SET_WATCHLIST,
     watchlistMovieList,
 });
 
-export const setFavouritesActionCreator = favouriteMoviesList => ({
+export const setFavouritesMovieListActionCreator = favouriteMoviesList => ({
     type: SET_FAVOURITES,
     favouriteMoviesList,
 });

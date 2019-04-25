@@ -1,4 +1,6 @@
-import {auth, googleProvider} from '../firebaseConfig'
+import { auth, googleProvider } from '../firebaseConfig';
+import { setFavouritesMovieListActionCreator, setWatchlistMovieListActionCreator } from './movieList';
+import { setImdbIDActionCreator, setWatchlistActionCreator, setFavouritesActionCreator } from './movieDetails';
 
 const EMAIL_CHANGED = 'auth/EMAIL_CHANGED';
 const PASS_CHANGED = 'auth/PASS_CHANGED';
@@ -54,14 +56,14 @@ export const registerUserActionCreator = () => (dispatch, getState) => {
     if (state.auth.passwordCheck) {
         auth.createUserWithEmailAndPassword(state.auth.email, state.auth.password)
             .then(() => {
-                    let user = auth.currentUser;
+                let user = auth.currentUser;
 
-                    user.updateProfile({
-                        displayName: state.auth.userName,
-                    })
-                }
+                user.updateProfile({
+                    displayName: state.auth.userName,
+                })
+            }
             )
-            .then( data => window.history.pushState(null, null, '/'))
+            .then(data => window.history.pushState(null, null, '/'))
             .catch(error => console.log('wystąpił błąd', error));
     }
 };
@@ -88,7 +90,14 @@ export const logInByGoogleAsyncActionCreator = () => (dispatch, getState) => {
 };
 export const logOutAsyncActionCreator = () => (dispatch, getState) => {
     auth.signOut()
-        .then( data => window.history.pushState(null, null, '/'));
+        .then(data => window.history.pushState(null, null, '/'))
+        .then(() => {
+            dispatch(setWatchlistMovieListActionCreator(null));
+            dispatch(setFavouritesMovieListActionCreator(null));
+            dispatch(setImdbIDActionCreator(''));
+            dispatch(setWatchlistActionCreator(null));
+            dispatch(setFavouritesActionCreator(null));
+        });
 };
 
 const initialState = {
