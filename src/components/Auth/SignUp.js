@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from "../../styles";
-import {comparePasswordsActionCreator} from "../../state/auth";
 
 const SignUp = (props) => {
     return (

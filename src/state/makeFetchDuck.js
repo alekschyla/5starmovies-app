@@ -98,6 +98,7 @@ export const makeFetchDuck = (name, url) => {
     };
 
     return {
+        clearDataActionCreator: () => setActionCreator(null),
         fetchAllAsyncActionCreator,
         fetchAsyncActionCreator,
         reducer,

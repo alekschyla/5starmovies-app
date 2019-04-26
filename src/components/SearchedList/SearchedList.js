@@ -24,10 +24,10 @@ const SearchedList = (props) => {
                 props.movies &&
                 props.movies.map(
                     movie => (
-                        <div>
-                            <ListItem
-                                key={movie.imdbID}
-                            >
+                        <div
+                            key={movie.imdbID}
+                        >
+                            <ListItem>
                                 <ListItemAvatar>
                                     <Avatar
                                         src={movie.Poster}
@@ -41,7 +41,7 @@ const SearchedList = (props) => {
                                 />
                                 <Link
                                     style={{ textDecoration: "none" }}
-                                    to={`/movie/:${movie.imdbID}`}>
+                                    to={`/movie/${movie.imdbID}`}>
                                     <Fab
                                         variant='extended' color="secondary">
                                         Wyświetl szczegóły
