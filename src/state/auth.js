@@ -107,7 +107,7 @@ export const logOutAsyncActionCreator = () => (dispatch, getState) => {
 };
 
 const initialState = {
-    user: true,
+    user: null,
     email: '',
     password: '',
     userName: '',

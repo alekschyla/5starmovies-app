@@ -5,6 +5,7 @@ const SET_FAVOURITES = 'movieList/SET_FAVOURITES';
 
 export const getFavouriteMoviesListFromFirebaseAsyncActionCreator = () => (dispatch, getState) => {
     const userUid = getState().auth.user.uid;
+
     database.ref(`users/${userUid}/favourites`).on(
         'value',
         (snapshot) => {
