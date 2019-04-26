@@ -28,28 +28,36 @@ const SearchedList = (props) => {
                         <div
                             key={movie.imdbID}
                         >
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar
-                                        src={movie.Poster}
-                                        imgProps={{ onError: handleBrokenImage }}
-                                    />
+                            <Grid container spacing={8}>
+                                <Grid item xs={12} md={6}>
+                                    <ListItem>
+                                        <Grid item xs={12} md={6}>
+                                            <ListItemAvatar>
+                                                <Grid item xs={12} md={6}>
+                                                    <Avatar
+                                                        src={movie.Poster}
+                                                        imgProps={{ onError: handleBrokenImage }}
+                                                    />
+                                                </Grid>
 
-                                </ListItemAvatar>
-                                <ListItemText
-                                    primary={movie.Title}
-                                    secondary={movie.Year}
-                                />
-                                <Link
-                                    style={{ textDecoration: "none" }}
-                                    to={`/movie/${movie.imdbID}`}>
-                                    <Fab
-                                        variant='extended' color="secondary">
-                                        Wyświetl szczegóły
+                                            </ListItemAvatar>
+                                        </Grid>
+                                        <ListItemText
+                                            primary={movie.Title}
+                                            secondary={movie.Year}
+                                        />
+                                        <Link
+                                            style={{ textDecoration: "none" }}
+                                            to={`/movie/${movie.imdbID}`}>
+                                            <Fab
+                                                variant='extended' color="secondary">
+                                                Wyświetl szczegóły
                                 </Fab>
-                                </Link>
-                            </ListItem>
-                            <hr />
+                                        </Link>
+                                    </ListItem>
+                                </Grid>
+                                <hr />
+                            </Grid>
                         </div>
                     )
                 )

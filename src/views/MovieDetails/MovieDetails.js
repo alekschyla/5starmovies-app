@@ -36,7 +36,7 @@ class MovieDetails extends React.Component {
                                                 style={styles['OmdbDetails-paper']}
                                             >
                                                 Do tego filmu nie dodano jeszcze żadnych komentarzy.
-                                            </Paper>
+                                                    </Paper>
                                         </div>
                                         :
                                         <div>

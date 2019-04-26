@@ -23,8 +23,17 @@ class Dashboard extends React.Component {
                     <Grid container spacing={24}>
                         {links.map(el => {
                             return (
-                                <Grid item xs={12} md={Math.ceil(12 / links.length)} container justify={'center'}>
-                                    <LinkButton key={el.value} value={el.value} to={el.to} />
+
+                                <Grid
+                                    key={el.value}
+                                    item xs={12}
+                                    md={Math.ceil(12 / links.length)}
+                                    container
+                                    justify={'center'}>
+                                    <LinkButton
+                                        value={el.value}
+                                        to={el.to}
+                                    />
                                 </Grid>
                             )
                         })}
