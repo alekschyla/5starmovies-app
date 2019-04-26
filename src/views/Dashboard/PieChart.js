@@ -1,29 +1,28 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
-import { data, colors } from './dataForChart2';
-
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({
-    cx, cy, midAngle, innerRadius, outerRadius, index, percent
-}) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.4;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-        <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-            {`${data[index].type} : ${(percent * 100).toFixed(0)}%`}
-        </text>
-    );
-};
 
 class Chart2 extends React.Component {
     render() {
+        const RADIAN = Math.PI / 180;
+
+        const renderCustomizedLabel = ({
+            cx, cy, midAngle, innerRadius, outerRadius, index, percent
+        }) => {
+            const radius = innerRadius + (outerRadius - innerRadius) * 0.4;
+            const x = cx + radius * Math.cos(-midAngle * RADIAN);
+            const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+            return (
+                <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+                    {`${this.props.data[index].type} : ${(percent * 100).toFixed(0)}%`}
+                </text>
+            );
+        };
+
         return (
             <PieChart width={600} height={400}>
                 <Pie
-                    data={data}
+                    data={this.props.data}
                     dataKey="value"
                     nameKey="type"
                     cx="50%"
@@ -34,8 +33,8 @@ class Chart2 extends React.Component {
                     label={renderCustomizedLabel}
                 >
                     {
-                        data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={colors[index]} />
+                        this.props.data.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={this.props.colors[index]} />
                         ))
                     }
                 </Pie>

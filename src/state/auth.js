@@ -74,8 +74,7 @@ export const registerUserActionCreator = () => (dispatch, getState) => {
                 user.updateProfile({
                     displayName: state.auth.userName,
                 })
-            }
-            )
+            })
             .then(data => window.history.pushState(null, null, '/'))
             .catch(error => console.log('wystąpił błąd', error));
     }
@@ -117,6 +116,7 @@ export const logOutAsyncActionCreator = () => (dispatch, getState) => {
             dispatch(clearMoviesDataActionCreator());
             dispatch(clearMovieDetailsActionCreator());
             dispatch(clearMovieCommentsDataActionCreator());
+            dispatch(setUserLoginLogsActionCreator(null));
         });
 };
 
@@ -125,12 +125,12 @@ export const saveUserDataActionCreator = () => (dispatch, getState) => {
     const userData = {
         timestamp: Date.now(),
     };
-    database.ref(`database/users/${uid}/login`).push(userData);
+    database.ref(`users/${uid}/login`).push(userData);
 };
 
 export const startListeningToUserLoginLogsAsyncCreator = () => (dispatch, getState) => {
     const uid = getState().auth.user.uid;
-    database.ref(`database/users/${uid}/login`).on(
+    database.ref(`users/${uid}/login`).on(
         'value',
         snapshot => dispatch(setUserLoginLogsActionCreator(snapshot.val()))
     );
@@ -138,7 +138,7 @@ export const startListeningToUserLoginLogsAsyncCreator = () => (dispatch, getSta
 
 export const stopListeningToUserLoginLogsAsyncCreator = () => (dispatch, getState) => {
     const uid = getState().auth.user.uid;
-    database.ref(`database/users/${uid}/login`).off();
+    database.ref(`users/${uid}/login`).off();
 };
 
 const initialState = {

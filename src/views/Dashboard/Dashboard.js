@@ -3,6 +3,9 @@ import LinkButton from './LinkButton';
 import Chart1 from './AreaChart';
 import Chart2 from './PieChart';
 import styles from '../../styles';
+import { data as dataForChart1 } from './dataForChart1';
+import { data as dataForChart2, colors } from './dataForChart2';
+import { connect } from 'react-redux';
 
 const links = [
     { value: 'Wyszukaj filmy', to: '/search' },
@@ -26,12 +29,28 @@ class Dashboard extends React.Component {
                 <div
                     style={styles['Dashboard-charts-div']}
                 >
-                    <Chart1 />
-                    <Chart2 />
+                    <Chart1
+                        data={dataForChart1}
+                    />
+                    <Chart2
+                        data={dataForChart2}
+                        colors={colors}
+                    />
                 </div>
             </div>
         )
     }
 }
 
-export default Dashboard
+const mapStateToProps = state => ({
+
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Dashboard);
