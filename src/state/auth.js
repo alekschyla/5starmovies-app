@@ -1,6 +1,9 @@
 import { auth, googleProvider } from '../firebaseConfig';
 import { setFavouritesMovieListActionCreator, setWatchlistMovieListActionCreator } from './movieList';
 import { setImdbIDActionCreator, setWatchlistActionCreator, setFavouritesActionCreator } from './movieDetails';
+import { clearMoviesDataActionCreator } from './movies';
+import { clearMovieDetailsActionCreator } from './movieDetailsFetch';
+import { clearMovieCommentsDataActionCreator } from './movieCommentsFetch';
 
 const EMAIL_CHANGED = 'auth/EMAIL_CHANGED';
 const PASS_CHANGED = 'auth/PASS_CHANGED';
@@ -97,6 +100,9 @@ export const logOutAsyncActionCreator = () => (dispatch, getState) => {
             dispatch(setImdbIDActionCreator(''));
             dispatch(setWatchlistActionCreator(null));
             dispatch(setFavouritesActionCreator(null));
+            dispatch(clearMoviesDataActionCreator());
+            dispatch(clearMovieDetailsActionCreator());
+            dispatch(clearMovieCommentsDataActionCreator());
         });
 };
 
