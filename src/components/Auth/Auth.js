@@ -1,15 +1,17 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import LogIn from './LogIn'
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignUp from "./SignUp";
-import {changeEmailActionCreator,
+import {
+    changeEmailActionCreator,
     changePasswordActionCreator,
     logInAsyncActionCreator,
     logInByGoogleAsyncActionCreator,
     comparePasswordsActionCreator,
     changeUserNameActionCreator,
-    registerUserActionCreator} from '../../state/auth'
+    registerUserActionCreator
+} from '../../state/auth'
 
 const Auth = (props) => {
     return (

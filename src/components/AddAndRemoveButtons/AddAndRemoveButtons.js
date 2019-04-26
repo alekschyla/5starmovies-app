@@ -1,49 +1,49 @@
-import React, {Component} from 'react';
-import {database} from '../../firebaseConfig'
-import AddButton from './AddButton'
-import RemoveButton from './RemoveButton'
-
-const refToMovies = database.ref('/watchlist');
+import React, { Component } from 'react';
+import AddButton from './AddButton';
+import RemoveButton from './RemoveButton';
+import { connect } from 'react-redux';
+import { addToWatchListAsyncActionCreator, removeFromWatchListAsyncActionCreator, getWatchlistFromFirebaseAsyncActionCreator } from '../../state/movieDetails';
 
 class AddAndRemoveButtons extends Component {
-    state = {
-        watchlist: null
-    };
 
     componentDidMount() {
-        refToMovies.on('value', (snapshot) => {
-            this.setState({watchlist: snapshot.val()})
-        });
-    }
-
-    addToWatchList = (id) => {
-        refToMovies.child(id).set(true);
-    };
-
-    removeFromWatchList = (id) => {
-        database.ref(`/watchlist/${id}`).remove()
+        this.props._saveWatchlist();
     };
 
     isFilmOnWatchList() {
-        let arr = Object.entries(this.state.watchlist || {}).filter(arr => arr[0] === this.props.id);
+        let arr = Object.entries(this.props._watchlist || {}).filter(arr => arr[0] === this.props._imdbID);
         return arr.length === 0;
-    }
+    };
 
     render() {
         return (
             <div>
                 {this.isFilmOnWatchList() ?
                     <AddButton
-                        addToWatchList={() => this.addToWatchList(this.props.id)}
+                        addToWatchList={this.props._addToWatchList}
                     />
                     :
                     <RemoveButton
-                        removeFromWatchList={() => this.removeFromWatchList(this.props.id)}
+                        removeFromWatchList={this.props._removeFromWatchList}
                     />
                 }
             </div>
-    )
+        )
     }
 }
 
-export default AddAndRemoveButtons;
+const mapStateToProps = state => ({
+    _imdbID: state.movieDetails.imdbID,
+    _watchlist: state.movieDetails.watchlist,
+});
+
+const mapDispatchToProps = dispatch => ({
+    _saveWatchlist: () => dispatch(getWatchlistFromFirebaseAsyncActionCreator()),
+    _addToWatchList: () => dispatch(addToWatchListAsyncActionCreator()),
+    _removeFromWatchList: () => dispatch(removeFromWatchListAsyncActionCreator()),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(AddAndRemoveButtons);
