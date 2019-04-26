@@ -12,17 +12,21 @@ class AddRating extends React.Component {
         comment: "",
     }
 
+    componentDidMount(){
+        // @TODO if no state.movieDetailsFetch.data then fetch them and display loader!
+    }
+
+    componentWillUnmount() {
+        this.props._setRedirect(false);
+        this.props._setDataCheck(true);
+    };
+
     handleChange = (key) => (event) => this.setState({ [key]: event.target.value });
 
     changeRating = (newRating, name) => {
         this.setState({
             rating: newRating,
         })
-    };
-
-    componentWillUnmount() {
-        this.props._setRedirect(false);
-        this.props._setDataCheck(true);
     };
 
     render() {
@@ -86,7 +90,7 @@ class AddRating extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    _movieTitle: state.movieDetailsFetch.data.Title,
+    _movieTitle: state.movieDetailsFetch.data && state.movieDetailsFetch.data.Title,
     _dataCheck: state.addRating.dataCheck,
     _redirect: state.addRating.redirect,
     _imdbID: state.movieDetails.imdbID,

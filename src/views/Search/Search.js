@@ -6,7 +6,6 @@ import SearchedList from "../../components/SearchedList";
 import { connect } from 'react-redux'
 import { fetchMoviesAsyncActionCreator, fetchAllMoviesAsyncActionCreator } from '../../state/movies'
 
-
 class Search extends React.Component {
     state = {
         searchTerm: '',

@@ -28,8 +28,8 @@ ReactDOM.render(
                 <StarMoviesApp />
             </MuiThemeProvider>
         </Auth>
-    </Provider>
-    , document.getElementById('root')
+    </Provider>, 
+    document.getElementById('root')
 );
 
 

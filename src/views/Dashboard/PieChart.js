@@ -1,11 +1,12 @@
 import React from 'react';
-import { PieChart, Pie, Cell, Tooltip } from 'recharts';
-import { data, colors } from './dataForChart2';
 
+import { PieChart as Chart, Pie, Cell, Tooltip } from 'recharts';
+
+const colors = ['green','yellow','yellowgreen'];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
-    cx, cy, midAngle, innerRadius, outerRadius, index, percent
+    cx, cy, midAngle, innerRadius, outerRadius, type, percent
 }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.4;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -13,7 +14,7 @@ const renderCustomizedLabel = ({
 
     return (
         <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-            {`${data[index].type} : ${(percent * 100).toFixed(0)}%`}
+            {`${type} : ${(percent * 100).toFixed(0)}%`}
         </text>
     );
 };
@@ -21,9 +22,9 @@ const renderCustomizedLabel = ({
 class Chart2 extends React.Component {
     render() {
         return (
-            <PieChart width={600} height={400}>
+            <Chart width={600} height={400}>
                 <Pie
-                    data={data}
+                    data={this.props.data}
                     dataKey="value"
                     nameKey="type"
                     cx="50%"
@@ -34,13 +35,13 @@ class Chart2 extends React.Component {
                     label={renderCustomizedLabel}
                 >
                     {
-                        data.map((entry, index) => (
+                        this.props.data.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={colors[index]} />
                         ))
                     }
                 </Pie>
                 <Tooltip />
-            </PieChart>
+            </Chart>
         )
     }
 }

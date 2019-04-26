@@ -12,5 +12,3 @@ export const data = [
         "value": 5100
     },
 ];
-
-export const colors = ['green','yellow','yellowgreen'];

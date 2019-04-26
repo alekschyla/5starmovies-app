@@ -9,7 +9,7 @@ export const getFavouriteMoviesListFromFirebaseAsyncActionCreator = () => (dispa
         'value',
         (snapshot) => {
             Promise.all(
-                Object.keys(snapshot.val())
+                Object.keys(snapshot.val() || {})
                     .map(
                         movieId => (
                             fetch(`http://www.omdbapi.com/?apikey=526cfe10&i=${movieId}`)
@@ -28,7 +28,7 @@ export const getWatchlistMovieListFromFirebaseAsyncActionCreator = () => (dispat
         'value',
         (snapshot) => {
             Promise.all(
-                Object.keys(snapshot.val())
+                Object.keys(snapshot.val() || {})
                     .map(
                         movieId => (
                             fetch(`http://www.omdbapi.com/?apikey=526cfe10&i=${movieId}`)
@@ -40,6 +40,8 @@ export const getWatchlistMovieListFromFirebaseAsyncActionCreator = () => (dispat
         }
     )
 };
+
+//  @TODO - .off()
 
 export const setWatchlistMovieListActionCreator = watchlistMovieList => ({
     type: SET_WATCHLIST,

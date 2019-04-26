@@ -39,7 +39,6 @@ const StarMoviesApp = () => (
             path={["/movie", "/movie/", "/movie/:id"]}
             component={MovieDetails}
         />
-
     </Router>
 
 );

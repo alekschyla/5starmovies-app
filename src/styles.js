@@ -138,12 +138,10 @@ const styles = {
     'AddRating-textfield': {
         width: '40%',
         margin: 20,
-        // backgroundColor: '#F8F0E4',
     },
     'AddRating-rating': {
         width: '10%',
         margin: 20,
-        // backgroundColor: '#F8F0E4',
     },
     'FormSearch-container': {
         textAlign: 'center',

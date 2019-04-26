@@ -1,8 +1,11 @@
 import React from 'react';
+
 import LinkButton from './LinkButton';
-import Chart1 from './AreaChart';
-import Chart2 from './PieChart';
+import AreaChart from './AreaChart';
+import PieChart from './PieChart';
+
 import styles from '../../styles';
+import { data as pieData } from './dataForChart2'
 
 const links = [
     { value: 'Wyszukaj filmy', to: '/search' },
@@ -26,8 +29,10 @@ class Dashboard extends React.Component {
                 <div
                     style={styles['Dashboard-charts-div']}
                 >
-                    <Chart1 />
-                    <Chart2 />
+                    <AreaChart />
+                    <PieChart 
+                      data={pieData}
+                    />
                 </div>
             </div>
         )
