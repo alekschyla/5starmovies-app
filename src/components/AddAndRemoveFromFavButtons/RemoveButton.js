@@ -8,14 +8,14 @@ const RemoveButton = (props) => {
     return (
         <div>
             <Tooltip title="usuń z ulubionych">
-            <Fab
-                variant="extended"
-                color="primary"
-                style={styles['OmdbDetails-button']}
-                onClick={() => props.removeFromFavourites(props.id)}
-            >
-                <Favorite/>
-            </Fab>
+                <Fab
+                    variant="extended"
+                    color="primary"
+                    style={styles['OmdbDetails-button']}
+                    onClick={() => props.removeFromFavourites()}
+                >
+                    <Favorite />
+                </Fab>
             </Tooltip>
         </div>
     );

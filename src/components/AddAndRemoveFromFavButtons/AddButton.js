@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../../styles';
-import {Fab} from '@material-ui/core';
+import { Fab } from '@material-ui/core';
 import FavoriteDelete from '@material-ui/icons/FavoriteBorder'
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -12,9 +12,9 @@ const AddButton = (props) => {
                     variant="extended"
                     color="primary"
                     style={styles['OmdbDetails-button']}
-                    onClick={() => props.addToFavourites(props.id)}
+                    onClick={() => props.addToFavourites()}
                 >
-                    <FavoriteDelete/>
+                    <FavoriteDelete />
                 </Fab>
             </Tooltip>
         </div>

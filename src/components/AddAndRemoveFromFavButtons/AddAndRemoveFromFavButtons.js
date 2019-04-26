@@ -1,44 +1,30 @@
 import React, { Component } from 'react';
-import { database } from '../../firebaseConfig'
-import AddButton from './AddButton'
-import RemoveButton from './RemoveButton'
-
-const refToMovies = database.ref('/favourites');
+import AddButton from './AddButton';
+import RemoveButton from './RemoveButton';
+import { connect } from 'react-redux';
+import { getFavouritesFromFirebaseAsyncActionCreator, addToFavouritesAsyncActionCreator, removeFromFavouritesAsyncActionCreator } from '../../state/movieDetails';
 
 class AddAndRemoveFromFavButtons extends Component {
-    state = {
-        favourites: null
-    };
 
     componentDidMount() {
-        refToMovies.on('value', (snapshot) => {
-            this.setState({ favourites: snapshot.val() })
-        });
-    }
-
-    addToFavourites = (id) => {
-        refToMovies.child(id).set(true);
-    };
-
-    removeFromFavourites = (id) => {
-        database.ref(`/favourites/${id}`).remove()
+        this.props._saveFavourites();
     };
 
     isFilmOnFavourites() {
-        let arr = Object.entries(this.state.favourites || {}).filter(arr => arr[0] === this.props.id);
+        let arr = Object.entries(this.props._favourites || {}).filter(arr => arr[0] === this.props._imdbID);
         return arr.length === 0;
-    }
+    };
 
     render() {
         return (
             <div>
                 {this.isFilmOnFavourites() ?
                     <AddButton
-                        addToFavourites={() => this.addToFavourites(this.props.id)}
+                        addToFavourites={this.props._addToFavourites}
                     />
                     :
                     <RemoveButton
-                        removeFromFavourites={() => this.removeFromFavourites(this.props.id)}
+                        removeFromFavourites={this.props._removeFromFavourites}
                     />
                 }
             </div>
@@ -46,4 +32,18 @@ class AddAndRemoveFromFavButtons extends Component {
     }
 }
 
-export default AddAndRemoveFromFavButtons;
+const mapStateToProps = state => ({
+    _imdbID: state.movieDetails.imdbID,
+    _favourites: state.movieDetails.favourites,
+});
+
+const mapDispatchToProps = dispatch => ({
+    _saveFavourites: () => dispatch(getFavouritesFromFirebaseAsyncActionCreator()),
+    _addToFavourites: () => dispatch(addToFavouritesAsyncActionCreator()),
+    _removeFromFavourites: () => dispatch(removeFromFavouritesAsyncActionCreator()),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(AddAndRemoveFromFavButtons);

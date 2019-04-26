@@ -44,7 +44,7 @@ const MovieComments = (props) => {
                                             style={styles['MovieComments-comment__text']}
                                         >
                                             <StarRatings
-                                                rating={Number(props.movieComments[key[0]].mark)}
+                                                rating={Number(props.movieComments[key[0]].mark) || 0}
                                                 starRatedColor='yellow'
                                                 numberOfStars={5}
                                                 starDimension="30px"

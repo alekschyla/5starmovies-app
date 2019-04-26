@@ -1,54 +1,36 @@
 import React from 'react';
 import OmdbDetails from './OmdbDetails';
 import MovieComments from './MovieComments';
+import { connect } from 'react-redux';
 import { Paper } from '@material-ui/core';
 import styles from '../../styles';
-
-const omdbApiPath = 'http://www.omdbapi.com/?apikey=a3748959&i=';
-const firebaseApiPath = 'https://starmovies-app.firebaseio.com/';
+import { fetchMovieAsyncActionCreator } from '../../state/movieDetailsFetch';
+import { fetchMovieCommentsAsyncActionCreator } from '../../state/movieCommentsFetch';
+import { setImdbIDActionCreator } from '../../state/movieDetails';
 
 class MovieDetails extends React.Component {
-    state = {
-        imdbID: this.props.match.params.id ? (this.props.match.params.id).replace(/:/, '') : "",
-        movieData: null,
-        movieComments: null,
-        isLoading: false,
-        isError: false,
-    };
-
     componentDidMount() {
-        this.setState({ isLoading: true });
-
-        fetch(`${omdbApiPath}${this.state.imdbID}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.Response !== "False") this.setState({ movieData: data })
-            })
-            .catch(() => this.setState({ isError: true }));
-
-        fetch(`${firebaseApiPath}comments/${this.state.imdbID}.json`)
-            .then(response => response.json())
-            .then(data => this.setState({ movieComments: data }))
-            .catch(() => this.setState({ isError: true }))
-            .finally(() => this.setState({ isLoading: false }))
-    }
+        this.props._setImdbID(this.props.match.params.id);
+        this.props._fetchMovieDetails();
+        this.props._fetchMovieComments();
+    };
 
     render() {
         return (
             <div>
                 {
-                    this.state.imdbID === ""
+                    this.props._imdbID === ""
                         ? "Nie wskazano żadnego filmu do wyświetlenia. Przejdź do wyszukiwarki filmów i kliknij SZCZEGÓŁY, aby zobaczyć szczegóły filmu."
-                        : this.state.isError
+                        : this.props._isError
                             ? "Wystąpił błąd, spróbuj ponownie."
-                            : this.state.isLoading
+                            : this.props._isLoading
                                 ? "Ładujemy dane, prosimy o cierpliwość..."
-                                : !this.state.movieData
+                                : !this.props._movieData
                                     ? "Nie udało się wyświetlić danych. Wróć do wyszukiwarki filmów i spróbuj ponownie."
-                                    : !this.state.movieComments
+                                    : !this.props._movieComments
                                         ? <div>
                                             <OmdbDetails
-                                                movieData={this.state.movieData}
+                                                movieData={this.props._movieData}
                                             />
                                             <Paper
                                                 style={styles['OmdbDetails-paper']}
@@ -59,10 +41,10 @@ class MovieDetails extends React.Component {
                                         :
                                         <div>
                                             <OmdbDetails
-                                                movieData={this.state.movieData}
+                                                movieData={this.props._movieData}
                                             />
                                             <MovieComments
-                                                movieComments={this.state.movieComments}
+                                                movieComments={this.props._movieComments}
                                             />
                                         </div>
                 }
@@ -71,4 +53,23 @@ class MovieDetails extends React.Component {
     }
 }
 
-export default MovieDetails;
+const mapStateToProps = state => ({
+    _imdbID: state.movieDetails.imdbID,
+    _movieData: state.movieDetailsFetch.data,
+    _movieComments: state.movieCommentsFetch.data,
+    _isLoading: state.movieDetailsFetch.isLoading,
+    _isError: state.movieDetailsFetch.isError,
+    _isLoadingComments: state.movieCommentsFetch.isLoading,
+    _isErrorComments: state.movieCommentsFetch.isError,
+});
+
+const mapDispatchToProps = dispatch => ({
+    _fetchMovieDetails: () => dispatch(fetchMovieAsyncActionCreator()),
+    _fetchMovieComments: () => dispatch(fetchMovieCommentsAsyncActionCreator()),
+    _setImdbID: (id) => dispatch(setImdbIDActionCreator(id)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(MovieDetails);
