@@ -20,9 +20,16 @@ class Dashboard extends React.Component {
                 <div
                     style={styles['Dashboard-buttons-div']}
                 >
-                    {links.map(el => {
-                        return (<LinkButton key={el.value} value={el.value} to={el.to} />)
-                    })}
+                    <Grid container spacing={24}>
+                        {links.map(el => {
+                            return (
+                                <Grid item xs={12} md={Math.ceil(12 / links.length)} container justify={'center'}>
+                                    <LinkButton key={el.value} value={el.value} to={el.to} />
+                                </Grid>
+                            )
+                        })}
+
+                    </Grid>
                 </div>
 
                 <div

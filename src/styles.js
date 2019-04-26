@@ -11,7 +11,8 @@ const styles = {
     'Dashboard-buttons-div': {
         display: 'flex',
         justifyContent: 'center',
-        marginTop: 80
+        marginTop: 80,
+        marginBottom: 80,
     },
     'Dashboard-charts-div': {
         display: 'flex',
@@ -170,7 +171,7 @@ const styles = {
         margin: '20px',
         display: 'flex',
         justifyContent: 'center',
-},
+    },
     'LogIn-container': {
         display: 'flex',
         flexDirection: 'column',

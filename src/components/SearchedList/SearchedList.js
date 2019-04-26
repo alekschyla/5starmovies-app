@@ -6,6 +6,7 @@ import Fab from '@material-ui/core/Fab';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
 import styles from '../../styles';
+import Grid from '@material-ui/core/Grid';
 
 
 const placeholderLink = "https://image.flaticon.com/icons/svg/230/230399.svg";
@@ -25,10 +26,10 @@ const SearchedList = (props) => {
                 props.movies.map(
                     movie => (
                         <div
-                        key={movie.imdbID}
+                            key={movie.imdbID}
                         >
-                            <ListItem
-                            >
+                            <ListItem>
+
                                 <ListItemAvatar>
                                     <Avatar
                                         src={movie.Poster}
