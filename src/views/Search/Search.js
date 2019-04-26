@@ -1,10 +1,10 @@
 import React from 'react'
-
-import FormSearch from "../../components/FormSearch";
-import SearchedList from "../../components/SearchedList";
-
 import { connect } from 'react-redux'
 import { fetchMoviesAsyncActionCreator, fetchAllMoviesAsyncActionCreator } from '../../state/movies'
+import FormSearch from "../../components/FormSearch";
+import SearchedList from "../../components/SearchedList";
+import Error from "./Error";
+import Loading from "./Loading";
 
 
 class Search extends React.Component {
@@ -64,11 +64,18 @@ class Search extends React.Component {
                     getMoviesByYear={this.getMoviesByYear}
                     movies={this.props._movies}
                 />
-
-                <SearchedList
-                    movies={movies}
-                    history={this.props.history}
-                />
+                {
+                    this.props._isError ?
+                        <Error/>
+                        :
+                        this.props._isLoading ?
+                            <Loading/>
+                            :
+                            <SearchedList
+                                movies={movies}
+                                history={this.props.history}
+                            />
+                }
             </div>
         )
     }
