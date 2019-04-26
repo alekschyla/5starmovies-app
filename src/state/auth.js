@@ -125,12 +125,12 @@ export const saveUserDataActionCreator = () => (dispatch, getState) => {
     const userData = {
         timestamp: Date.now(),
     };
-    database.ref(`users/${uid}/login`).push(userData);
+    database.ref(`userLogins/${uid}/login`).push(userData);
 };
 
 export const startListeningToUserLoginLogsAsyncCreator = () => (dispatch, getState) => {
     const uid = getState().auth.user.uid;
-    database.ref(`users/${uid}/login`).on(
+    database.ref(`userLogins/${uid}/login`).on(
         'value',
         snapshot => dispatch(setUserLoginLogsActionCreator(snapshot.val()))
     );
@@ -138,7 +138,7 @@ export const startListeningToUserLoginLogsAsyncCreator = () => (dispatch, getSta
 
 export const stopListeningToUserLoginLogsAsyncCreator = () => (dispatch, getState) => {
     const uid = getState().auth.user.uid;
-    database.ref(`users/${uid}/login`).off();
+    database.ref(`userLogins/${uid}/login`).off();
 };
 
 const initialState = {

@@ -6,6 +6,7 @@ import styles from '../../styles';
 import { data as dataForChart1 } from './dataForChart1';
 import { data as dataForChart2, colors } from './dataForChart2';
 import { connect } from 'react-redux';
+import { getLoginsLogFromFirebaseAsyncActionCreator } from '../../state/dashboard';
 
 const links = [
     { value: 'Wyszukaj filmy', to: '/search' },
@@ -14,6 +15,10 @@ const links = [
 ];
 
 class Dashboard extends React.Component {
+    componentDidMount() {
+        this.props._getLoginsLog();
+    };
+
     render() {
         return (
             <div
@@ -47,7 +52,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+    _getLoginsLog: () => dispatch(getLoginsLogFromFirebaseAsyncActionCreator()),
 });
 
 export default connect(
