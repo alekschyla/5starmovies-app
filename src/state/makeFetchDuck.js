@@ -37,21 +37,28 @@ export const makeFetchDuck = (name, url) => {
             );
         });
 
-        Promise.all(promises).then((arrOfResults) => {
-            dispatch(
-                setActionCreator({
-                    Search: arrOfResults
-                        .map(result => result.Search)
-                        .reduce(
-                            (r, arr) => {
-                                return r.concat(arr)
-                            },
-                            []
-                        )
-                        .filter(movie => movie)
-                })
-            )
-        });
+        Promise.all(promises)
+            .then((arrOfResults) => {
+                dispatch(
+                    setActionCreator({
+                        Search: arrOfResults
+                            .map(result => result.Search)
+                            .reduce(
+                                (r, arr) => {
+                                    return r.concat(arr)
+                                },
+                                []
+                            )
+                            .filter(movie => movie)
+                    })
+                )
+            })
+            .catch(() => {
+                dispatch(fetchFailedActionCreator())
+            })
+            .finally(() => {
+                dispatch(fetchEndActionCreator())
+            })
 
     };
 
@@ -59,9 +66,9 @@ export const makeFetchDuck = (name, url) => {
         type: SET,
         data,
     });
-    const fetchStartActionCreator = () => ({ type: FETCH_START });
-    const fetchEndActionCreator = () => ({ type: FETCH_END });
-    const fetchFailedActionCreator = () => ({ type: FETCH_FAILED });
+    const fetchStartActionCreator = () => ({type: FETCH_START});
+    const fetchEndActionCreator = () => ({type: FETCH_END});
+    const fetchFailedActionCreator = () => ({type: FETCH_FAILED});
 
     const initialState = {
         data: null,
