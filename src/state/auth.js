@@ -53,6 +53,14 @@ export const registerUserActionCreator = () => (dispatch, getState) => {
     const state = getState();
     if (state.auth.passwordCheck) {
         auth.createUserWithEmailAndPassword(state.auth.email, state.auth.password)
+            .then(() => {
+                    let user = auth.currentUser;
+
+                    user.updateProfile({
+                        displayName: state.auth.userName,
+                    })
+                }
+            )
             .then( data => window.history.pushState(null, null, '/'))
             .catch(error => console.log('wystąpił błąd', error));
     }
