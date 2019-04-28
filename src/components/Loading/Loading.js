@@ -6,10 +6,10 @@ import CircularProgress from '@material-ui/core/CircularProgress/index';
 const Loading = () => {
     return (
         <div
-        style={styles['Loading-container']}
+            style={styles['Loading-container']}
         >
             <CircularProgress
-            style={styles['Loading']}
+                style={styles['Loading']}
             />
         </div>
     );
