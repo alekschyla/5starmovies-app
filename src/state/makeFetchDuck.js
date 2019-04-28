@@ -37,21 +37,28 @@ export const makeFetchDuck = (name, url) => {
             );
         });
 
-        Promise.all(promises).then((arrOfResults) => {
-            dispatch(
-                setActionCreator({
-                    Search: arrOfResults
-                        .map(result => result.Search)
-                        .reduce(
-                            (r, arr) => {
-                                return r.concat(arr)
-                            },
-                            []
-                        )
-                        .filter(movie => movie)
-                })
-            )
-        });
+        Promise.all(promises)
+            .then((arrOfResults) => {
+                dispatch(
+                    setActionCreator({
+                        Search: arrOfResults
+                            .map(result => result.Search)
+                            .reduce(
+                                (r, arr) => {
+                                    return r.concat(arr)
+                                },
+                                []
+                            )
+                            .filter(movie => movie)
+                    })
+                )
+            })
+            .catch(() => {
+                dispatch(fetchFailedActionCreator())
+            })
+            .finally(() => {
+                dispatch(fetchEndActionCreator())
+            })
 
     };
 

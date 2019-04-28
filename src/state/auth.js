@@ -75,7 +75,7 @@ export const registerUserActionCreator = () => (dispatch, getState) => {
                 });
             })
             .then(data => window.history.pushState(null, null, '/'))
-            .catch(error => console.log('wystąpił błąd', error));
+            .catch(error => alert(`wystąpił błąd ${error}. Spróbuj ponownie.`));
     }
 };
 
@@ -93,14 +93,12 @@ export const logInAsyncActionCreator = () => (dispatch, getState) => {
     const password = state.auth.password;
 
     auth.signInWithEmailAndPassword(email, password)
-        .then(() => { })
-        .catch(error => console.log('Wystąpił błąd', error))
+        .catch(error => alert(`Wystąpił błąd ${error}. Spróbuj ponownie.`));
 };
 
 export const logInByGoogleAsyncActionCreator = () => (dispatch, getState) => {
     auth.signInWithPopup(googleProvider)
-        .then(() => { })
-        .catch(error => console.log('Wystąpił błąd', error))
+        .catch(error => alert(`Wystąpił błąd ${error}. Spróbuj ponownie.`));
 };
 
 export const logOutAsyncActionCreator = () => (dispatch, getState) => {

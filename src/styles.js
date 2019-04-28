@@ -223,6 +223,18 @@ const styles = {
         padding: 10,
         height: 50,
     },
+    'Loading-container': {
+        overflow: 'hidden',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '99vw',
+        height: '50vh'
+    },
+    'Loading': {
+        width: '100px',
+        height: '100px'
+    },
 };
 
 export default styles;
