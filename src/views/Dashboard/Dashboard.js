@@ -1,9 +1,9 @@
 import React from 'react';
 import LinkButton from './LinkButton';
 import AreaChart from './AreaChart';
-import Chart2 from './PieChart';
+import PieChart from './PieChart';
 import styles from '../../styles';
-import { data as dataForChart2, colors } from './dataForChart2';
+import { data as dataForPieChart, colors } from './dataForChart2';
 import { connect } from 'react-redux';
 import { getLoginsLogFromFirebaseAsyncActionCreator } from '../../state/dashboard';
 
@@ -36,8 +36,8 @@ class Dashboard extends React.Component {
                     <AreaChart
                         data={this.props._dataForAreaChart}
                     />
-                    <Chart2
-                        data={dataForChart2}
+                    <PieChart
+                        data={dataForPieChart}
                         colors={colors}
                     />
                 </div>

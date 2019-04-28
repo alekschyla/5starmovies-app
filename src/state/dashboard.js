@@ -1,4 +1,6 @@
 import { database } from '../firebaseConfig';
+import moment from 'moment';
+import 'moment/locale/pl';
 
 const SET_DATA_FOR_AREACHART = 'dashboard/SET_DATA_FOR_AREACHART';
 const SET_DATA_FOR_PIECHART = 'dashboard/SET_DATA_FOR_PIECHART';
@@ -17,50 +19,11 @@ export const getLoginsLogFromFirebaseAsyncActionCreator = () => (dispatch, getSt
         nowDate.setMinutes(0);
         const todayMidnight = nowDate.setHours(0);
 
-        const todayLogs = loginsLog.filter(timestamp => timestamp >= todayMidnight).length;
-        const yesterdayLogs = loginsLog.filter(timestamp => timestamp < todayMidnight && timestamp >= (todayMidnight - 24 * 60 * 60 * 1000)).length;
-        const dayBeforeYesterdayLogs = loginsLog.filter(timestamp => timestamp < (todayMidnight - 24 * 60 * 60 * 1000) && timestamp >= (todayMidnight - 2 * 24 * 60 * 60 * 1000)).length;
-        const twoDaysBeforeYesterdayLogs = loginsLog.filter(timestamp => timestamp < (todayMidnight - 2 * 24 * 60 * 60 * 1000) && timestamp >= (todayMidnight - 3 * 24 * 60 * 60 * 1000)).length;
-        const threeDaysBeforeYesterdayLogs = loginsLog.filter(timestamp => timestamp < (todayMidnight - 3 * 24 * 60 * 60 * 1000) && timestamp >= (todayMidnight - 4 * 24 * 60 * 60 * 1000)).length;
-        const fourDaysBeforeYesterdayLogs = loginsLog.filter(timestamp => timestamp < (todayMidnight - 4 * 24 * 60 * 60 * 1000) && timestamp >= (todayMidnight - 5 * 24 * 60 * 60 * 1000)).length;
-        const fiveDaysBeforeYesterdayLogs = loginsLog.filter(timestamp => timestamp < (todayMidnight - 5 * 24 * 60 * 60 * 1000) && timestamp >= (todayMidnight - 6 * 24 * 60 * 60 * 1000)).length;
-        let data = [
-            {
-                "day": "6 dni wcześniej",
-                "liczba użytkowników": 0,
-            },
-            {
-                "day": "5 dni wcześniej",
-                "liczba użytkowników": 0,
-            },
-            {
-                "day": "4 dni wcześniej",
-                "liczba użytkowników": 0,
-            },
-            {
-                "day": "3 dni wcześniej",
-                "liczba użytkowników": 0,
-            },
-            {
-                "day": "Przedwczoraj",
-                "liczba użytkowników": 0,
-            },
-            {
-                "day": "Wczoraj",
-                "liczba użytkowników": 0,
-            },
-            {
-                "day": "Dziś",
-                "liczba użytkowników": 0,
-            },
-        ];
-        data[0]["liczba użytkowników"] = fiveDaysBeforeYesterdayLogs;
-        data[1]["liczba użytkowników"] = fourDaysBeforeYesterdayLogs;
-        data[2]["liczba użytkowników"] = threeDaysBeforeYesterdayLogs;
-        data[3]["liczba użytkowników"] = twoDaysBeforeYesterdayLogs;
-        data[4]["liczba użytkowników"] = dayBeforeYesterdayLogs;
-        data[5]["liczba użytkowników"] = yesterdayLogs;
-        data[6]["liczba użytkowników"] = todayLogs;
+        const data = new Array(7).fill(1).reduce((reduced, el, index) => reduced.concat({
+            "day": moment(new Date() - index * 24 * 60 * 60 * 1000).format('dddd'),
+            "liczba użytkowników": loginsLog.filter(timestamp => timestamp < (todayMidnight - (index - 1) * 24 * 60 * 60 * 1000) && timestamp >= (todayMidnight - index * 24 * 60 * 60 * 1000)).length,
+        }), []
+        ).reverse();
         console.log(data);
         dispatch(setDataForAreaChartActionCreator(data));
     })
