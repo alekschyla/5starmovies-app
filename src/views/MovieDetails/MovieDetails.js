@@ -7,6 +7,8 @@ import styles from '../../styles';
 import { fetchMovieAsyncActionCreator } from '../../state/movieDetailsFetch';
 import { fetchMovieCommentsAsyncActionCreator } from '../../state/movieCommentsFetch';
 import { setImdbIDActionCreator } from '../../state/movieDetails';
+import Loading from "../../components/Loading/Loading";
+import Error from "../../components/Error/Error";
 
 class MovieDetails extends React.Component {
     componentDidMount() {
@@ -22,9 +24,9 @@ class MovieDetails extends React.Component {
                     this.props._imdbID === ""
                         ? "Nie wskazano żadnego filmu do wyświetlenia. Przejdź do wyszukiwarki filmów i kliknij SZCZEGÓŁY, aby zobaczyć szczegóły filmu."
                         : this.props._isError
-                            ? "Wystąpił błąd, spróbuj ponownie."
+                            ? <Error />
                             : this.props._isLoading
-                                ? "Ładujemy dane, prosimy o cierpliwość..."
+                                ? <Loading/>
                                 : !this.props._movieData
                                     ? "Nie udało się wyświetlić danych. Wróć do wyszukiwarki filmów i spróbuj ponownie."
                                     : !this.props._movieComments

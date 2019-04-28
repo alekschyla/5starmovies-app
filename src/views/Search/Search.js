@@ -1,10 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { fetchMoviesAsyncActionCreator, fetchAllMoviesAsyncActionCreator } from '../../state/movies'
+import {connect} from 'react-redux'
+import {fetchMoviesAsyncActionCreator, fetchAllMoviesAsyncActionCreator} from '../../state/movies'
 import FormSearch from "../../components/FormSearch";
 import SearchedList from "../../components/SearchedList";
-import Error from "./Error";
-import Loading from "./Loading";
+import Error from "../../components/Error/Error";
+import Loading from "../../components/Loading/Loading";
 
 
 class Search extends React.Component {
@@ -14,12 +14,12 @@ class Search extends React.Component {
         year: [1950, new Date().getFullYear() + 5],
     };
 
-    getSearchTerm = (event) => this.setState({ searchTerm: event.target.value });
+    getSearchTerm = (event) => this.setState({searchTerm: event.target.value});
 
-    getType = (event) => this.setState({ type: event.target.value });
+    getType = (event) => this.setState({type: event.target.value});
 
     getYear = (year) => {
-        this.setState({ year });
+        this.setState({year});
     };
 
     getMoviesBySearchTerm = (searchTerm) => {
@@ -65,8 +65,11 @@ class Search extends React.Component {
                     movies={this.props._movies}
                 />
                 {
+
                     this.props._isError ?
-                        <Error/>
+                        <Error
+                            isError={this.props._isError}
+                        />
                         :
                         this.props._isLoading ?
                             <Loading/>
@@ -82,6 +85,7 @@ class Search extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    _isMovies: state.movies.data,
     _movies: state.movies.data && state.movies.data.Search,
     _isLoading: state.movies.isLoading,
     _isError: state.movies.isError,
@@ -95,5 +99,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-
 )(Search)
