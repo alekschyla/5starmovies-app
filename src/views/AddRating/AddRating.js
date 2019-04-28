@@ -68,7 +68,7 @@ class AddRating extends React.Component {
                                     </div>
                                     <TextField
                                         multiline
-                                        rows="4"
+                                        rows="5"
                                         label={"Twój komentarz do filmu"}
                                         style={styles['AddRating-textfield']}
                                         type={'text'}

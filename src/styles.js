@@ -135,11 +135,7 @@ const styles = {
         margin: 20,
     },
     'AddRating-textfield': {
-        width: '40%',
-        margin: 20,
-    },
-    'AddRating-rating': {
-        width: '10%',
+        width: '80%',
         margin: 20,
     },
     'FormSearch-container': {
