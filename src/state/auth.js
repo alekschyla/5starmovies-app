@@ -54,6 +54,7 @@ export const startListeningToAuthChangeAsyncActionCreator = (
         )
     }
 );
+
 export const registerUserActionCreator = () => (dispatch, getState) => {
     const state = getState();
     if (state.auth.passwordCheck) {
@@ -67,9 +68,10 @@ export const registerUserActionCreator = () => (dispatch, getState) => {
             }
             )
             .then(data => window.history.pushState(null, null, '/'))
-            .catch(error => console.log('wystąpił błąd', error));
+            .catch(error => alert(`wystąpił błąd ${error}. Spróbuj ponownie.`));
     }
 };
+
 export const comparePasswordsActionCreator = (newPasswordConfirm) => (dispatch, getState) => {
     dispatch(passwordConfirmChangeActionCreator(newPasswordConfirm));
     const state = getState();
@@ -77,20 +79,21 @@ export const comparePasswordsActionCreator = (newPasswordConfirm) => (dispatch, 
         dispatch(passwordCheckChangeActionCreator(true))
         : dispatch(passwordCheckChangeActionCreator(false));
 };
+
 export const logInAsyncActionCreator = () => (dispatch, getState) => {
     const state = getState();
     const email = state.auth.email;
     const password = state.auth.password;
 
     auth.signInWithEmailAndPassword(email, password)
-        .then(() => console.log('Zalogowano'))
-        .catch(error => console.log('Wystąpił błąd', error))
+        .catch(error => alert(`Wystąpił błąd ${error}. Spróbuj ponownie.`));
 };
+
 export const logInByGoogleAsyncActionCreator = () => (dispatch, getState) => {
     auth.signInWithPopup(googleProvider)
-        .then(() => console.log('Zalogowano'))
-        .catch(error => console.log('Wystąpił błąd', error))
+        .catch(error => alert(`Wystąpił błąd ${error}. Spróbuj ponownie.`));
 };
+
 export const logOutAsyncActionCreator = () => (dispatch, getState) => {
     auth.signOut()
         .then(data => window.history.pushState(null, null, '/'))
