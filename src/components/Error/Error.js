@@ -88,7 +88,7 @@ class Error extends React.Component {
                     <MySnackbarContentWrapper
                         variant="error"
                         className={classes.margin}
-                        message="Wystąpił błąd, proszę spróbować ponownie!"
+                        message={this.props.message || "Wystąpił błąd, proszę spróbować ponownie!"}
                     />
                 </Snackbar>
             </div>

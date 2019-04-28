@@ -16,9 +16,9 @@ const SearchedList = (props) => {
         <div
             style={styles['FormSearch-container']}
         >
-            <strong>{props.description}</strong>
+            <p><strong>{props.description}</strong></p>
             {
-                props.movies === undefined ?
+                !props.movies ?
                     'Nie znaleziono filmów ani seriali'
                     :
                     props.movies &&

@@ -1,6 +1,6 @@
 import { auth, database, googleProvider } from '../firebaseConfig';
-import { setFavouritesMovieListActionCreator, setWatchlistMovieListActionCreator } from './movieList';
-import { setImdbIDActionCreator, setWatchlistActionCreator, setFavouritesActionCreator } from './movieDetails';
+import { setFavouritesMovieListActionCreator, setWatchlistMovieListActionCreator, stopListeningToFavouriteMoviesListChangesAsyncActionCreator, stopListeningToWatchlistMovieListChangesAsyncActionCreator } from './movieList';
+import { setImdbIDActionCreator, setWatchlistActionCreator, setFavouritesActionCreator, stopListeningToFavouritesChangesAsyncActionCreator, stopListeningToWatchlistChangesAsyncActionCreator } from './movieDetails';
 import { clearMoviesDataActionCreator } from './movies';
 import { clearMovieDetailsActionCreator } from './movieDetailsFetch';
 import { clearMovieCommentsDataActionCreator } from './movieCommentsFetch';
@@ -117,6 +117,10 @@ export const logOutAsyncActionCreator = () => (dispatch, getState) => {
             dispatch(setDataForAreaChartActionCreator(null));
             dispatch(setDataForPieChartActionCreator(null));
             dispatch(stopListeningToDataForPieChartChangesAsyncActionCreator());
+            dispatch(stopListeningToFavouriteMoviesListChangesAsyncActionCreator());
+            dispatch(stopListeningToWatchlistMovieListChangesAsyncActionCreator());
+            dispatch(stopListeningToFavouritesChangesAsyncActionCreator());
+            dispatch(stopListeningToWatchlistChangesAsyncActionCreator());
             dispatch(stopListeningToUserLoginLogsAsyncCreator());
         });
 };

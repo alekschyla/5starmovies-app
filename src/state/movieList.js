@@ -18,7 +18,7 @@ export const getFavouriteMoviesListFromFirebaseAsyncActionCreator = () => (dispa
                         )
                     )
             )
-                .then((movies) => dispatch(setFavouritesMovieListActionCreator(movies)))
+                .then((movies) => { if (movies.length > 0) dispatch(setFavouritesMovieListActionCreator(movies)) })
         }
     )
 };
@@ -37,12 +37,20 @@ export const getWatchlistMovieListFromFirebaseAsyncActionCreator = () => (dispat
                         )
                     )
             )
-                .then((movies) => dispatch(setWatchlistMovieListActionCreator(movies)))
+                .then((movies) => { if (movies.length > 0) dispatch(setWatchlistMovieListActionCreator(movies)) })
         }
     )
 };
 
-//  @TODO - .off()
+export const stopListeningToWatchlistMovieListChangesAsyncActionCreator = () => (dispatch, getState) => {
+    const userUid = getState().auth.user.uid;
+    database.ref(`users/${userUid}/watchlist`).off();
+};
+
+export const stopListeningToFavouriteMoviesListChangesAsyncActionCreator = () => (dispatch, getState) => {
+    const userUid = getState().auth.user.uid;
+    database.ref(`users/${userUid}/favourites`).off();
+};
 
 export const setWatchlistMovieListActionCreator = watchlistMovieList => ({
     type: SET_WATCHLIST,

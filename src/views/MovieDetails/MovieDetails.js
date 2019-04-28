@@ -22,7 +22,10 @@ class MovieDetails extends React.Component {
             <div>
                 {
                     this.props._imdbID === ""
-                        ? "Nie wskazano żadnego filmu do wyświetlenia. Przejdź do wyszukiwarki filmów i kliknij SZCZEGÓŁY, aby zobaczyć szczegóły filmu."
+                        ? <Error
+                            isError={true}
+                            message={"Nie wskazano żadnego filmu do wyświetlenia. Przejdź do wyszukiwarki filmów i kliknij SZCZEGÓŁY, aby zobaczyć szczegóły filmu."}
+                        />
                         : this.props._isError
                             ? <Error
                                 isError={this.props._isError}
@@ -30,7 +33,10 @@ class MovieDetails extends React.Component {
                             : this.props._isLoading
                                 ? <Loading />
                                 : !this.props._movieData
-                                    ? "Nie udało się wyświetlić danych. Wróć do wyszukiwarki filmów i spróbuj ponownie."
+                                    ? <Error
+                                        isError={true}
+                                        message={"Nie udało się wyświetlić danych. Wróć do wyszukiwarki filmów i spróbuj ponownie."}
+                                    />
                                     : !this.props._movieComments
                                         ? <div>
                                             <OmdbDetails
