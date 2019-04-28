@@ -6,7 +6,7 @@ const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
     cx, cy, midAngle, innerRadius, outerRadius, percent, type
 }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.4;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.7;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
@@ -16,6 +16,8 @@ const renderCustomizedLabel = ({
         </text>
     );
 };
+
+const colors = ['yellow', 'orange', 'lime', 'yellowgreen', 'green'];
 
 class Chart extends React.Component {
     render() {
@@ -33,9 +35,10 @@ class Chart extends React.Component {
                     label={renderCustomizedLabel}
                 >
                     {
-                        this.props.data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={this.props.colors[index]} />
+                        this.props.data ? this.props.data.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={colors[index]} />
                         ))
+                            : null
                     }
                 </Pie>
                 <Tooltip />

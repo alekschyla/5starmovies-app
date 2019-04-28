@@ -4,6 +4,7 @@ import { setImdbIDActionCreator, setWatchlistActionCreator, setFavouritesActionC
 import { clearMoviesDataActionCreator } from './movies';
 import { clearMovieDetailsActionCreator } from './movieDetailsFetch';
 import { clearMovieCommentsDataActionCreator } from './movieCommentsFetch';
+import { setDataForAreaChartActionCreator, setDataForPieChartActionCreator, stopListeningToDataForPieChartChangesAsyncActionCreator } from './dashboard';
 
 const EMAIL_CHANGED = 'auth/EMAIL_CHANGED';
 const PASS_CHANGED = 'auth/PASS_CHANGED';
@@ -55,9 +56,9 @@ export const startListeningToAuthChangeAsyncActionCreator = (
                     dispatch(saveUserDataActionCreator());
                     dispatch(startListeningToUserLoginLogsAsyncCreator());
                 } else {
-                    dispatch(setUserActionCreator(user));
                     dispatch(stopListeningToUserLoginLogsAsyncCreator());
                     dispatch(setUserLoginLogsActionCreator(null));
+                    dispatch(setUserActionCreator(user));
                 }
             }
         )
@@ -117,6 +118,9 @@ export const logOutAsyncActionCreator = () => (dispatch, getState) => {
             dispatch(clearMovieDetailsActionCreator());
             dispatch(clearMovieCommentsDataActionCreator());
             dispatch(setUserLoginLogsActionCreator(null));
+            dispatch(setDataForAreaChartActionCreator(null));
+            dispatch(setDataForPieChartActionCreator(null));
+            dispatch(stopListeningToDataForPieChartChangesAsyncActionCreator());
         });
 };
 

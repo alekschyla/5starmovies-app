@@ -3,9 +3,8 @@ import LinkButton from './LinkButton';
 import AreaChart from './AreaChart';
 import PieChart from './PieChart';
 import styles from '../../styles';
-import { data as dataForPieChart, colors } from './dataForChart2';
 import { connect } from 'react-redux';
-import { getLoginsLogFromFirebaseAsyncActionCreator } from '../../state/dashboard';
+import { getDataForAreaChartFirebaseAsyncActionCreator, getDataForPieChartFirebaseAsyncActionCreator } from '../../state/dashboard';
 
 const links = [
     { value: 'Wyszukaj filmy', to: '/search' },
@@ -15,7 +14,8 @@ const links = [
 
 class Dashboard extends React.Component {
     componentDidMount() {
-        this.props._getLoginsLog();
+        this.props._getDataForAreaChart();
+        this.props._getDataForPieChart();
     };
 
     render() {
@@ -37,8 +37,7 @@ class Dashboard extends React.Component {
                         data={this.props._dataForAreaChart}
                     />
                     <PieChart
-                        data={dataForPieChart}
-                        colors={colors}
+                        data={this.props._dataForPieChart}
                     />
                 </div>
             </div>
@@ -52,7 +51,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    _getLoginsLog: () => dispatch(getLoginsLogFromFirebaseAsyncActionCreator()),
+    _getDataForAreaChart: () => dispatch(getDataForAreaChartFirebaseAsyncActionCreator()),
+    _getDataForPieChart: () => dispatch(getDataForPieChartFirebaseAsyncActionCreator()),
 });
 
 export default connect(

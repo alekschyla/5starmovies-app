@@ -5,7 +5,7 @@ import 'moment/locale/pl';
 const SET_DATA_FOR_AREACHART = 'dashboard/SET_DATA_FOR_AREACHART';
 const SET_DATA_FOR_PIECHART = 'dashboard/SET_DATA_FOR_PIECHART';
 
-export const getLoginsLogFromFirebaseAsyncActionCreator = () => (dispatch, getState) => {
+export const getDataForAreaChartFirebaseAsyncActionCreator = () => (dispatch, getState) => {
     let loginsLog = null;
     database.ref(`userLogins`).once('value').then(
         snapshot => loginsLog = snapshot.val()
@@ -24,9 +24,37 @@ export const getLoginsLogFromFirebaseAsyncActionCreator = () => (dispatch, getSt
             "liczba użytkowników": loginsLog.filter(timestamp => timestamp < (todayMidnight - (index - 1) * 24 * 60 * 60 * 1000) && timestamp >= (todayMidnight - index * 24 * 60 * 60 * 1000)).length,
         }), []
         ).reverse();
-        console.log(data);
         dispatch(setDataForAreaChartActionCreator(data));
     })
+};
+
+export const getDataForPieChartFirebaseAsyncActionCreator = () => (dispatch, getState) => {
+    const userUid = getState().auth.user && getState().auth.user.uid;
+    const ratings = [0, 0, 0, 0, 0];
+    if (userUid) database.ref(`comments/`).on(
+        'value',
+        snapshot => {
+            const data = snapshot.val();
+            Object.values(data)
+                .reduce((allmoviescomments, moviecomments) => allmoviescomments.concat(Object.entries(moviecomments)), [])
+                .filter(moviecomment => moviecomment[0] === userUid)
+                .forEach(moviecomment => {
+                    const rating = moviecomment[1].mark;
+                    for (let i = 1; i <= 5; i++) {
+                        if (rating === i) ratings[i - 1] += 1;
+                    };
+                });
+            const dataForPieChart = ratings.reduce((dataForPieChart, ratingquantity, index) => dataForPieChart.concat({
+                "type": `${index + 1} gwiazd${index === 0 ? 'ka' : index === 4 ? 'ek' : 'ki'}`,
+                "value": ratingquantity,
+            }), []);
+            dispatch(setDataForPieChartActionCreator(dataForPieChart));
+        }
+    );
+};
+
+export const stopListeningToDataForPieChartChangesAsyncActionCreator = () => (dispatch, getState) => {
+    database.ref(`comments/`).off();
 };
 
 export const setDataForAreaChartActionCreator = data => ({
@@ -41,7 +69,28 @@ export const setDataForPieChartActionCreator = data => ({
 
 const initialState = {
     dataForAreaChart: null,
-    dataForPieChart: null,
+    dataForPieChart: [
+        {
+            "type": "1 gwiazdka",
+            "value": 1
+        },
+        {
+            "type": "2 gwiazdki",
+            "value": 1
+        },
+        {
+            "type": "3 gwiazdki",
+            "value": 1
+        },
+        {
+            "type": "4 gwiazdki",
+            "value": 1
+        },
+        {
+            "type": "5 gwiazdek",
+            "value": 1
+        },
+    ],
 };
 
 export default (state = initialState, action) => {
