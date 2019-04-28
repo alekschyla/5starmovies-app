@@ -7,7 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
 import styles from '../../styles';
 
-import placeholderLink from '../../images/noPoster.svg'
+import placeholderLink from '../../images/noPoster.svg';
 
 const handleBrokenImage = e => (e.target.src = placeholderLink);
 
@@ -16,6 +16,7 @@ const SearchedList = (props) => {
         <div
             style={styles['FormSearch-container']}
         >
+            <strong>{props.description}</strong>
             {
                 props.movies &&
                 props.movies.map(
@@ -23,6 +24,7 @@ const SearchedList = (props) => {
                         <div
                             key={movie.imdbID}
                         >
+                            <hr />
                             <ListItem>
                                 <ListItemAvatar>
                                     <Avatar
@@ -44,7 +46,6 @@ const SearchedList = (props) => {
                                 </Fab>
                                 </Link>
                             </ListItem>
-                            <hr />
                         </div>
                     )
                 )
@@ -54,4 +55,4 @@ const SearchedList = (props) => {
     )
 }
 
-export default SearchedList
+export default SearchedList;

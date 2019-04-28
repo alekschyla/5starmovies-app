@@ -14,6 +14,7 @@ class UnifiedList extends React.Component {
             <div>
                 <SearchedList
                     movies={this.props._list}
+                    description={this.props.description}
                 />
             </div>
         )

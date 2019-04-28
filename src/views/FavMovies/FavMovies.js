@@ -7,6 +7,7 @@ const WatchList = () => (
   <UnifiedList
     actionCreator={getFavouriteMoviesListFromFirebaseAsyncActionCreator}
     nameOfMovieList={'favouriteMoviesList'}
+    description={'Ulubione filmy i seriale:'}
   />
 )
 

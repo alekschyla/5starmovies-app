@@ -67,6 +67,7 @@ class Search extends React.Component {
                 <SearchedList
                     movies={movies}
                     history={this.props.history}
+                    description={'Znalezione filmy i seriale:'}
                 />
             </div>
         )
