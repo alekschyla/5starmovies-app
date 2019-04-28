@@ -7,15 +7,11 @@ import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
 import styles from '../../styles';
 
-
-const placeholderLink = "https://image.flaticon.com/icons/svg/230/230399.svg";
+import placeholderLink from '../../images/noPoster.svg'
 
 const handleBrokenImage = e => (e.target.src = placeholderLink);
 
-
-
 const SearchedList = (props) => {
-
     return (
         <div
             style={styles['FormSearch-container']}

@@ -1,33 +1,13 @@
 import React from 'react';
-import SearchedList from "../../components/SearchedList";
-import { connect } from 'react-redux';
 import { getFavouriteMoviesListFromFirebaseAsyncActionCreator } from '../../state/movieList';
 
-class FavMovies extends React.Component {
-    componentDidMount() {
-        this.props._getFavouriteMoviesList();
-    }
+import UnifiedList from '../UnifiedList'
 
-    render() {
-        return (
-            <div>
-                <SearchedList
-                    movies={this.props._favouriteMoviesList}
-                />
-            </div>
-        )
-    }
-}
+const WatchList = () => (
+  <UnifiedList
+    actionCreator={getFavouriteMoviesListFromFirebaseAsyncActionCreator}
+    nameOfMovieList={'favouriteMoviesList'}
+  />
+)
 
-const mapStateToProps = state => ({
-    _favouriteMoviesList: state.movieList.favouriteMoviesList,
-});
-
-const mapDispatchToProps = dispatch => ({
-    _getFavouriteMoviesList: () => dispatch(getFavouriteMoviesListFromFirebaseAsyncActionCreator()),
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(FavMovies);
+export default WatchList;

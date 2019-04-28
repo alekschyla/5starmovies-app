@@ -20,6 +20,8 @@ export const getFavouritesFromFirebaseAsyncActionCreator = () => (dispatch, getS
     });
 };
 
+//  @TODO - .off()
+
 export const addToWatchListAsyncActionCreator = () => (dispatch, getState) => {
     const imdbID = getState().movieDetails.imdbID;
     const userUid = getState().auth.user.uid;

@@ -5,11 +5,12 @@ const SET_FAVOURITES = 'movieList/SET_FAVOURITES';
 
 export const getFavouriteMoviesListFromFirebaseAsyncActionCreator = () => (dispatch, getState) => {
     const userUid = getState().auth.user.uid;
+
     database.ref(`users/${userUid}/favourites`).on(
         'value',
         (snapshot) => {
             Promise.all(
-                Object.keys(snapshot.val())
+                Object.keys(snapshot.val() || {})
                     .map(
                         movieId => (
                             fetch(`http://www.omdbapi.com/?apikey=526cfe10&i=${movieId}`)
@@ -28,7 +29,7 @@ export const getWatchlistMovieListFromFirebaseAsyncActionCreator = () => (dispat
         'value',
         (snapshot) => {
             Promise.all(
-                Object.keys(snapshot.val())
+                Object.keys(snapshot.val() || {})
                     .map(
                         movieId => (
                             fetch(`http://www.omdbapi.com/?apikey=526cfe10&i=${movieId}`)
@@ -40,6 +41,8 @@ export const getWatchlistMovieListFromFirebaseAsyncActionCreator = () => (dispat
         }
     )
 };
+
+//  @TODO - .off()
 
 export const setWatchlistMovieListActionCreator = watchlistMovieList => ({
     type: SET_WATCHLIST,

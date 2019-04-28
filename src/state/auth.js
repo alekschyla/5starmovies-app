@@ -146,7 +146,7 @@ export const stopListeningToUserLoginLogsAsyncCreator = () => (dispatch, getStat
 };
 
 const initialState = {
-    user: true,
+    user: null,
     email: '',
     password: '',
     userName: '',
