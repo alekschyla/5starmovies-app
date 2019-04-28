@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fetchMoviesAsyncActionCreator, fetchAllMoviesAsyncActionCreator } from '../../state/movies'
 import FormSearch from "../../components/FormSearch";
 import SearchedList from "../../components/SearchedList";
-import Error from "../../components/Error";
+import SnackBar from "../../components/SnackBar";
 import Loading from "../../components/Loading";
 
 class Search extends React.Component {
@@ -65,8 +65,8 @@ class Search extends React.Component {
                 />
                 {
                     this.props._isError ?
-                        <Error
-                            isError={this.props._isError}
+                        <SnackBar
+                            error={this.props._isError}
                         />
                         :
                         this.props._isLoading ?

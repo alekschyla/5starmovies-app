@@ -8,7 +8,7 @@ import { fetchMovieAsyncActionCreator } from '../../state/movieDetailsFetch';
 import { fetchMovieCommentsAsyncActionCreator } from '../../state/movieCommentsFetch';
 import { setImdbIDActionCreator } from '../../state/movieDetails';
 import Loading from "../../components/Loading";
-import Error from "../../components/Error";
+import SnackBar from "../../components/SnackBar";
 
 class MovieDetails extends React.Component {
     componentDidMount() {
@@ -22,19 +22,19 @@ class MovieDetails extends React.Component {
             <div>
                 {
                     this.props._imdbID === ""
-                        ? <Error
-                            isError={true}
+                        ? <SnackBar
+                            warning={true}
                             message={"Nie wskazano żadnego filmu do wyświetlenia. Przejdź do wyszukiwarki filmów i kliknij SZCZEGÓŁY, aby zobaczyć szczegóły filmu."}
                         />
                         : this.props._isError
-                            ? <Error
-                                isError={this.props._isError}
+                            ? <SnackBar
+                                error={this.props._isError}
                             />
                             : this.props._isLoading
                                 ? <Loading />
                                 : !this.props._movieData
-                                    ? <Error
-                                        isError={true}
+                                    ? <SnackBar
+                                        warning={true}
                                         message={"Nie udało się wyświetlić danych. Wróć do wyszukiwarki filmów i spróbuj ponownie."}
                                     />
                                     : !this.props._movieComments

@@ -9,6 +9,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 const variantIcon = {
     success: CheckCircleIcon,
@@ -62,6 +63,14 @@ function MySnackbarContent(props) {
     );
 }
 
+MySnackbarContent.propTypes = {
+    classes: PropTypes.object.isRequired,
+    className: PropTypes.string,
+    message: PropTypes.node,
+    onClose: PropTypes.func,
+    variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
+};
+
 const MySnackbarContentWrapper = withStyles(styles1)(MySnackbarContent);
 
 const styles2 = theme => ({
@@ -70,30 +79,58 @@ const styles2 = theme => ({
     },
 });
 
-class Error extends React.Component {
+class SnackBar extends React.Component {
+    state = {
+        open: true,
+    };
+
+    handleClick = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        };
+        this.setState({ open: false });
+    };
 
     render() {
         const { classes } = this.props;
+        const statusTab = [
+            ["error", "Wystąpił błąd, proszę spróbować ponownie!"],
+            ["warning", "Uwaga!"],
+            ["info", "Info"],
+            ["success", "Sukces! Udało się :)"]
+        ];
 
         return (
             <div>
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.props.isError}
-                    autoHideDuration={5000}
-                >
-                    <MySnackbarContentWrapper
-                        variant="error"
-                        className={classes.margin}
-                        message={this.props.message || "Wystąpił błąd, proszę spróbować ponownie!"}
-                    />
-                </Snackbar>
-            </div>
+                {
+                    statusTab
+                        .filter(status => this.props[status[0]] === true)
+                        .map(status => (
+                            <Snackbar
+                                key={status[0]}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                open={this.state.open}
+                                autoHideDuration={6000}
+                                onClose={this.handleClose}
+                            >
+                                <MySnackbarContentWrapper
+                                    variant={status[0]}
+                                    className={classes.margin}
+                                    message={this.props.message || status[1]}
+                                />
+                            </Snackbar>
+                        ))
+                }
+            </div >
         );
     }
 }
 
-export default withStyles(styles2)(Error);
+export default withStyles(styles2)(SnackBar);

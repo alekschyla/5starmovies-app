@@ -6,15 +6,15 @@ const colors = ['yellow', 'orange', 'lime', 'yellowgreen', 'green'];
 const RADIAN = Math.PI / 180;
 
 const renderCustomizedLabel = ({
-    cx, cy, midAngle, innerRadius, outerRadius, percent, type
+    cx, cy, midAngle, innerRadius, outerRadius, percent, type, value
 }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.7;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.2;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
     return (
         <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-            {`${type} : ${(percent * 100).toFixed(0)}%`}
+            {value !== 0 ? `${type} : ${(percent * 100).toFixed(0)}%` : null}
         </text>
     );
 };

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { onClickSubmitFormAsyncActionCreator, setRedirectActionCreator, setDataCheckActionCreator } from '../../state/addRating';
 import { fetchMovieAsyncActionCreator } from '../../state/movieDetailsFetch';
 import { setImdbIDActionCreator } from '../../state/movieDetails';
-import Error from '../../components/Error';
+import SnackBar from '../../components/SnackBar';
 import Loading from "../../components/Loading";
 
 class AddRating extends React.Component {
@@ -87,15 +87,15 @@ class AddRating extends React.Component {
                                     </Fab>
                                     {
                                         !this.props._dataCheck ?
-                                            <Error
-                                                isError={!this.props._dataCheck}
+                                            <SnackBar
+                                                warning={!this.props._dataCheck}
                                                 message={"Nie można zapisać: podane dane są nieprawidłowe lub nie wypełniono wszystkich wymaganych pól."}
                                             />
                                             : null
                                     }
                                 </Paper>
-                                : <Error
-                                    isError={true}
+                                : <SnackBar
+                                    error={true}
                                 />
                 }
             </div>
