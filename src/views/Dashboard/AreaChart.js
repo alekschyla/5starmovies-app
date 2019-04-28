@@ -1,7 +1,7 @@
 import React from 'react';
 import { AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Area, Label } from 'recharts';
 
-class Chart1 extends React.Component {
+class Chart extends React.Component {
     render() {
         return (
             <AreaChart width={600} height={400} data={this.props.data}
@@ -25,4 +25,4 @@ class Chart1 extends React.Component {
     }
 }
 
-export default Chart1;
+export default Chart;

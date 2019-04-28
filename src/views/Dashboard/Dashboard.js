@@ -1,9 +1,8 @@
 import React from 'react';
 import LinkButton from './LinkButton';
-import Chart1 from './AreaChart';
+import AreaChart from './AreaChart';
 import Chart2 from './PieChart';
 import styles from '../../styles';
-import { data as dataForChart1 } from './dataForChart1';
 import { data as dataForChart2, colors } from './dataForChart2';
 import { connect } from 'react-redux';
 import { getLoginsLogFromFirebaseAsyncActionCreator } from '../../state/dashboard';
@@ -34,8 +33,8 @@ class Dashboard extends React.Component {
                 <div
                     style={styles['Dashboard-charts-div']}
                 >
-                    <Chart1
-                        data={dataForChart1}
+                    <AreaChart
+                        data={this.props._dataForAreaChart}
                     />
                     <Chart2
                         data={dataForChart2}
@@ -48,7 +47,8 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-
+    _dataForAreaChart: state.dashboard.dataForAreaChart,
+    _dataForPieChart: state.dashboard.dataForPieChart,
 });
 
 const mapDispatchToProps = dispatch => ({
