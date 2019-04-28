@@ -19,7 +19,7 @@ const styles = {
         marginTop: 100
     },
     'Dashboard-linkbutton': {
-        margin: '20px',
+        margin: 20,
         textDecoration: 'none'
     },
     'OmdbDetails-paper': {
@@ -129,7 +129,6 @@ const styles = {
         flexDirection: 'column',
         margin: 30,
         padding: 30,
-        // backgroundColor: '#F8F0E4',
     },
     'AddRating-button': {
         width: '10%',
@@ -165,28 +164,65 @@ const styles = {
         padding: '10px',
     },
     'LogIn': {
-        margin: '20px',
+        margin: 10,
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
-},
+        alignItems: 'center',
+        padding: 10,
+    },
+    'Register-container': {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '50%',
+        padding: 20,
+        margin: 10,
+    },
     'LogIn-container': {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '400px',
-        padding: '20px',
-        borderRadius: '10px',
-        border: '1px solid grey',
+        width: '30%',
+        padding: 20,
+        margin: 10,
+    },
+    'LogIn-container-row': {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        width: '100%',
+        padding: 10,
+        margin: 10,
+        height: 30,
+    },
+    'LogIn-textarea': {
+        width: '75%',
+        margin: '0px 10px',
     },
     'LogIn-text': {
-        fontSize: '12px'
+        fontSize: '14px'
+    },
+    'LogIn-info': {
+        fontSize: '14px',
+        color: 'red',
+        margin: 20,
+    },
+    'LogIn-button': {
+        margin: 20,
     },
     'AppBar': {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between'
-    }
+    },
+    'AppBar-logo': {
+        padding: 10,
+        height: 50,
+    },
 };
 
 export default styles;

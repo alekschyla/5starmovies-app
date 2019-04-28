@@ -19,7 +19,7 @@ const renderCustomizedLabel = ({
     );
 };
 
-class Chart extends React.Component {
+class PieChart extends React.Component {
     render() {
         return (
             <Chart width={600} height={400}>
@@ -47,4 +47,4 @@ class Chart extends React.Component {
     }
 }
 
-export default Chart;
+export default PieChart;

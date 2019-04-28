@@ -54,9 +54,8 @@ export const startListeningToAuthChangeAsyncActionCreator = (
                     dispatch(passwordConfirmChangeActionCreator(''));
                     dispatch(changePasswordActionCreator(''));
                     dispatch(saveUserDataActionCreator());
-                    dispatch(startListeningToUserLoginLogsAsyncCreator());
+                    dispatch(startListeningToUserLoginLogsAsyncCreator())
                 } else {
-                    dispatch(stopListeningToUserLoginLogsAsyncCreator());
                     dispatch(setUserLoginLogsActionCreator(null));
                     dispatch(setUserActionCreator(user));
                 }
@@ -71,10 +70,9 @@ export const registerUserActionCreator = () => (dispatch, getState) => {
         auth.createUserWithEmailAndPassword(state.auth.email, state.auth.password)
             .then(() => {
                 let user = auth.currentUser;
-
                 user.updateProfile({
                     displayName: state.auth.userName,
-                })
+                });
             })
             .then(data => window.history.pushState(null, null, '/'))
             .catch(error => console.log('wystąpił błąd', error));
@@ -95,13 +93,13 @@ export const logInAsyncActionCreator = () => (dispatch, getState) => {
     const password = state.auth.password;
 
     auth.signInWithEmailAndPassword(email, password)
-        .then(() => console.log('Zalogowano'))
+        .then(() => { })
         .catch(error => console.log('Wystąpił błąd', error))
 };
 
 export const logInByGoogleAsyncActionCreator = () => (dispatch, getState) => {
     auth.signInWithPopup(googleProvider)
-        .then(() => console.log('Zalogowano'))
+        .then(() => { })
         .catch(error => console.log('Wystąpił błąd', error))
 };
 
@@ -121,6 +119,7 @@ export const logOutAsyncActionCreator = () => (dispatch, getState) => {
             dispatch(setDataForAreaChartActionCreator(null));
             dispatch(setDataForPieChartActionCreator(null));
             dispatch(stopListeningToDataForPieChartChangesAsyncActionCreator());
+            dispatch(stopListeningToUserLoginLogsAsyncCreator());
         });
 };
 

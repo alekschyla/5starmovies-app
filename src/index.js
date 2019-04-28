@@ -23,12 +23,12 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
     <Provider store={store}>
-        <Auth>
-            <MuiThemeProvider theme={theme}>
+        <MuiThemeProvider theme={theme}>
+            <Auth>
                 <StarMoviesApp />
-            </MuiThemeProvider>
-        </Auth>
-    </Provider>, 
+            </Auth>
+        </MuiThemeProvider>
+    </Provider>,
     document.getElementById('root')
 );
 

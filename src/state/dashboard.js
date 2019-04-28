@@ -10,7 +10,9 @@ export const getDataForAreaChartFirebaseAsyncActionCreator = () => (dispatch, ge
     database.ref(`userLogins`).once('value').then(
         snapshot => loginsLog = snapshot.val()
     ).then(() => {
-        loginsLog = Object.values(loginsLog).map(object => object.login).map(object => Object.values(object).map(object => object.timestamp))
+        loginsLog = Object.values(loginsLog)
+            .map(object => object.login)
+            .map(object => Object.values(object).map(object => object.timestamp))
             .reduce((r, timestamps) => r.concat(timestamps), []);
 
         const nowDate = new Date();
@@ -19,11 +21,12 @@ export const getDataForAreaChartFirebaseAsyncActionCreator = () => (dispatch, ge
         nowDate.setMinutes(0);
         const todayMidnight = nowDate.setHours(0);
 
-        const data = new Array(7).fill(1).reduce((reduced, el, index) => reduced.concat({
-            "day": moment(new Date() - index * 24 * 60 * 60 * 1000).format('dddd'),
-            "liczba użytkowników": loginsLog.filter(timestamp => timestamp < (todayMidnight - (index - 1) * 24 * 60 * 60 * 1000) && timestamp >= (todayMidnight - index * 24 * 60 * 60 * 1000)).length,
-        }), []
-        ).reverse();
+        const data = new Array(7).fill(1)
+            .reduce((reduced, el, index) => reduced.concat({
+                "day": moment(new Date() - index * 24 * 60 * 60 * 1000).format('dddd'),
+                "liczba użytkowników": loginsLog.filter(timestamp => timestamp < (todayMidnight - (index - 1) * 24 * 60 * 60 * 1000) && timestamp >= (todayMidnight - index * 24 * 60 * 60 * 1000)).length,
+            }), [])
+            .reverse();
         dispatch(setDataForAreaChartActionCreator(data));
     })
 };
@@ -69,28 +72,7 @@ export const setDataForPieChartActionCreator = data => ({
 
 const initialState = {
     dataForAreaChart: null,
-    dataForPieChart: [
-        {
-            "type": "1 gwiazdka",
-            "value": 1
-        },
-        {
-            "type": "2 gwiazdki",
-            "value": 1
-        },
-        {
-            "type": "3 gwiazdki",
-            "value": 1
-        },
-        {
-            "type": "4 gwiazdki",
-            "value": 1
-        },
-        {
-            "type": "5 gwiazdek",
-            "value": 1
-        },
-    ],
+    dataForPieChart: null,
 };
 
 export default (state = initialState, action) => {
