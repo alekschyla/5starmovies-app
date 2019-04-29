@@ -35,23 +35,18 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        width: '25%',
-        margin: 20,
     },
     'OmdbDetails-movieDetails__desc': {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-end',
         width: '20%',
-        margin: 20,
         fontWeight: 'bold',
     },
     'OmdbDetails-movieDetails__text': {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        width: '50%',
-        margin: 20,
     },
     'OmdbDetails-paragraph': {
         height: 30,

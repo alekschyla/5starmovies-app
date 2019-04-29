@@ -37,7 +37,8 @@ class Dashboard extends React.Component {
                                     item xs={12}
                                     md={Math.ceil(12 / links.length)}
                                     container
-                                    justify={'center'}>
+                                    justify={'center'}
+                                >
                                     <LinkButton
                                         value={el.value}
                                         to={el.to}
