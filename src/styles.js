@@ -188,7 +188,7 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '30%',
+        width: '40%',
         padding: 20,
         margin: 10,
     },
@@ -225,6 +225,7 @@ const styles = {
     'AppBar-logo': {
         padding: 10,
         height: 50,
+        borderRadius: '50%',
     },
     'Loading-container': {
         overflow: 'hidden',
