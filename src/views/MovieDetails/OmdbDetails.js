@@ -25,6 +25,7 @@ const OmdbDetails = (props) => {
                     onError={handleBrokenImage}
                 />
             </div>
+
             <div
                 style={styles['OmdbDetails-movieDetails__desc']}
             >
