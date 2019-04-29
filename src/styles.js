@@ -52,9 +52,16 @@ const styles = {
     },
     'OmdbDetails-paragraph': {
         height: 30,
+        padding: 5,
+        margin: 5,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     'OmdbDetails-plot-paragraph': {
         height: 'auto',
+        padding: 5,
+        margin: 5,
     },
     'OmdbDetails-button': {
         margin: 10,
@@ -230,6 +237,15 @@ const styles = {
     'Loading': {
         width: '100px',
         height: '100px'
+    },
+    'UserProfile-button': {
+        width: '200px',
+        margin: 20,
+    },
+    'UserProfile-avatar': {
+        width: '100px',
+        height: '100px',
+        margin: 20,
     },
 };
 

@@ -85,14 +85,10 @@ class AddRating extends React.Component {
                                     >
                                         Zapisz
                                     </Fab>
-                                    {
-                                        !this.props._dataCheck ?
-                                            <SnackBar
-                                                warning={!this.props._dataCheck}
-                                                message={"Nie można zapisać: podane dane są nieprawidłowe lub nie wypełniono wszystkich wymaganych pól."}
-                                            />
-                                            : null
-                                    }
+                                    <SnackBar
+                                        warning={!this.props._dataCheck}
+                                        message={"Nie można zapisać: podane dane są nieprawidłowe lub nie wypełniono wszystkich wymaganych pól."}
+                                    />
                                 </Paper>
                                 : <SnackBar
                                     error={true}

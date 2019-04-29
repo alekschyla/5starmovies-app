@@ -4,6 +4,7 @@ import { Paper, Fab } from '@material-ui/core';
 import styles from '../../styles';
 import AddAndRemoveButtons from '../../components/AddAndRemoveButtons';
 import AddAndRemoveFromFavButtons from '../../components/AddAndRemoveFromFavButtons';
+import StarRatings from 'react-star-ratings';
 
 const placeholderLink = "https://image.flaticon.com/icons/svg/230/230399.svg";
 
@@ -27,6 +28,7 @@ const OmdbDetails = (props) => {
             <div
                 style={styles['OmdbDetails-movieDetails__desc']}
             >
+                <p style={styles['OmdbDetails-paragraph']}>Średnia ocena użytkowników</p>
                 <p style={styles['OmdbDetails-paragraph']}>Tytuł filmu</p>
                 <p style={styles['OmdbDetails-paragraph']}>Typ</p>
                 <p style={styles['OmdbDetails-paragraph']}>Gatunek</p>
@@ -42,6 +44,21 @@ const OmdbDetails = (props) => {
             <div
                 style={styles['OmdbDetails-movieDetails__text']}
             >
+                <div style={styles['OmdbDetails-paragraph']}>
+                    {
+                        props.averageRating ?
+                            <StarRatings
+                                rating={props.averageRating || 0}
+                                starRatedColor='yellow'
+                                numberOfStars={5}
+                                starDimension="30px"
+                                starSpacing="10px"
+                                name='rating'
+                            />
+                            : "Brak ocen."
+                    }
+                </div>
+
                 <p style={styles['OmdbDetails-paragraph']}>{props.movieData.Title}</p>
                 <p style={styles['OmdbDetails-paragraph']}>{props.movieData.Type}</p>
                 <p style={styles['OmdbDetails-paragraph']}>{props.movieData.Genre}</p>

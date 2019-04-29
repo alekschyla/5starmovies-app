@@ -9,6 +9,7 @@ import movieCommentsFetch from './state/movieCommentsFetch';
 import addRating from './state/addRating';
 import movieList from './state/movieList';
 import dashboard from './state/dashboard';
+import userProfile from './state/userProfile';
 
 const rootReducer = combineReducers({
     auth,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     addRating,
     movieList,
     dashboard,
+    userProfile,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
