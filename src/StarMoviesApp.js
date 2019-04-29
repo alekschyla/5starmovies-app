@@ -8,38 +8,28 @@ import AddRating from './views/AddRating';
 import MovieDetails from './views/MovieDetails';
 import FavMovies from './views/FavMovies';
 
+const routes = [
+    [true, "/", Dashboard],
+    [false, "/search", Search],
+    [false, "/watch-list", WatchList],
+    [false, "/fav-movies", FavMovies],
+    [true, "/add-rating/:id", AddRating],
+    [true, ["/movie", "/movie/", "/movie/:id"], MovieDetails]
+];
 
 const StarMoviesApp = () => (
     <Router>
         <Navigation />
-        <Route
-            exact
-            path={"/"}
-            component={Dashboard}
-        />
-        <Route
-            path={"/search"}
-            component={Search}
-        />
-        <Route
-            path={"/watch-list"}
-            component={WatchList}
-        />
-        <Route
-            path={"/fav-movies"}
-            component={FavMovies}
-        />
-        <Route
-            exact
-            path={"/add-rating/:id"}
-            component={AddRating}
-        />
-        <Route
-            exact
-            path={["/movie", "/movie/", "/movie/:id"]}
-            component={MovieDetails}
-        />
-
+        {
+            routes.map((route, index) => (
+                <Route
+                    key={index}
+                    exact={route[0]}
+                    path={route[1]}
+                    component={route[2]}
+                />
+            ))
+        }
     </Router>
 
 );

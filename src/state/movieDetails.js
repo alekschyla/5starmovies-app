@@ -47,6 +47,18 @@ export const removeFromFavouritesAsyncActionCreator = () => (dispatch, getState)
     database.ref(`users/${userUid}/favourites/${imdbID}`).remove()
 };
 
+export const stopListeningToWatchlistChangesAsyncActionCreator = () => (dispatch, getState) => {
+    const userUid = getState().auth.user.uid;
+    const refToMovies = database.ref(`users/${userUid}/watchlist`);
+    refToMovies.off();
+};
+
+export const stopListeningToFavouritesChangesAsyncActionCreator = () => (dispatch, getState) => {
+    const userUid = getState().auth.user.uid;
+    const refToMovies = database.ref(`users/${userUid}/favourites`);
+    refToMovies.off();
+};
+
 export const setImdbIDActionCreator = imdbID => ({
     type: SET_IMDBID,
     imdbID,

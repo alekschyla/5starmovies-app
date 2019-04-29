@@ -7,55 +7,54 @@ import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
 import styles from '../../styles';
 
-
-const placeholderLink = "https://image.flaticon.com/icons/svg/230/230399.svg";
+import placeholderLink from '../../images/noPoster.svg';
 
 const handleBrokenImage = e => (e.target.src = placeholderLink);
 
-
-
 const SearchedList = (props) => {
-
     return (
         <div
             style={styles['FormSearch-container']}
         >
+            <p><strong>{props.description}</strong></p>
             {
-                props.movies &&
-                props.movies.map(
-                    movie => (
-                        <div
-                            key={movie.imdbID}
-                        >
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar
-                                        src={movie.Poster}
-                                        imgProps={{ onError: handleBrokenImage }}
+                !props.movies ?
+                    'Nie znaleziono filmów ani seriali'
+                    :
+                    props.movies &&
+                    props.movies.map(
+                        movie => (
+                            <div
+                                key={movie.imdbID}
+                            >
+                                <hr />
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar
+                                            src={movie.Poster}
+                                            imgProps={{ onError: handleBrokenImage }}
+                                        />
+
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        primary={movie.Title}
+                                        secondary={movie.Year}
                                     />
-
-                                </ListItemAvatar>
-                                <ListItemText
-                                    primary={movie.Title}
-                                    secondary={movie.Year}
-                                />
-                                <Link
-                                    style={{ textDecoration: "none" }}
-                                    to={`/movie/${movie.imdbID}`}>
-                                    <Fab
-                                        variant='extended' color="secondary">
-                                        Wyświetl szczegóły
-                                </Fab>
-                                </Link>
-                            </ListItem>
-                            <hr />
-                        </div>
+                                    <Link
+                                        style={{ textDecoration: "none" }}
+                                        to={`/movie/${movie.imdbID}`}>
+                                        <Fab
+                                            variant='extended' color="secondary">
+                                            Wyświetl szczegóły
+                                        </Fab>
+                                    </Link>
+                                </ListItem>
+                            </div>
+                        )
                     )
-                )
             }
-
         </div>
     )
 }
 
-export default SearchedList
+export default SearchedList;

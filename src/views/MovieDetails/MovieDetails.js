@@ -7,6 +7,8 @@ import styles from '../../styles';
 import { fetchMovieAsyncActionCreator } from '../../state/movieDetailsFetch';
 import { fetchMovieCommentsAsyncActionCreator } from '../../state/movieCommentsFetch';
 import { setImdbIDActionCreator } from '../../state/movieDetails';
+import Loading from "../../components/Loading";
+import SnackBar from "../../components/SnackBar";
 
 class MovieDetails extends React.Component {
     componentDidMount() {
@@ -20,13 +22,21 @@ class MovieDetails extends React.Component {
             <div>
                 {
                     this.props._imdbID === ""
-                        ? "Nie wskazano żadnego filmu do wyświetlenia. Przejdź do wyszukiwarki filmów i kliknij SZCZEGÓŁY, aby zobaczyć szczegóły filmu."
+                        ? <SnackBar
+                            warning={true}
+                            message={"Nie wskazano żadnego filmu do wyświetlenia. Przejdź do wyszukiwarki filmów i kliknij SZCZEGÓŁY, aby zobaczyć szczegóły filmu."}
+                        />
                         : this.props._isError
-                            ? "Wystąpił błąd, spróbuj ponownie."
+                            ? <SnackBar
+                                error={this.props._isError}
+                            />
                             : this.props._isLoading
-                                ? "Ładujemy dane, prosimy o cierpliwość..."
+                                ? <Loading />
                                 : !this.props._movieData
-                                    ? "Nie udało się wyświetlić danych. Wróć do wyszukiwarki filmów i spróbuj ponownie."
+                                    ? <SnackBar
+                                        warning={true}
+                                        message={"Nie udało się wyświetlić danych. Wróć do wyszukiwarki filmów i spróbuj ponownie."}
+                                    />
                                     : !this.props._movieComments
                                         ? <div>
                                             <OmdbDetails

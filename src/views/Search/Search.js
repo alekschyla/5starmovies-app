@@ -1,11 +1,10 @@
 import React from 'react'
-
-import FormSearch from "../../components/FormSearch";
-import SearchedList from "../../components/SearchedList";
-
 import { connect } from 'react-redux'
 import { fetchMoviesAsyncActionCreator, fetchAllMoviesAsyncActionCreator } from '../../state/movies'
-
+import FormSearch from "../../components/FormSearch";
+import SearchedList from "../../components/SearchedList";
+import SnackBar from "../../components/SnackBar";
+import Loading from "../../components/Loading";
 
 class Search extends React.Component {
     state = {
@@ -64,11 +63,21 @@ class Search extends React.Component {
                     getMoviesByYear={this.getMoviesByYear}
                     movies={this.props._movies}
                 />
-
-                <SearchedList
-                    movies={movies}
-                    history={this.props.history}
-                />
+                {
+                    this.props._isError ?
+                        <SnackBar
+                            error={this.props._isError}
+                        />
+                        :
+                        this.props._isLoading ?
+                            <Loading />
+                            :
+                            <SearchedList
+                                movies={movies}
+                                history={this.props.history}
+                                description={'Znalezione filmy i seriale:'}
+                            />
+                }
             </div>
         )
     }
@@ -88,5 +97,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-
 )(Search)

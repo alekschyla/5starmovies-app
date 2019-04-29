@@ -5,17 +5,15 @@ const SET_DATACHECK = 'addRating/SET_DATACHECK';
 
 export const onClickSubmitFormAsyncActionCreator = (rating, comment) => (dispatch, getState) => {
     const re1 = /[a-zA-Z]{2,}/;
-    const re2 = /\S+@\S+\.\S+/;
-    const userName = getState().auth.user.displayName || getState().auth.user.email;
-    const userEmail = getState().auth.user.email;
+    const userUid = getState().auth.user.uid;
+    const userName = getState().auth.user.displayName;
     const imdbID = getState().movieDetails.imdbID;
 
-    re1.test(userName) && re2.test(userEmail) && (rating > 0)
-        ? database.ref(`comments/`).child(`${imdbID}`).push({
+    re1.test(userName) && (rating > 0)
+        ? database.ref(`comments/${imdbID}`).child(userUid).set({
             mark: rating,
             desc: comment,
             name: userName,
-            email: userEmail,
         }).then(() => dispatch(setRedirectActionCreator(true)))
         : dispatch(setDataCheckActionCreator(false));
 }

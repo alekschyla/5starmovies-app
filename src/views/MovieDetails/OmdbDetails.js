@@ -63,7 +63,7 @@ const OmdbDetails = (props) => {
                 />
 
                 <Link
-                    to={`/add-rating/:${props.movieData.imdbID}?${props.movieData.Title}`}
+                    to={`/add-rating/:${props.movieData.imdbID}`}
                     style={styles['OmdbDetails-link']}
                 >
                     <Fab
