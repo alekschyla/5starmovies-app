@@ -1,9 +1,10 @@
 import React from 'react';
-import { AreaChart as Chart, XAxis, YAxis, CartesianGrid, Tooltip, Area, Label } from 'recharts';
+import { AreaChart as Chart, XAxis, YAxis, CartesianGrid, Tooltip, Area, Label, ResponsiveContainer } from 'recharts';
 
 class AreaChart extends React.Component {
     render() {
         return (
+            <ResponsiveContainer width='100%' height={500}>
             <Chart width={600} height={400} data={this.props.data}
                 margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <defs>
@@ -20,6 +21,8 @@ class AreaChart extends React.Component {
                 <Tooltip />
                 <Area type="monotone" dataKey="liczba użytkowników" stroke="#71816D" fillOpacity={1} fill="url(#color)" />
             </Chart>
+            </ResponsiveContainer>
+
         )
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PieChart as Chart, Pie, Cell, Tooltip } from 'recharts';
+import { PieChart as Chart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 const colors = ['yellow', 'orange', 'lime', 'yellowgreen', 'green'];
 const RADIAN = Math.PI / 180;
@@ -22,6 +22,7 @@ const renderCustomizedLabel = ({
 class PieChart extends React.Component {
     render() {
         return (
+            <ResponsiveContainer width='100%' height={500}>
             <Chart width={600} height={400}>
                 <Pie
                     data={this.props.data}
@@ -30,7 +31,7 @@ class PieChart extends React.Component {
                     cx="50%"
                     cy="50%"
                     innerRadius={50}
-                    outerRadius={200}
+                    outerRadius={180}
                     labelLine={false}
                     label={renderCustomizedLabel}
                 >
@@ -43,6 +44,7 @@ class PieChart extends React.Component {
                 </Pie>
                 <Tooltip />
             </Chart>
+            </ResponsiveContainer>
         )
     }
 }

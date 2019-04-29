@@ -16,7 +16,10 @@ const styles = {
     'Dashboard-charts-div': {
         display: 'flex',
         justifyContent: 'space-around',
-        marginTop: 100
+        alignItems: 'center',
+        marginTop: 100,
+        width: '100%',
+        height: '100%',
     },
     'Dashboard-linkbutton': {
         margin: 20,

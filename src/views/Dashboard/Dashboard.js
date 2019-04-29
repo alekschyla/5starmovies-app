@@ -4,6 +4,7 @@ import LinkButton from './LinkButton';
 import AreaChart from './AreaChart';
 import PieChart from './PieChart';
 import styles from '../../styles';
+import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import { getDataForAreaChartFirebaseAsyncActionCreator, getDataForPieChartFirebaseAsyncActionCreator } from '../../state/dashboard';
 
@@ -27,21 +28,44 @@ class Dashboard extends React.Component {
                 <div
                     style={styles['Dashboard-buttons-div']}
                 >
-                    {links.map(el => {
-                        return (<LinkButton key={el.value} value={el.value} to={el.to} />)
-                    })}
+                    <Grid container spacing={24}>
+                        {links.map(el => {
+                            return (
+
+                                <Grid
+                                    key={el.value}
+                                    item xs={12}
+                                    md={Math.ceil(12 / links.length)}
+                                    container
+                                    justify={'center'}>
+                                    <LinkButton
+                                        value={el.value}
+                                        to={el.to}
+                                    />
+                                </Grid>
+                            )
+                        })}
+
+                    </Grid>
                 </div>
+
                 <div
                     style={styles['Dashboard-charts-div']}
                 >
-                    <AreaChart
-                        data={this.props._dataForAreaChart}
-                    />
-                    <PieChart
-                        data={this.props._dataForPieChart}
-                    />
+                    <Grid container spacing={24}>
+                        <Grid item xs={12} md={6}>
+                            <AreaChart
+                                data={this.props._dataForAreaChart}
+                            />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <PieChart
+                                data={this.props._dataForPieChart}
+                            />
+                        </Grid>
+                    </Grid>
                 </div>
-            </div>
+            </div >
         )
     }
 }
