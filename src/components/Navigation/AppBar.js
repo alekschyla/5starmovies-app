@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
-
+import logo from '../../images/logo.png';
 import styles from '../../styles';
 
 class AppBar extends React.Component {
@@ -23,10 +23,14 @@ class AppBar extends React.Component {
                         onClick={this.props.toggleSideBar}
                         color="inherit"
                     >
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" color="inherit">
-                        5StarMovies
+                    <Typography
+                        style={styles['AppBar-logo']}
+                        variant="h6"
+                        color="inherit"
+                    >
+                        <img src={logo} alt="5starMovies" />
                     </Typography>
                 </Toolbar>
                 <Toolbar>
@@ -34,7 +38,7 @@ class AppBar extends React.Component {
                         color="inherit"
                         onClick={this.props.logOut}
                     >
-                        <PowerSettingsNew/>
+                        <PowerSettingsNew />
                     </IconButton>
                 </Toolbar>
             </MUIAppBar>

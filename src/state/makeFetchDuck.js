@@ -66,9 +66,9 @@ export const makeFetchDuck = (name, url) => {
         type: SET,
         data,
     });
-    const fetchStartActionCreator = () => ({type: FETCH_START});
-    const fetchEndActionCreator = () => ({type: FETCH_END});
-    const fetchFailedActionCreator = () => ({type: FETCH_FAILED});
+    const fetchStartActionCreator = () => ({ type: FETCH_START });
+    const fetchEndActionCreator = () => ({ type: FETCH_END });
+    const fetchFailedActionCreator = () => ({ type: FETCH_FAILED });
 
     const initialState = {
         data: null,

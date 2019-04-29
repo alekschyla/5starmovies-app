@@ -85,20 +85,6 @@ const MovieComments = (props) => {
                                             {props.movieComments[key[0]].name}
                                         </div>
                                     </div>
-                                    <div
-                                        style={styles['MovieComments-comment__row']}
-                                    >
-                                        <div
-                                            style={styles['MovieComments-comment__desc']}
-                                        >
-                                            E-mail użytkownika
-                                        </div>
-                                        <div
-                                            style={styles['MovieComments-comment__text']}
-                                        >
-                                            {props.movieComments[key[0]].email}
-                                        </div>
-                                    </div>
                                 </div>
                             </Paper>
                         )
