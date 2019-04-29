@@ -50,23 +50,18 @@ class Dashboard extends React.Component {
                 </div>
 
                 <div
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                        justifyContent: 'space-around',
-                        alignItems: 'center',
-                    }}
+                    style={styles['Dashboard-charts-div']}
                 >
                     <Grid container spacing={24}>
                         <Grid item xs={12} md={6}>
-                        <AreaChart
-                        data={this.props._dataForAreaChart}
-                    />
+                            <AreaChart
+                                data={this.props._dataForAreaChart}
+                            />
                         </Grid>
                         <Grid item xs={12} md={6}>
-                        <PieChart
-                        data={this.props._dataForPieChart}
-                    />
+                            <PieChart
+                                data={this.props._dataForPieChart}
+                            />
                         </Grid>
                     </Grid>
                 </div>
