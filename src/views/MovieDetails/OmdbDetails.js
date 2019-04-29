@@ -64,20 +64,16 @@ const OmdbDetails = (props) => {
                             id={props.movieData.imdbID}
                         />
 
-                        <AddAndRemoveButtons
-                            id={props.movieData.imdbID}
-                        />
-
-                        <Link
-                            to={`/add-rating/:${props.movieData.imdbID}?${props.movieData.Title}`}
-                            style={styles['OmdbDetails-link']}
-                        >
-                            <Fab
-                                color='secondary'
-                                variant='extended'
-                                style={styles['OmdbDetails-button']}
-                            >
-                                Dodaj ocenę i komentarz do filmu
+                <Link
+                    to={`/add-rating/:${props.movieData.imdbID}`}
+                    style={styles['OmdbDetails-link']}
+                >
+                    <Fab
+                        color='secondary'
+                        variant='extended'
+                        style={styles['OmdbDetails-button']}
+                    >
+                        Dodaj ocenę i komentarz do filmu
                 </Fab>
                         </Link>
                     </div>
