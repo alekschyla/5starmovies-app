@@ -55,9 +55,16 @@ const styles = {
     },
     'OmdbDetails-paragraph': {
         height: 30,
+        padding: 5,
+        margin: 5,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     'OmdbDetails-plot-paragraph': {
         height: 'auto',
+        padding: 5,
+        margin: 5,
     },
     'OmdbDetails-button': {
         margin: 10,
@@ -184,7 +191,7 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '30%',
+        width: '40%',
         padding: 20,
         margin: 10,
     },
@@ -221,6 +228,7 @@ const styles = {
     'AppBar-logo': {
         padding: 10,
         height: 50,
+        borderRadius: '50%',
     },
     'Loading-container': {
         overflow: 'hidden',
@@ -233,6 +241,15 @@ const styles = {
     'Loading': {
         width: '100px',
         height: '100px'
+    },
+    'UserProfile-button': {
+        width: '200px',
+        margin: 20,
+    },
+    'UserProfile-avatar': {
+        width: '100px',
+        height: '100px',
+        margin: 20,
     },
 };
 

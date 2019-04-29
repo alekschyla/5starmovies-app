@@ -28,7 +28,11 @@ const MovieComments = (props) => {
                                 style={styles['MovieComments-comment']}
                                 key={[key[0]]}
                             >
-                                <h4>Komentarz {Number([index]) + 1}</h4>
+                                {
+                                    key[0] === props.userUid ?
+                                        <h4>Twój Komentarz </h4>
+                                        : null
+                                }
                                 <div
                                     style={styles['MovieComments-comment__div']}
                                 >

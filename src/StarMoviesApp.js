@@ -7,14 +7,16 @@ import WatchList from './views/WatchList';
 import AddRating from './views/AddRating';
 import MovieDetails from './views/MovieDetails';
 import FavMovies from './views/FavMovies';
+import UserProfile from './views/UserProfile';
 
 const routes = [
-    [true, "/", Dashboard],
+    [true, ["/","/dashboard"], Dashboard],
     [false, "/search", Search],
     [false, "/watch-list", WatchList],
     [false, "/fav-movies", FavMovies],
     [true, "/add-rating/:id", AddRating],
-    [true, ["/movie", "/movie/", "/movie/:id"], MovieDetails]
+    [true, ["/movie", "/movie/", "/movie/:id"], MovieDetails],
+    [false, "/user-profile", UserProfile]
 ];
 
 const StarMoviesApp = () => (

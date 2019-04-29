@@ -41,6 +41,7 @@ class MovieDetails extends React.Component {
                                         ? <div>
                                             <OmdbDetails
                                                 movieData={this.props._movieData}
+                                                averageRating={0}
                                             />
                                             <Paper
                                                 style={styles['OmdbDetails-paper']}
@@ -52,9 +53,11 @@ class MovieDetails extends React.Component {
                                         <div>
                                             <OmdbDetails
                                                 movieData={this.props._movieData}
+                                                averageRating={Object.values(this.props._movieComments).reduce((ratings, comment) => ratings += comment.mark, 0) / Object.values(this.props._movieComments).length}
                                             />
                                             <MovieComments
                                                 movieComments={this.props._movieComments}
+                                                userUid={this.props._userUid}
                                             />
                                         </div>
                 }
@@ -64,6 +67,7 @@ class MovieDetails extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    _userUid: state.auth.user && state.auth.user.uid,
     _imdbID: state.movieDetails.imdbID,
     _movieData: state.movieDetailsFetch.data,
     _movieComments: state.movieCommentsFetch.data,

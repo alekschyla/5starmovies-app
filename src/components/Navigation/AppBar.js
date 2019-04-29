@@ -1,13 +1,16 @@
-import React from 'react'
-
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import MUIAppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import PowerSettingsNew from '@material-ui/icons/PowerSettingsNew';
 import logo from '../../images/logo.png';
 import styles from '../../styles';
+import userPhoto from '../../images/user.svg';
 
 class AppBar extends React.Component {
 
@@ -34,12 +37,28 @@ class AppBar extends React.Component {
                     </Typography>
                 </Toolbar>
                 <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        onClick={this.props.logOut}
-                    >
-                        <PowerSettingsNew />
-                    </IconButton>
+                    <p>Witaj, {this.props._userName}!</p>
+                    <Tooltip title="Wyświetl swój profil">
+                        <Link
+                            to={'/user-profile'}
+                        >
+                            <img
+                                style={styles['AppBar-logo']}
+                                src={this.props._userPhoto}
+                                alt={''}
+                                width={'50px'}
+                                height={'50px'}
+                            />
+                        </Link>
+                    </Tooltip>
+                    <Tooltip title="Wyloguj">
+                        <IconButton
+                            color="inherit"
+                            onClick={this.props.logOut}
+                        >
+                            <PowerSettingsNew />
+                        </IconButton>
+                    </Tooltip>
                 </Toolbar>
             </MUIAppBar>
 
@@ -47,4 +66,9 @@ class AppBar extends React.Component {
     }
 }
 
-export default AppBar
+const mapStateToProps = state => ({
+    _userPhoto: (state.auth.user && state.auth.user.photoURL) || userPhoto,
+    _userName: state.auth.user && state.auth.user.displayName,
+});
+
+export default connect(mapStateToProps)(AppBar);
