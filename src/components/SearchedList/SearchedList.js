@@ -6,7 +6,6 @@ import Fab from '@material-ui/core/Fab';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
 import styles from '../../styles';
-import Grid from '@material-ui/core/Grid';
 
 
 const placeholderLink = "https://image.flaticon.com/icons/svg/230/230399.svg";
@@ -28,42 +27,34 @@ const SearchedList = (props) => {
                         <div
                             key={movie.imdbID}
                         >
-                            <Grid container spacing={8}>
-                                <Grid item xs={12} md={6}>
-                                    <ListItem>
-                                        <Grid item xs={12} md={6}>
-                                            <ListItemAvatar>
-                                                <Grid item xs={12} md={6}>
-                                                    <Avatar
-                                                        src={movie.Poster}
-                                                        imgProps={{ onError: handleBrokenImage }}
-                                                    />
-                                                </Grid>
-
-                                            </ListItemAvatar>
-                                        </Grid>
-                                        <ListItemText
-                                            primary={movie.Title}
-                                            secondary={movie.Year}
+                            <Link
+                                style={{ textDecoration: "none" }}
+                                to={`/movie/${movie.imdbID}`}
+                            >
+                                <ListItem
+                                    button={true}
+                                >
+                                    <ListItemAvatar>
+                                        <Avatar
+                                            src={movie.Poster}
+                                            imgProps={{ onError: handleBrokenImage }}
                                         />
-                                        <Link
-                                            style={{ textDecoration: "none" }}
-                                            to={`/movie/${movie.imdbID}`}>
-                                            <Fab
-                                                variant='extended' color="secondary">
-                                                Wyświetl szczegóły
-                                </Fab>
-                                        </Link>
-                                    </ListItem>
-                                </Grid>
-                                <hr />
-                            </Grid>
-                        </div>
+
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        primary={movie.Title}
+                                        secondary={movie.Year}
+                                    />
+
+                                </ListItem>
+                            </Link>
+                            <hr />
+                        </div >
                     )
                 )
             }
 
-        </div>
+        </div >
     )
 }
 

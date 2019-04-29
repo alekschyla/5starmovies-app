@@ -27,26 +27,25 @@ class MovieDetails extends React.Component {
                                 ? "Ładujemy dane, prosimy o cierpliwość..."
                                 : !this.props._movieData
                                     ? "Nie udało się wyświetlić danych. Wróć do wyszukiwarki filmów i spróbuj ponownie."
-                                    : !this.props._movieComments
-                                        ? <div>
-                                            <OmdbDetails
-                                                movieData={this.props._movieData}
-                                            />
-                                            <Paper
-                                                style={styles['OmdbDetails-paper']}
-                                            >
-                                                Do tego filmu nie dodano jeszcze żadnych komentarzy.
-                                                    </Paper>
-                                        </div>
-                                        :
-                                        <div>
-                                            <OmdbDetails
-                                                movieData={this.props._movieData}
-                                            />
-                                            <MovieComments
-                                                movieComments={this.props._movieComments}
-                                            />
-                                        </div>
+                                    :
+                                    <div>
+                                        <OmdbDetails
+                                            movieData={this.props._movieData}
+                                        />
+                                        {
+                                            !this.props._movieComments ?
+                                                <Paper
+                                                    style={styles['OmdbDetails-paper']}
+                                                >
+                                                    Do tego filmu nie dodano jeszcze żadnych komentarzy.
+                                                </Paper>
+                                                :
+                                                <MovieComments
+                                                    movieComments={this.props._movieComments}
+                                                />
+                                        }
+                                    </div>
+
                 }
             </div>
         )
